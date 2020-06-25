@@ -1,0 +1,48 @@
+#线上测试配置
+spring:
+  datasource:
+    url: jdbc:mysql://cupb.top:3306/eric?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8
+    username: eric
+    password: newpass
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+  #    type:  com.alibaba.druid.pool.DruidDataSource
+  servlet:
+    multipart:
+      enabled: false
+#  redis:
+#    database: 0
+#    host: 119.23.236.94
+#    port: 6379
+#    password: newpass
+#    jedis:
+#      pool:
+#        max-active: 8
+#  cache:
+#    redis:
+#      time-to-live: 0s # 缓存过期时间30分钟
+#    type: redis
+#  rabbitmq:
+#    host: 119.23.236.94
+
+logging:
+  level:
+    root: info #其他的包都是使用info正常显示日志
+    hxy.cupb.springboot: trace # 显示mybatis的操作时候所有级别的日志
+
+
+hxy:
+  print:
+    file: /home/ubuntu/eric/print/file
+    pay-status: true #支付测试
+    single-price: 20
+    double-price: 25
+    shop: cupb
+    http: 8080
+    https: 8443
+#server:
+#  ssl:
+#    key-store: classpath:cupbtop.jks
+#    key-store-password: Sigh,0404
+#    key-store-type: JKS #RSA
+#    port: 8443

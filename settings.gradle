@@ -1,0 +1,5 @@
+rootProject.name = 'eric-dream'
+include 'app'
+include 'entity'
+include 'dao'
+
