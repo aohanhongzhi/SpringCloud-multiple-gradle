@@ -19,6 +19,15 @@ buildscript {
     }
 }
 
+
+plugins {
+    id 'java'
+    id 'idea'
+    id "com.google.cloud.tools.jib" version "2.0.0"
+}
+
+
+
 /* 所有子项目的通用配置 */
 subprojects {
     /* 使用二进制插件 */
@@ -28,6 +37,8 @@ subprojects {
     apply plugin: 'org.springframework.boot'
     /* 依赖管理插件仍然是一个spring-boot-gradle-plugin传递依赖，所以无需在build.gradle配置中明确列出此依赖。 */
     apply plugin: 'io.spring.dependency-management' /* 依赖管理，用来传递spring的依赖 */
+//    apply plugin: 'id "com.google.cloud.tools.jib" version "2.0.0"'
+
 
     group = 'hxy.dream'
     version = '1.0-SNAPSHOT'
@@ -60,3 +71,22 @@ subprojects {
 group 'hxy.dream'
 version '1.0-SNAPSHOT'
 
+
+jib {
+    from {
+        image = 'registry.cn-shanghai.aliyuncs.com/starxin/docker-jib:1.0'
+    }
+    to {
+        image = 'registry.cn-shanghai.aliyuncs.com/MyRegistry/projectM'
+        auth {
+            username = '登录账号'
+            password = '登录密码'
+        }
+    }
+    container {
+        creationTime='USE_CURRENT_TIMESTAMP'
+        jvmFlags = ['-Djava.security.egd=file:/dev/./urandom', '-Dspring.profiles.active=prod', '-Dfile.encoding=utf-8', '-Duser.timezone=GMT+08']
+        mainClass = 'com.xxx.RunApplication'
+        ports = ['8080']
+    }
+}
