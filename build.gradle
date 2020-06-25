@@ -43,7 +43,9 @@ subprojects {
     group = 'hxy.dream'
     version = '1.0-SNAPSHOT'
     /* 指定jdk版本 */
-    sourceCompatibility = '1.8'
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
     /* java编译的时候缺省状态下会因为中文字符而失败 */
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
@@ -72,6 +74,7 @@ group 'hxy.dream'
 version '1.0-SNAPSHOT'
 
 
+//下面是google构建docker镜像插件的配置
 jib {
     from {
         image = 'registry.cn-shanghai.aliyuncs.com/starxin/docker-jib:1.0'

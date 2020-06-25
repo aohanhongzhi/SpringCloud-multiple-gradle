@@ -11,13 +11,20 @@ spring:
       enabled: false
   profiles:
     active: beta #环境隔离
+  mail:
+    username: inform@islab.net.cn
+    password: Alerter.2019
+    default-encoding: UTF-8
+    host: smtp.exmail.qq.com
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     #    配置日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-aliases-package: hxy.cupb.springboot.model
+  type-aliases-package: hxy.dream.dao.model
   # 支持通配符 * 或者 ; 分割
   typeEnumsPackage: com.baomidou.springboot.entity.enums
   global-config:
