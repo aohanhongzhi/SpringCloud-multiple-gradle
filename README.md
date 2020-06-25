@@ -1,6 +1,6 @@
 Eric-Dream
 ===
-本项目是基于Gradle构建的多模块SpringCloud工程。采用传统线程模型的SpringWeb框架，mybatis-plus和mysql官方驱动。具体框架如下表：
+本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。具体框架如下表：
 
 技术 | 说明 | 官网
 ----|----|----
