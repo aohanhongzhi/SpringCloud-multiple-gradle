@@ -1,6 +1,6 @@
 package hxy.dream.app.service.impl;
 
-import hxy.dream.app.BaseTest;
+import hxy.dream.BaseTest;
 import hxy.dream.app.service.UserService;
 import hxy.dream.dao.modle.UserModel;
 import lombok.extern.slf4j.Slf4j;

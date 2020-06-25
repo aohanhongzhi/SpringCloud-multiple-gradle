@@ -1,4 +1,4 @@
-package hxy.dream.app;
+package hxy.dream;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

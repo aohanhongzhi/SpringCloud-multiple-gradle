@@ -45,3 +45,9 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 ```groovy
     id "com.google.cloud.tools.jib" version "2.0.0"
 ```
+
+
+### 统一序列化枚举
+参考腾讯文档：https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6
+
+![](./asset/img/enums.png)
