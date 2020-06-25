@@ -41,3 +41,7 @@ loc |代码行数统计 | https://github.com/cgag/loc
 ### 版本指定，类似dependencyManager
 
 ### docker自动化跑起来
+google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓库
+```groovy
+    id "com.google.cloud.tools.jib" version "2.0.0"
+```
