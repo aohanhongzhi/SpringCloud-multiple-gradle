@@ -1,0 +1,5 @@
+/app/build/
+/dao/build/
+/entity/build/
+/gradlew
+/gradlew.bat
