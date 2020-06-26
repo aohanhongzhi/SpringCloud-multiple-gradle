@@ -1,15 +1,19 @@
 package hxy.dream.dao.modle;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import hxy.dream.entity.enums.GenderEnum;
 import lombok.Data;
 
 @Data
 @TableName("users")
 public class UserModel extends Model {
+    @TableId(type = IdType.AUTO)
     String id;
     String name;
     Integer age;
-    Enum gender;
+    GenderEnum gender;
     String password;
 }

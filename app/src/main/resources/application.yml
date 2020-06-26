@@ -24,14 +24,15 @@ mybatis-plus:
   configuration:
     #    配置日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
   type-aliases-package: hxy.dream.dao.model
   # 支持通配符 * 或者 ; 分割
-  typeEnumsPackage: hxy.dream.entity.enums
   global-config:
     db-config:
       logic-delete-field: deleted  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  type-enums-package: hxy.dream.entity.enums
 
 # pagehelper分页插件
 pagehelper:
