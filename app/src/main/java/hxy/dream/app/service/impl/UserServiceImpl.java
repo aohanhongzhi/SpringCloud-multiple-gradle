@@ -14,4 +14,9 @@ public class UserServiceImpl implements UserService {
         userModel.setGender(GenderEnum.BOY);
         return userModel;
     }
+
+    @Override
+    public UserModel get(String id) {
+        return null;
+    }
 }

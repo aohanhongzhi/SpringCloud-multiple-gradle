@@ -26,7 +26,7 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: hxy.dream.dao.model
   # 支持通配符 * 或者 ; 分割
-  typeEnumsPackage: com.baomidou.springboot.entity.enums
+  typeEnumsPackage: hxy.dream.entity.enums
   global-config:
     db-config:
       logic-delete-field: deleted  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
