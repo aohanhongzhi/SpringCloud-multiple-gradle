@@ -1,1 +1,15 @@
 GET http://localhost:8080/get/12
+
+### 添加
+POST http://localhost:8080/add/
+Content-Type: application/json
+Accept: application/json
+
+{
+    "gender": 2,
+    "name": "lis1i1",
+    "age": 23
+}
+
+### 列表
+GET http://localhost:8080/list

@@ -3,7 +3,7 @@ package hxy.dream.entity.enums;
 /**
  * The interface Enumerator.
  */
-public interface Enumerator {
+public interface BaseEnum {
     /**
      * Code integer.
      *

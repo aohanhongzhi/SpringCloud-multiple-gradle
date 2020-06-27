@@ -50,9 +50,20 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 ### 统一序列化枚举
 
 #### Controller层
+##### 入参
+![](./asset/img/枚举.png)
+![](./asset/img/数字枚举.png)
+
+> 参考：
+
+##### 返回
 参考腾讯文档：https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6
 
 ![](./asset/img/enums.png)
 
 #### ORM层
 > 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
+
+
+#### 总结
+通过上面方法，对数据库层和Controller层的转换操作，可以很好的处理枚举在应用中的形态，程序中可以很好的使用枚举了。

@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -21,14 +22,19 @@ public class UserServiceImpl implements UserService {
     public UserModel add(UserParam userParam) {
         UserModel userModel = new UserModel();
         userModel.setName(userParam.getName());
-        userModel.setGender(GenderEnum.BOY);
+        userModel.setGender(userParam.getGender());
         int insert = userMapper.insert(userModel);
-        log.debug("\n====>插入影响行数：{}",insert);
+        log.debug("\n====>插入影响行数：{}", insert);
         return userModel;
     }
 
     @Override
     public UserModel get(String id) {
         return null;
+    }
+
+    @Override
+    public List<UserModel> list() {
+        return userMapper.selectList(null);
     }
 }
