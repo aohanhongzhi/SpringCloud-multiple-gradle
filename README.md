@@ -51,13 +51,16 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 
 #### Controller层
 ##### 入参
+
 ![](./asset/img/枚举.png)
 ![](./asset/img/数字枚举.png)
 
-> 参考：
+> 参考：[Spring Boot 使用枚举类型作为请求参数
+](https://docs.qq.com/doc/DSE54YmRuY0hlZFpY)
 
 ##### 返回
-参考腾讯文档：https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6
+> 参考：[JSON类库Jackson优雅序列化Java枚举类
+](https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6)
 
 ![](./asset/img/enums.png)
 
