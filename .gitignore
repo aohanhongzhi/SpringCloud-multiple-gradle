@@ -3,3 +3,8 @@
 /entity/build/
 /gradlew
 /gradlew.bat
+/gradle/
+/common/build/
+/logs/
+.idea/
+.gradle/
