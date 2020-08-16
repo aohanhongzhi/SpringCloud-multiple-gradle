@@ -25,7 +25,11 @@ public class UserServiceImpl implements UserService {
     public UserModel add(UserParam userParam) {
         UserModel userModel = new UserModel();
         userModel.setName(userParam.getName());
-        userModel.setGender(userParam.getGender());
+        GenderEnum gender = userParam.getGender();
+        userModel.setGender(gender);
+        if (gender==GenderEnum.BOY){
+            log.error("性别未知");
+        }
         int insert = userMapper.insert(userModel);
         log.debug("\n====>插入影响行数：{}", insert);
         return userModel;
