@@ -22,6 +22,8 @@ public class StringToEnumConverter<T extends BaseEnum> implements Converter<Stri
         T[] enums = enumType.getEnumConstants();
         for (T e : enums) {
             enumMap.put(e.code().toString(), e);
+//            增强版本，可以加上description的转换
+            enumMap.put(e.description(),e);
         }
     }
 

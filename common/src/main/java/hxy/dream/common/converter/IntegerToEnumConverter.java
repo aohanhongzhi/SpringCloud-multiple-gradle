@@ -13,6 +13,7 @@ import java.util.Map;
  * </p>
  *
  * @description: 枚举编码 -> 枚举 转化器
+ * TODO 需要实际测试下，看看这个东西有木有生效。因为无论是code还是description都是走的StringToEnumConverter
 
  */
 public class IntegerToEnumConverter<T extends BaseEnum> implements Converter<Integer, T> {
