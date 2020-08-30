@@ -6,6 +6,7 @@
 */
 buildscript {
     ext {
+//        2.2.9是 GA版本，后期会有长期更新支持
         springBootVersion = '2.2.9.RELEASE'
     }
     repositories {
