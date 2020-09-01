@@ -28,8 +28,6 @@ public class BeanConfig {
                 gen.writeNumberField("code", value.code());
                 gen.writeStringField("description", value.description());
                 gen.writeEndObject();
-
-
             }
         });
     }

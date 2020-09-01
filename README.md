@@ -64,6 +64,13 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 
 ![](./asset/img/enums.png)
 
+如果发生无法正常解析的时候，那么可能是注入的bean无法使用
+
+如果发现注入的bean无法解决json序列化问题，那么可以在`BaseEnum`加上这个注解
+```java
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
+```
+
 #### ORM层
 > 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
 
