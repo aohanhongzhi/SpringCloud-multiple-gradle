@@ -1,6 +1,7 @@
 package hxy.dream.app.service.impl;
 
 import hxy.dream.BaseTest;
+import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
 import hxy.dream.dao.modle.UserModel;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,9 @@ public class UserServiceImplTest  extends BaseTest {
     UserService userService;
     @Test
     public void runTest(){
-        UserModel userModel = userService.add("1");
+        UserParam userParam = new UserParam();
+        userParam.setName("111");
+        UserModel userModel = userService.add(userParam);
         log.info("\n====>{}",userModel);
     }
 }

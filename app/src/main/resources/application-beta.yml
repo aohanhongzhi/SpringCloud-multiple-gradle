@@ -28,7 +28,8 @@ spring:
 logging:
   level:
     root: info #其他的包都是使用info正常显示日志
-    hxy.cupb.springboot: trace # 显示mybatis的操作时候所有级别的日志
+    hxy.dream.dao: trace # 显示mybatis的操作时候所有级别的日志
+    hxy.dream.app: debug
 
 
 hxy:

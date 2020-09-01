@@ -1,6 +1,8 @@
 package hxy.dream.entity.enums;
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -15,6 +17,7 @@ public enum GenderEnum implements BaseEnum {
         this.description = description;
     }
 
+//    @JsonValue
     @Override
     public Integer code() {
         return code;
@@ -24,4 +27,15 @@ public enum GenderEnum implements BaseEnum {
     public String description() {
         return description;
     }
+
+//    @JsonCreator
+//    public static GenderEnum getItem(int code){
+//        for(GenderEnum item : values()){
+//            if(item.getCode() == code){
+//                return item;
+//            }
+//        }
+//        return null;
+//    }
+
 }

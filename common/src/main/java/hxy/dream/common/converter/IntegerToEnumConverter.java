@@ -1,6 +1,7 @@
 package hxy.dream.common.converter;
 
 import hxy.dream.entity.enums.BaseEnum;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.ObjectUtils;
 
@@ -16,6 +17,7 @@ import java.util.Map;
  * TODO 需要实际测试下，看看这个东西有木有生效。因为无论是code还是description都是走的StringToEnumConverter
 
  */
+@Slf4j
 public class IntegerToEnumConverter<T extends BaseEnum> implements Converter<Integer, T> {
     private Map<Integer, T> enumMap =new HashMap<>();
 
@@ -31,6 +33,10 @@ public class IntegerToEnumConverter<T extends BaseEnum> implements Converter<Int
         T t = enumMap.get(source);
         if (ObjectUtils.isEmpty(t)) {
             throw new IllegalArgumentException("无法匹配对应的枚举类型");
+        }else{
+            if (log.isDebugEnabled()){
+                log.debug("\n====>IntegerCodeToEnumConverter转化[{}]成枚举[{}]",source,t);
+            }
         }
         return t;
     }

@@ -44,7 +44,14 @@ public class UserController {
 
     @PostMapping("add/")
     public BaseResponseVO save(@Valid @RequestBody UserParam userParam) {
-        log.info("\n====>当前添加的id是{}", userParam);
+        log.debug("\n====>当前添加的用户信息是{}", userParam);
+        UserModel userModel = userService.add(userParam);
+        return BaseResponseVO.success(userModel);
+    }
+
+    @PostMapping("add2")
+    public BaseResponseVO save2(@Valid UserParam userParam) {
+        log.debug("\n====>当前添加的用户信息是{}", userParam);
         UserModel userModel = userService.add(userParam);
         return BaseResponseVO.success(userModel);
     }

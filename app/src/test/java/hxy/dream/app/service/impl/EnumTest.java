@@ -22,11 +22,25 @@ public class EnumTest extends BaseTest {
     public void enumTest() {
         try {
             String s = objectMapper.writeValueAsString(GenderEnum.BOY);
-            // 输出字符串 MALE
+            // 输出字符串 {"code":1,"description":"男"}
             System.out.println(s);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
+
+
+    @org.junit.Test
+    public void enumJsonTest(){
+        try {
+            String s = objectMapper.writeValueAsString(GenderEnum.BOY);
+            GenderEnum genderEnum = objectMapper.readValue(s, GenderEnum.class);
+            System.out.println(genderEnum);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

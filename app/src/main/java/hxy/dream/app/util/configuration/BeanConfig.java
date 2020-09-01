@@ -21,6 +21,7 @@ import java.io.IOException;
 public class BeanConfig {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer enumCustomizer() {
+//        将枚举转成json返回给前端
         return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.serializerByType(BaseEnum.class, new JsonSerializer<BaseEnum>() {
             @Override
             public void serialize(BaseEnum value, JsonGenerator gen, SerializerProvider serializers) throws IOException {

@@ -49,6 +49,8 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 
 ## 统一序列化枚举
 
+https://juejin.im/post/6844904196693557255
+
 #### Controller层
 ##### 入参
 
@@ -57,6 +59,8 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 
 > 参考：[Spring Boot 使用枚举类型作为请求参数
 ](https://docs.qq.com/doc/DSE54YmRuY0hlZFpY)
+
+现在的问题在于jackson将枚举反序列化的时候需要使用code而不是ordinal。显然之前的Convert在这里貌似并没有什么作用。因为这里基本上全部靠jackson来序列化。
 
 ##### 返回
 > 参考：[JSON类库Jackson优雅序列化Java枚举类
