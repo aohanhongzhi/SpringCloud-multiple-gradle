@@ -87,3 +87,7 @@ https://juejin.im/post/6844904196693557255
 
 #### 总结
 通过上面方法，对数据库层和Controller层的转换操作，可以很好的处理枚举在应用中的形态，程序中可以很好的使用枚举了。
+
+#### 自定义date的序列化器
+
+https://blog.csdn.net/bandancer/article/details/84926383

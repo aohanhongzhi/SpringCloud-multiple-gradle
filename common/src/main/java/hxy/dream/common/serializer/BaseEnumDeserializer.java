@@ -32,7 +32,6 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
                 return null;
             }
 
-            log.info("\n测试反序列化枚举[{}]", inputParameter);
 
             JsonStreamContext parsingContext = p.getParsingContext();
             String currentName = parsingContext.getCurrentName();//字段名
@@ -40,7 +39,9 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
             Field field = ReflectionUtils.getField(currentValue.getClass(), currentName); // 通过对象和属性名获取属性的类型
             Class enumClass = field.getType();
 
-            return DefaultInputJsonToEnum.getEnum(inputParameter, enumClass);
+            BaseEnum anEnum = DefaultInputJsonToEnum.getEnum(inputParameter, enumClass);
+            log.info("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(),anEnum);
+            return anEnum;
         } catch (Exception e) {
             // logger.error("JsonEnumDeserializer deserialize error: " + Throwables.getStackTraceAsString(e));
 //            System.out.println("JsonEnumDeserializer deserialize error: " + Throwables.getStackTraceAsString(e));
