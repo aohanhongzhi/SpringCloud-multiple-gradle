@@ -53,6 +53,11 @@ https://juejin.im/post/6844904196693557255
 
 #### Controller层
 ##### 入参
+###### 表单提交
+
+![](./asset/img/枚举表单序列化.png)
+
+###### json
 
 ![](./asset/img/枚举.png)
 ![](./asset/img/数字枚举.png)
@@ -76,6 +81,7 @@ https://juejin.im/post/6844904196693557255
 ```
 
 #### ORM层
+
 > 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
 
 
