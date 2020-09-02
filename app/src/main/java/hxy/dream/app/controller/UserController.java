@@ -2,6 +2,8 @@ package hxy.dream.app.controller;
 
 import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
+import hxy.dream.common.converter.StringToEnumConverter;
+import hxy.dream.common.serializer.BaseEnumDeserializer;
 import hxy.dream.dao.modle.UserModel;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +45,7 @@ public class UserController {
     }
 
     /** 这里的RequestBody是接收body的json数据，也就是走jackson反序列化的。
+     * @see BaseEnumDeserializer
      * @param userParam
      * @return
      */
@@ -53,7 +56,8 @@ public class UserController {
         return BaseResponseVO.success(userModel);
     }
 
-    /**  这个不需要用到json序列化，所以没有使用jackson。需要使用
+    /**  这个不需要用到json序列化，所以没有使用jackson。需要使用Convert
+     * @see StringToEnumConverter
      * @param userParam
      * @return
      */
