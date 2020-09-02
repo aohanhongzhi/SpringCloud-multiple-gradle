@@ -1,5 +1,6 @@
 package hxy.dream.entity.enums;
 
+import ch.qos.logback.classic.boolex.GEventEvaluator;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -15,6 +16,16 @@ public enum GenderEnum implements BaseEnum {
     GenderEnum(int code, String description) {
         this.code = code;
         this.description = description;
+    }
+
+
+    public static GenderEnum getByCode(Integer code){
+        for (GenderEnum genderEnum:values()){
+            if (genderEnum.code.equals(code)){
+                return genderEnum;
+            }
+        }
+        return null;
     }
 
 //    @JsonValue

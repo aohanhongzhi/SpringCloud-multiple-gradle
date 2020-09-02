@@ -2,6 +2,7 @@ package hxy.dream.app.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import hxy.dream.BaseTest;
 import hxy.dream.entity.enums.GenderEnum;
 import org.junit.Test;
@@ -36,9 +37,17 @@ public class EnumTest extends BaseTest {
             String s = objectMapper.writeValueAsString(GenderEnum.BOY);
             GenderEnum genderEnum = objectMapper.readValue(s, GenderEnum.class);
             System.out.println(genderEnum);
+
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+    }
+    @org.junit.Test
+    public void enumJsonTest2(){
+
+            GenderEnum byCode = GenderEnum.getByCode(1);
+            System.out.println(byCode);
+
     }
 
 

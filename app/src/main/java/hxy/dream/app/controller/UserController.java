@@ -42,6 +42,10 @@ public class UserController {
         return BaseResponseVO.success(userModels);
     }
 
+    /** 这里的RequestBody是接收body的json数据，也就是走jackson反序列化的。
+     * @param userParam
+     * @return
+     */
     @PostMapping("add/")
     public BaseResponseVO save(@Valid @RequestBody UserParam userParam) {
         log.debug("\n====>当前添加的用户信息是{}", userParam);
@@ -49,6 +53,10 @@ public class UserController {
         return BaseResponseVO.success(userModel);
     }
 
+    /**  这个不需要用到json序列化，所以没有使用jackson。需要使用
+     * @param userParam
+     * @return
+     */
     @PostMapping("add2")
     public BaseResponseVO save2(@Valid UserParam userParam) {
         log.debug("\n====>当前添加的用户信息是{}", userParam);

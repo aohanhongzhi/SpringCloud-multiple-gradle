@@ -14,7 +14,6 @@ import java.util.Map;
  * </p>
  *
  * @description: 枚举编码 -> 枚举 转化器
-
  */
 @Slf4j
 public class StringToEnumConverter<T extends BaseEnum> implements Converter<String, T> {
@@ -25,19 +24,23 @@ public class StringToEnumConverter<T extends BaseEnum> implements Converter<Stri
         for (T e : enums) {
             enumMap.put(e.code().toString(), e);
 //            增强版本，可以加上description的转换
-            enumMap.put(e.description(),e);
+            enumMap.put(e.description(), e);
         }
     }
 
+    /**
+     * 这个是不针对json的。是针对表单提交的
+     *
+     * @param source
+     * @return
+     */
     @Override
     public T convert(String source) {
         T t = enumMap.get(source);
         if (ObjectUtils.isEmpty(t)) {
-            throw new IllegalArgumentException("StringCodeToEnumConverter无法匹配对应的枚举类型:"+source);
-        }else{
-            if (log.isDebugEnabled()){
-                log.debug("\n====>StringCodeToEnumConverter转化[{}]成枚举[{}]",source,t);
-            }
+            throw new IllegalArgumentException("StringCodeToEnumConverter无法匹配对应的枚举类型:" + source);
+        } else {
+            log.info("\n====>StringCodeToEnumConverter转化[{}]成枚举[{}]", source, t);
         }
         return t;
     }

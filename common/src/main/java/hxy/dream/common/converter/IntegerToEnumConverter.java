@@ -15,11 +15,10 @@ import java.util.Map;
  *
  * @description: 枚举编码 -> 枚举 转化器
  * TODO 需要实际测试下，看看这个东西有木有生效。因为无论是code还是description都是走的StringToEnumConverter
-
  */
 @Slf4j
 public class IntegerToEnumConverter<T extends BaseEnum> implements Converter<Integer, T> {
-    private Map<Integer, T> enumMap =new HashMap<>();
+    private Map<Integer, T> enumMap = new HashMap<>();
 
     public IntegerToEnumConverter(Class<T> enumType) {
         T[] enums = enumType.getEnumConstants();
@@ -33,10 +32,10 @@ public class IntegerToEnumConverter<T extends BaseEnum> implements Converter<Int
         T t = enumMap.get(source);
         if (ObjectUtils.isEmpty(t)) {
             throw new IllegalArgumentException("无法匹配对应的枚举类型");
-        }else{
-            if (log.isDebugEnabled()){
-                log.debug("\n====>IntegerCodeToEnumConverter转化[{}]成枚举[{}]",source,t);
-            }
+        } else {
+
+            log.info("\n====>IntegerCodeToEnumConverter转化[{}]成枚举[{}]", source, t);
+
         }
         return t;
     }
