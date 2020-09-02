@@ -1,4 +1,4 @@
-package hxy.dream.app.util.configuration;
+package hxy.dream.common.configuration;
 
 /**
  * @author eric
@@ -31,23 +31,12 @@ public class BeanConfig {
     public Jackson2ObjectMapperBuilderCustomizer enumCustomizer() {
 //        将枚举转成json返回给前端
         return jacksonObjectMapperBuilder -> {
-//            jacksonObjectMapperBuilder.serializerByType(BaseEnum.class, new JsonSerializer<BaseEnum>() {
-//                @Override
-//                public void serialize(BaseEnum value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-//                    if (log.isDebugEnabled()) {
-//                        log.debug("开始序列化[{}]", value);
-//                    }
-//                    gen.writeStartObject();
-//                    gen.writeNumberField("code", value.code());
-//                    gen.writeStringField("description", value.description());
-//                    gen.writeEndObject();
-//                }
-//            });
-
+//            自定义序列化器注入
             Map<Class<?>, JsonSerializer<?>> serializers = new LinkedHashMap<>();
             serializers.put(BaseEnum.class, new BaseEnumSerializer());
             jacksonObjectMapperBuilder.serializersByType(serializers);
 
+//            自定义反序列化器注入
             Map<Class<?>, JsonDeserializer<?>> deserializers = new LinkedHashMap<>();
             deserializers.put(BaseEnum.class, new BaseEnumDeserializer());
 //            deserializers.put(GenderEnum.class, new BaseEnumDeserializer());
