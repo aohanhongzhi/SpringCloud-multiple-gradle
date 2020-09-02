@@ -19,7 +19,7 @@ public enum GenderEnum implements BaseEnum {
     }
 
 
-    public static GenderEnum getByCode(Integer code){
+    public static GenderEnum getEnumByCode(Integer code){
         for (GenderEnum genderEnum:values()){
             if (genderEnum.code.equals(code)){
                 return genderEnum;
@@ -37,6 +37,11 @@ public enum GenderEnum implements BaseEnum {
     @Override
     public String description() {
         return description;
+    }
+
+    @Override
+    public BaseEnum getByCode(Integer code) {
+        return null;
     }
 
 //    @JsonCreator

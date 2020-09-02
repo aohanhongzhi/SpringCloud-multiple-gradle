@@ -19,4 +19,6 @@ public interface BaseEnum {
      * @return the string
      */
     String description();
+
+    BaseEnum getByCode(Integer code);
 }
