@@ -7,12 +7,11 @@ package hxy.dream.common.configuration;
  * @date 2020/6/25
  */
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import hxy.dream.common.serializer.BaseEnumDeserializer;
 import hxy.dream.common.serializer.BaseEnumSerializer;
+import hxy.dream.common.serializer.DateJsonSerializer;
 import hxy.dream.entity.enums.BaseEnum;
 import hxy.dream.entity.enums.GenderEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,7 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -34,6 +33,7 @@ public class BeanConfig {
 //            自定义序列化器注入
             Map<Class<?>, JsonSerializer<?>> serializers = new LinkedHashMap<>();
             serializers.put(BaseEnum.class, new BaseEnumSerializer());
+            serializers.put(Date.class, new DateJsonSerializer());
             jacksonObjectMapperBuilder.serializersByType(serializers);
 
 //            自定义反序列化器注入
