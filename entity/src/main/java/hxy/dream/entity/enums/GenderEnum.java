@@ -1,12 +1,12 @@
 package hxy.dream.entity.enums;
 
-import ch.qos.logback.classic.boolex.GEventEvaluator;
+
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
-@Getter
+
 public enum GenderEnum implements BaseEnum {
     BOY(100, "男"), GIRL(200, "女"),UNKNOWN(0, "未知");
     @EnumValue//标记数据库存的值是code
@@ -39,10 +39,6 @@ public enum GenderEnum implements BaseEnum {
         return description;
     }
 
-    @Override
-    public BaseEnum getByCode(Integer code) {
-        return null;
-    }
 
 //    @JsonCreator
 //    public static GenderEnum getItem(int code){
