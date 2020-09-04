@@ -19,6 +19,10 @@ import java.util.Map;
 public class StringToEnumConverter<T extends BaseEnum> implements Converter<String, T> {
     private Map<String, T> enumMap = new HashMap<>();
 
+    /**   前端传过来的无论是code还是description，都是当做String过来的。
+     * @param enumType
+     * @see IntegerToEnumConverter 这个可能一直用不上
+     */
     public StringToEnumConverter(Class<T> enumType) {
         T[] enums = enumType.getEnumConstants();
         for (T e : enums) {

@@ -1,8 +1,8 @@
 package hxy.dream.common.serializer;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -15,7 +15,7 @@ public class DateJsonDeserializer extends JsonDeserializer<Date> {
     public Date deserialize(com.fasterxml.jackson.core.JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, com.fasterxml.jackson.core.JsonProcessingException {
 
         try {
-            if (jsonParser != null && StringUtils.isNotEmpty(jsonParser.getText())) {
+            if (jsonParser != null && StringUtils.hasText(jsonParser.getText())) {
                 return format.parse(jsonParser.getText());
             } else {
                 return null;

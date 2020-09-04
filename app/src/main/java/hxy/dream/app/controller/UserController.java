@@ -49,8 +49,8 @@ public class UserController {
      * @param userParam
      * @return
      */
-    @PostMapping("add/")
-    public BaseResponseVO save(@Valid @RequestBody UserParam userParam) {
+    @PostMapping("add/body")
+    public BaseResponseVO saveBody(@Valid @RequestBody UserParam userParam) {
         log.debug("\n====>当前添加的用户信息是{}", userParam);
         UserModel userModel = userService.add(userParam);
         return BaseResponseVO.success(userModel);
@@ -61,8 +61,8 @@ public class UserController {
      * @param userParam
      * @return
      */
-    @PostMapping("add2")
-    public BaseResponseVO save2(@Valid UserParam userParam) {
+    @PostMapping("add/form")
+    public BaseResponseVO saveForm(@Valid UserParam userParam) {
         log.debug("\n====>当前添加的用户信息是{}", userParam);
         UserModel userModel = userService.add(userParam);
         return BaseResponseVO.success(userModel);
