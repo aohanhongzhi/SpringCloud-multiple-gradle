@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import hxy.dream.entity.dto.UserDTO;
 import hxy.dream.entity.enums.GenderEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,4 +19,5 @@ public class UserModel extends Model {
     Integer age;
     GenderEnum gender;
     String password;
+    UserDTO userDTO;
 }

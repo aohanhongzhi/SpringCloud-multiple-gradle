@@ -91,3 +91,5 @@ https://juejin.im/post/6844904196693557255
 #### 自定义date的序列化器
 
 https://blog.csdn.net/bandancer/article/details/84926383
+
+[基于fastjson在mvc中解决enum类型序列化反序列化](https://zhuanlan.zhihu.com/p/121112597)

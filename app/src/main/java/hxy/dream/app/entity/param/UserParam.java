@@ -1,5 +1,6 @@
 package hxy.dream.app.entity.param;
 
+import hxy.dream.entity.dto.UserDTO;
 import hxy.dream.entity.enums.GenderEnum;
 import lombok.Data;
 
@@ -17,4 +18,6 @@ public class UserParam {
     GenderEnum gender;
     @NotNull(message = "age不能为空")
     Integer age;
+
+    UserDTO userDTO;
 }

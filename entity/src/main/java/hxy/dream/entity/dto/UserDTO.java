@@ -1,6 +1,15 @@
 package hxy.dream.entity.dto;
 
-public class UserDTO {
+import lombok.Data;
+
+@Data
+public class UserDTO implements DTO {
     String id;
     Enum gender;
+
+    @Override
+    public String dto() {
+
+        return id;
+    }
 }
