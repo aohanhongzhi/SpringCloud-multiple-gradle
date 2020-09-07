@@ -1,11 +1,12 @@
 package hxy.dream.entity.dto;
 
+import hxy.dream.entity.enums.GenderEnum;
 import lombok.Data;
 
 @Data
 public class UserDTO implements DTO {
     String id;
-    Enum gender;
+    GenderEnum gender;
 
     @Override
     public String dto() {
