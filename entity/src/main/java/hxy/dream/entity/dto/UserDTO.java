@@ -1,6 +1,5 @@
 package hxy.dream.entity.dto;
 
-import hxy.dream.entity.enums.GenderEnum;
 import lombok.Data;
 
 @Data
