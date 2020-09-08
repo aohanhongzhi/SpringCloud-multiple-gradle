@@ -1,5 +1,6 @@
 package hxy.dream.app.controller;
 
+import hxy.dream.app.entity.param.UserDtoParam;
 import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
 import hxy.dream.common.converter.StringToEnumConverter;
@@ -67,4 +68,12 @@ public class UserController {
         UserModel userModel = userService.add(userParam);
         return BaseResponseVO.success(userModel);
     }
+
+    @PostMapping("add/dto")
+    public BaseResponseVO saveBodyDto(@Valid @RequestBody UserDtoParam userParam) {
+        log.debug("\n====>当前添加的用户信息是{}", userParam);
+
+        return BaseResponseVO.success(userParam);
+    }
+
 }

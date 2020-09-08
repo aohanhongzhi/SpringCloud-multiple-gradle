@@ -14,9 +14,10 @@ public class DTOSerializer  extends JsonSerializer<DTO> {
     @Override
     public void serialize(DTO value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
 
-        log.info("\n====>当前是DTO序列化");
+        String dto = value.dto();
+        log.info("\n====>当前是DTO序列化[{}]", dto);
         gen.writeStartObject();
-        gen.writeStringField("dto", value.dto());
+        gen.writeStringField("dto", dto);
         gen.writeEndObject();
     }
 }

@@ -28,7 +28,7 @@ loc |代码行数统计 | https://github.com/cgag/loc
 
 ### 命令打包，跳过TEST
 ```shell script
-./gradlew bootJar -x test
+./gradlew clean bootJar -x test
 ```
 
 ### 多模块构建，依赖关系解决

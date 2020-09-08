@@ -35,8 +35,10 @@ public class BeanConfig {
 //            自定义序列化器注入
             Map<Class<?>, JsonSerializer<?>> serializers = new LinkedHashMap<>();
             serializers.put(BaseEnum.class, new BaseEnumSerializer());
-            serializers.put(Date.class, new DateJsonSerializer());
-            serializers.put(DTO.class, new DTOSerializer());
+            serializers.put(Enum.class, new BaseEnumSerializer());
+//            serializers.put(GenderEnum.class, new BaseEnumSerializer());
+//            serializers.put(Date.class, new DateJsonSerializer());
+//            serializers.put(DTO.class, new DTOSerializer());
             jacksonObjectMapperBuilder.serializersByType(serializers);
 
 //            自定义反序列化器注入
