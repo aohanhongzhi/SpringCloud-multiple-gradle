@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SimpleDeserializersWrapper extends SimpleDeserializers {
+
     static final Logger logger = LoggerFactory.getLogger(SimpleDeserializersWrapper.class);
     @Override
     public JsonDeserializer<?> findEnumDeserializer(Class<?> type, DeserializationConfig config, BeanDescription beanDesc) throws JsonMappingException {
@@ -26,7 +27,6 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
             }
         }
         return null;
-
 
 //        return super.findEnumDeserializer(type, config, beanDesc);
     }
