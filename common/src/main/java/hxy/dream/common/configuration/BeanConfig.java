@@ -45,7 +45,7 @@ public class BeanConfig {
 //            serializers.put(DTO.class, new DTOSerializer());
             jacksonObjectMapperBuilder.serializersByType(serializers);
 
-//            自定义反序列化器注入
+//            自定义反序列化器注入,这里的注入貌似效果不行
             Map<Class<?>, JsonDeserializer<?>> deserializers = new LinkedHashMap<>();
             deserializers.put(BaseEnum.class, new BaseEnumDeserializer());
 //            deserializers.put(GenderEnum.class, new BaseEnumDeserializer());
