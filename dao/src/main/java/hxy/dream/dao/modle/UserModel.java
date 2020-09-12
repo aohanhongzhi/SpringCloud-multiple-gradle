@@ -1,6 +1,7 @@
 package hxy.dream.dao.modle;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -19,5 +20,6 @@ public class UserModel extends Model {
     Integer age;
     GenderEnum gender;
     String password;
+    @TableField(exist = false)
     UserDTO userDTO;
 }
