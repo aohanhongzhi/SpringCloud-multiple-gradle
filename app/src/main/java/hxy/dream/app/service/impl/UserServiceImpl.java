@@ -4,6 +4,7 @@ import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
 import hxy.dream.dao.mapper.UserMapper;
 import hxy.dream.dao.modle.UserModel;
+import hxy.dream.entity.dto.UserDTO;
 import hxy.dream.entity.enums.GenderEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,9 @@ public class UserServiceImpl implements UserService {
         }
         int insert = userMapper.insert(userModel);
         log.debug("\n====>插入影响行数：{}", insert);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId("111");
+        userModel.setUserDTO(userDTO);
         return userModel;
     }
 
