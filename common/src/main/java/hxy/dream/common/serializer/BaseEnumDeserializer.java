@@ -45,7 +45,5 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
 //            System.out.println("JsonEnumDeserializer deserialize error: " + Throwables.getStackTraceAsString(e));
             throw new RuntimeException(e);
         }
-
-
     }
 }

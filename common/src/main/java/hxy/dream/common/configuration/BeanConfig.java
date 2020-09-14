@@ -11,11 +11,7 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import hxy.dream.common.serializer.BaseEnumDeserializer;
-import hxy.dream.common.serializer.BaseEnumSerializer;
-import hxy.dream.common.serializer.DTOSerializer;
-import hxy.dream.common.serializer.DateJsonSerializer;
-import hxy.dream.common.serializer.SimpleDeserializersWrapper;
+import hxy.dream.common.serializer.*;
 import hxy.dream.entity.dto.DTO;
 import hxy.dream.entity.enums.BaseEnum;
 import hxy.dream.entity.enums.GenderEnum;
@@ -32,6 +28,8 @@ import java.util.Map;
 @Slf4j
 @Configuration
 public class BeanConfig {
+
+    @Deprecated
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer enumCustomizer() {
 //        将枚举转成json返回给前端
@@ -58,10 +56,12 @@ public class BeanConfig {
     public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
         SimpleDeserializersWrapper deserializers = new SimpleDeserializersWrapper();
         deserializers.addDeserializer(BaseEnum.class, new BaseEnumDeserializer());
+        deserializers.addDeserializer(Date.class, new DateJsonDeserializer());
 
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.setDeserializers(deserializers);
         simpleModule.addSerializer(BaseEnum.class, new BaseEnumSerializer());
+        simpleModule.addSerializer(Date.class, new DateJsonSerializer());
 
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper.registerModule(simpleModule);
