@@ -31,7 +31,6 @@ public enum GenderEnum implements BaseEnum {
         return null;
     }
 
-//    @JsonValue
     @Override
     public Integer code() {
         return code;
@@ -42,15 +41,5 @@ public enum GenderEnum implements BaseEnum {
         return description;
     }
 
-
-//    @JsonCreator
-//    public static GenderEnum getItem(int code){
-//        for(GenderEnum item : values()){
-//            if(item.getCode() == code){
-//                return item;
-//            }
-//        }
-//        return null;
-//    }
 
 }
