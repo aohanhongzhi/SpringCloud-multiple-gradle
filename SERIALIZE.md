@@ -201,6 +201,9 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
 的源代码拉下来调试，经过调试发现，jackson反序列化的时候一直使用的是自带的枚举反序列化器，并没有使用自定义枚举反序列化器。此外还从源码中分析出来
 为啥有的枚举反序列化就能正常，但是有点不能。原来自带的枚举反序列化器是按照ordinal来反序列化的，也就是说只有当code与ordinal一致的时候就会造成一种假象，
 以为是code反序列化来的，其实依旧是ordinal反序列化来的。
+![](./asset/img/ordinal-param.png)
+![](./asset/img/code-ordinal.png)
+![](./asset/img/ordinal数组.png)
 
 > Java的枚举本质上是java.lang.Enum.class，自带有ordinal和name两个属性。ordinal可以理解成数组的下标。
 
@@ -269,7 +272,7 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
 
 ### 时间等序列化
 
-一般来说，会在Date上满加上时间序列化的注解，但是也可以针对Date自定义正反序列化器，就可以很轻松解决问题。
+一般来说，会在Date上满加上时间序列化的注解`@JsonFormat`，但是也可以针对Date自定义正反序列化器，就可以很轻松解决问题。
 
 
 ### 表单提交的数据转成枚举
