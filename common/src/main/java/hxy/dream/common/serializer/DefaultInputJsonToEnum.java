@@ -49,7 +49,6 @@ public class DefaultInputJsonToEnum {
             return (BaseEnum) valueOfMethod.invoke(null, inputParameter);
         } catch (Exception e) {
             //这里异常无需抛出,因为这个枚举根据name获取不到就直接抛出异常了...
-            //logger.warn("未获取枚举的name值,入参: " + inputParameter + "," + "class : " + enumClass);
             return null;
         }
     }
