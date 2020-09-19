@@ -9,17 +9,15 @@ N久之前，leo曾经问我枚举的应用，我清楚地记得菜鸟教程(htt
 
 ![](./asset/img/enumeration.png)
 
-当时我还找到了给leo看，现在看来是我断章取义了。因为那时候很少会接触到枚举，所以我以为这玩意真的没救了。
+当时我还找到了给leo看，说这玩意要被取代了.现在看来是我断章取义了。因为那时候很少会接触到枚举，所以我以为这玩意真的没救了。
+
 现在看来，看多了不去实践与思考，正应了一句话“尽信书不如无书”。
 
 最近《阿里巴巴开发规范-嵩山版版》有下面的一句话，可能会与接下来的内容相冲。不知道为啥不能返回枚举类型，有待考究。
 
 ![](./asset/img/emum-respone.png)
 
-无论枚举要怎么使用，我还是按照自己的相关需求来实践了一把，由于项目中有很多枚举，使用和管理起来非常晕乎乎的。需要把枚举与Integer转来转去，
-前端传输过来了一个Integer，需要手动将Integer转成枚举，存储到数据库的时候，又得将枚举转成Integer保存。如果纯粹使用Integer传值，编码又不能知道
-这个数字代表啥意思，最后找来找去。不光是后端很是晕乎乎的。前端由于也只接受了Integer，需要显示文字的时候，只能前后端共同约定，一旦后端修改了枚举，那么
-前端必须同步修改。所以我在网上找了一些解决办法，但是都不尽人意。最后折腾了源码并求助于jackson的维护者解决了枚举正反序列化的问题。
+无论枚举要怎么使用，我还是按照自己的相关需求来实践了一把，由于项目中有很多枚举，使用和管理起来非常晕乎乎的。需要把枚举与Integer转来转去，前端传输过来了一个Integer，需要手动将Integer转成枚举，存储到数据库的时候，又得将枚举转成Integer保存。如果纯粹使用Integer传值，编码又不能知道这个数字代表啥意思，最后找来找去。不光是后端很是晕乎乎的。前端由于也只接受了Integer，需要显示文字的时候，只能前后端共同定，一旦后端修改了枚举，那么前端必须同步修改。所以我在网上找了一些解决办法，但是都不尽人意。最后折腾了jackson源码并求助于jackson的维护者解决了枚举正反序列化的问题。
 
 
 ## 基础框架
@@ -30,24 +28,21 @@ N久之前，leo曾经问我枚举的应用，我清楚地记得菜鸟教程(htt
  SpringWebMVC| https://spring.io/projects/spring-framework | 5.2.8.REALEASE
  Mybatis-plus | https://mybatis.plus/ | 3.4.0
  jackson | https://github.com/FasterXML/jackson | 2.10.5
- 
+
  > 上面的框架的各个版本可能代码有点差别，但是基本思想都是一样的，所以版本不会有很大影响。此外其他计算机语言或者框架实现本文的思想都是可以的。
 
 
-## 概要介绍
+## 模型介绍
 
 先看下一般工程的基本模型
 
 ![](./asset/img/structure.png)
 
-本文的重点是枚举的正反序列化，但是为了让整个枚举在工程中的应用比较完整，也会描述下枚举在DAO层的操作。jackson的
-正反序列化主要应用在Controller层的`参数接收`与`结果返回`。在参数接收的时候有两种形式，一种的前端通过表单提交的数据
-，另一种是从body提交的json数据，两种有很大的区别，在Controller的方法里面主要体现在body提交的json数据需要在对象前面
-加上`@RequestBody`.当然两者本质上有点区别，由于表单提交的不是json，所以无法采用json反序列化，但是本文中会顺带描述到表单提交的数据如何转换成枚举。
- 
+本文的重点是枚举的正反序列化，但是为了让整个枚举在工程中的应用比较完整，也会描述下枚举在DAO层的操作。jackson的正反序列化主要应用在Controller层的`参数接收`与`结果返回`。在参数接收的时候有两种形式，一种的前端通过表单提交的数据，另一种是从body提交的json数据，两种有很大的区别，在Controller的方法里面主要体现在body提交的json数据需要在对象前面加上`@RequestBody`.当然两者本质上有点区别，由于表单提交的不是json，所以无法采用json反序列化，但是本文中会顺带描述到表单提交的数据如何转换成枚举。
+
 
 ## show you code
- 
+
 ### 工程源代码
 
 https://gitee.com/eric-tutorial/SpringCloud-multiple-gradle
@@ -94,15 +89,13 @@ public class UserParam {
     }
 ```
 
-上面代码可以看出来框架在接受参数的时候将网络传输过来的数据进行了反序列化，在返回给前端的时候进行了正序列化成json返回的。默认的jackson是无法
-直接按照`GenderEnum`中的`code`来正反序列化枚举的，因为jackson有一套自己的枚举序列化机制，从源代码中看出来，它是按照name和ordinal来正反序列化的。但是这个不能满足我自己定义的
-`code`和`description`来正反序列化的需求。因此我在网上搜了下，看看有木有人完成这样的需求，我想这个需求应该比较正常，网上一搜果然有很多。很快就有了下面的代码(最后发现都是采用默认的jackson枚举正反序列化器,并不满足需求)。
+上面代码可以看出来框架在接受参数的时候将网络传输过来的数据进行了反序列化，在返回给前端的时候进行了正序列化成json返回的。默认的jackson是无法直接按照`GenderEnum`中的`code`来正反序列化枚举的，因为jackson有一套自己的枚举序列化机制，从源代码中看出来，它是按照name和ordinal来正反序列化的。但是这个不能满足我自己定义的`code`和`description`来正反序列化的需求。因此我在网上搜了下，看看有木有人完成这样的需求，我想这个需求应该比较正常，网上一搜果然有很多。很快就有了下面的代码(最后发现都是采用默认的jackson枚举正反序列化器,并不满足需求)。
 
 ### 自定义的枚举序列化器
 
 #### 面向接口编程
 
-为我需要序列化的枚举统一定义了一个接口.所以需要参与序列化的枚举都得实现这个接口.
+为我需要正序列化的枚举统一定义了一个接口.所以需要参与正序列化的枚举都得实现这个接口.
 
 ```java
 public interface BaseEnum {
@@ -161,10 +154,10 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
             JsonStreamContext parsingContext = p.getParsingContext();
             String currentName = parsingContext.getCurrentName();//字段名
             Object currentValue = parsingContext.getCurrentValue();//前端注入的对象(ResDTO)
-            Field field = ReflectionUtils.getField(currentValue.getClass(), currentName); // 通过对象和属性名获取属性的类型
-//            获取对应得枚举类
+            Field field = ReflectionUtils.getField(currentValue.getClass(), currentName); 			  // 通过对象和属性名获取属性的类型
+			// 获取对应得枚举类
             Class enumClass = field.getType();
-//          根据对应的值和枚举类获取相应的枚举值
+			// 根据对应的值和枚举类获取相应的枚举值
             BaseEnum anEnum = DefaultInputJsonToEnum.getEnum(inputParameter, enumClass);
             log.info("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(), anEnum);
             return anEnum;
@@ -199,13 +192,11 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
     }
 ```
 
-经过测试，枚举序列化后返回到前端的效果如下，与期望的效果一致，这样的好处就是前端不需要管数字是啥意思，直接显示`description`即可，无论后端枚举是否修改，
-前端都不需要关心了。
+经过测试，枚举序列化后返回到前端的效果如下，与期望的效果一致，这样的好处就是前端不需要管数字是啥意思，直接显示`description`即可，无论后端枚举是否修改，前端都不需要关心了。
 
 ![](./asset/img/enums.png)
 
-经过反复测试与人分享成果的时候，发现一个非常严重的问题，虽然前端接收参数的时候也可以反序列化成枚举，但是实际上没有按照`code`来反序列化。最后只能把jackson
-的源代码拉下来调试，经过调试发现，jackson反序列化的时候一直使用的是默认的枚举反序列化器，并没有使用自定义枚举反序列化器。
+经过反复测试与人分享成果的时候，发现一个非常严重的问题，虽然前端接收参数的时候也可以反序列化成枚举，但是实际上没有按照`code`来反序列化。最后只能把jackson的源代码拉下来调试，经过调试发现，jackson反序列化的时候一直使用的是默认的枚举反序列化器，并没有使用自定义枚举反序列化器。
 
 com.fasterxml.jackson.databind.deser.BasicDeserializerFactory#createEnumDeserializer
 
@@ -279,7 +270,7 @@ com.fasterxml.jackson.databind.deser.BasicDeserializerFactory#createEnumDeserial
 
 https://github.com/FasterXML/jackson-databind/pull/2842
 
-![](./asset/img/github.com_FasterXML_jackson-databind_pull_2842.png)
+![](./asset/img/github.com_FasterXML_jackson-databind_pull_28422.png)
 
 于是下面的代码就来了，依据开闭原则，修改源代码的事情不太能发生，所以我的PR最后被我自己关闭了。
 
@@ -364,16 +355,13 @@ com.fasterxml.jackson.databind.deser.std.EnumDeserializer#deserialize
 
 ```
 
-
 ![](./asset/img/ordinal-param.png)
 ![](./asset/img/code-ordinal.png)
 ![](./asset/img/ordinal数组.png)
 
 > Java的枚举本质上是java.lang.Enum.class，自带有ordinal和name两个属性。ordinal可以理解成数组的下标。
 
-调试过程中最让人百思不得解的是，自定义的正反枚举序列化器，序列化器是可以按照自己定义的接口来序列化，但是反序列化不行。最后经过反复调试，发现正反序列化过程有点区别，
-正序列化的时候会找父类找接口，按照父类或者接口定义的序列化器来序列化。而反序列化的时候不会。体会一下，可以理解成一个正序列化的时候，准确度可以忽略，反正都是丢出去的。但是反序列化的时候
-必须保证精度，否则无法正确反序列化，那么对应的对象无法获取到正确的值。瞎扯一下.好比，银行存钱的时候不需要密码，取钱的时候就需要密码一样，看似一个对称的过程，但是校验机制还是有点区别的,可以细细体会这种方式的必要性。
+调试过程中最让人百思不得解的是，自定义的正反枚举序列化器，序列化器是可以按照自己定义的接口来序列化，但是反序列化不行。最后经过反复调试，发现正反序列化过程有点区别，正序列化的时候会找父类找接口，按照父类或者接口定义的序列化器来序列化。而反序列化的时候不会。体会一下，可以理解成一个正序列化的时候，准确度可以忽略，反正都是丢出去的。但是反序列化的时候必须保证精度，否则无法正确反序列化，那么对应的对象无法获取到正确的值。瞎扯一下.好比，银行存钱的时候不需要密码，取钱的时候就需要密码一样，看似一个对称的过程，但是校验机制还是有点区别的,可以细细体会这种方式的必要性。
 
 
 #### 重写SimpleDeserializers的findEnumDeserializer方法
@@ -443,8 +431,8 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
 
 ### DAO 层处理枚举存到数据库
 
-这个不涉及序列化，只能算是一种类型转化。
-具体就是在枚举上面上一个注解
+
+具体就是在枚举的属性上面上一个注解
 
 ```java
    @EnumValue//标记数据库存的值是code
@@ -455,24 +443,11 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
 mybatis-plus:
   type-enums-package: hxy.dream.entity.enums
 ```
-上面两步，就是借助mybatis-plus完成了枚举存储到数据库，与读取的时候转换的问题。这个比较简单，框架也就是做这些事情的，让开发者专注于业务，
-而不是实现技术的本身（不是说不要钻研技术底层原理）。
+上面两步，就是借助mybatis-plus完成了枚举存储到数据库，与读取的时候转换的问题。这个比较简单，框架也就是做这些事情的，让开发者专注于业务，而不是实现技术的本身（不是说不要钻研技术底层原理）。
 
 > 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
 
-
-
-#### 推荐阅读
-
-- [阿里又一个 20k+ stars 开源项目诞生，恭喜 fastjson！](https://mp.weixin.qq.com/s/RNKDCK2KoyeuMeEs6GUrow)
-- [刷掉 90% 候选人的互联网大厂海量数据面试题（附题解 + 方法总结）](https://mp.weixin.qq.com/s/rjGqxUvrEqJNlo09GrT1Dw)
-- [好用！期待已久的文本块功能究竟如何在 Java 13 中发挥作用？](https://mp.weixin.qq.com/s/kalGv5T8AZGxTnLHr2wDsA)
-- [2019 GitHub 开源贡献排行榜新鲜出炉！微软谷歌领头，阿里跻身前 12！](https://mp.weixin.qq.com/s/_q812aGD1b9QvZ2WFI0Qgw)
-
 ---
 
-欢迎关注我的公众号“**Doocs 开源社区**”，原创技术文章第一时间推送。
 
-<center>
-    <img src="https://gitee.com/yanglbme/resource/raw/master/doocs-md/qrcode.png" style="width: 100px;">
-</center>
+
