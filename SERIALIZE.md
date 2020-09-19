@@ -264,7 +264,19 @@ com.fasterxml.jackson.databind.deser.BasicDeserializerFactory#createEnumDeserial
 
 从上面可以看出来枚举反系列化器是怎么找到的.仔细阅读后发现,上面并没有按照接口 `BaseEnum` 来查找反序列化器,这也是为啥自定义的反序列化器没有生效的原因.
 
-既然我发现了这个问题，我直接在github拉下来了jackson代码，然后修改成按照接口查找自定义反序列化器的方式提交了我的代码，pull request之后，管理者很快给我回复了。我们来回扯了几个回合之后，我们得到一个更加合理的解决办法.
+既然我发现了这个问题，我直接在github拉下来了jackson代码，然后修改成按照接口查找自定义反序列化器的方式提交了我的代码.
+```java
+    List<JavaType> interfaces = type.getInterfaces();
+
+    for (JavaType javaType : interfaces) {
+        Class<?> rawClass = javaType.getRawClass();
+        deser = _findCustomEnumDeserializer(rawClass, config, beanDesc);
+        if (deser != null) {
+            return deser;
+        }
+    }
+```
+pull request之后，管理者很快给我回复了。我们来回扯了几个回合之后，我们得到一个更加合理的解决办法.
 这个问题，这个也是本文的重点。就是重写查找枚举反序列化器的方法,把我写的代码放在一个重写类里面即可.
 
 
@@ -272,7 +284,7 @@ https://github.com/FasterXML/jackson-databind/pull/2842
 
 ![](./asset/img/github.com_FasterXML_jackson-databind_pull_28422.png)
 
-于是下面的代码就来了，依据开闭原则，修改源代码的事情不太能发生，所以我的PR最后被我自己关闭了。
+于是下面的代码就来了，依据开闭原则，修改源代码的事情不太能发生，管理者说修改违背了原有的思想，所以我的PR最后被我自己关闭了。
 
 com.fasterxml.jackson.databind.module.SimpleDeserializers#findEnumDeserializer
 
@@ -447,7 +459,12 @@ mybatis-plus:
 
 > 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
 
+
+
+
+
+## 总结
+
+以上的操作完成了枚举的从前端接收，反序列化成枚举对象在程序中表达。然后再存储到数据库中。从数据库中取code转成枚举，在程序中表达，再序列化枚举后传输给前端。一个非常完整的循环，基本上满足了程序中对枚举使用的需求。
+
 ---
-
-
-
