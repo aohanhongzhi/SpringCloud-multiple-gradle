@@ -20,10 +20,10 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
         if (enumDeserializer != null) {
             return enumDeserializer;
         }
-        logger.info("\n重写枚举查找逻辑");
         for (Class<?> typeInterface : type.getInterfaces()) {
             enumDeserializer = this._classMappings.get(new ClassKey(typeInterface));
             if (enumDeserializer != null) {
+                logger.info("\n重写枚举查找逻辑[{}]",enumDeserializer);
                 return enumDeserializer;
             }
         }

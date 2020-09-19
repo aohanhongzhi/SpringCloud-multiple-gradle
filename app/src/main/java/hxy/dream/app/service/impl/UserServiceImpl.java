@@ -33,9 +33,6 @@ public class UserServiceImpl implements UserService {
         }
         int insert = userMapper.insert(userModel);
         log.debug("\n====>插入影响行数：{}", insert);
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId("111");
-        userModel.setUserDTO(userDTO);
         return userModel;
     }
 

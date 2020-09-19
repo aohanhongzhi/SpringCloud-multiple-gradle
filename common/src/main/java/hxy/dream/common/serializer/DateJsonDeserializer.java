@@ -22,7 +22,6 @@ public class DateJsonDeserializer extends JsonDeserializer<Date> {
             }
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
     }

@@ -41,8 +41,6 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
             log.info("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(), anEnum);
             return anEnum;
         } catch (Exception e) {
-            // logger.error("JsonEnumDeserializer deserialize error: " + Throwables.getStackTraceAsString(e));
-//            System.out.println("JsonEnumDeserializer deserialize error: " + Throwables.getStackTraceAsString(e));
             throw new RuntimeException(e);
         }
     }
