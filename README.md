@@ -84,6 +84,7 @@ https://juejin.im/post/6844904196693557255
 
 > 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
 
+1. [自动填充字段](https://docs.qq.com/doc/DSG5Zbk9RR1FHRVZE)
 
 #### 总结
 通过上面方法，对数据库层和Controller层的转换操作，可以很好的处理枚举在应用中的形态，程序中可以很好的使用枚举了。
