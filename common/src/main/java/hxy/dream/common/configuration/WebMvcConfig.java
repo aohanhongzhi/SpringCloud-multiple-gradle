@@ -2,6 +2,7 @@ package hxy.dream.common.configuration;
 
 import hxy.dream.common.converter.IntegerCodeToEnumConverterFactory;
 import hxy.dream.common.converter.StringCodeToEnumConverterFactory;
+import hxy.dream.common.converter.StringToDateConverterFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,5 +25,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverterFactory(new IntegerCodeToEnumConverterFactory());
         registry.addConverterFactory(new StringCodeToEnumConverterFactory());
+        registry.addConverterFactory(new StringToDateConverterFactory());
     }
 }

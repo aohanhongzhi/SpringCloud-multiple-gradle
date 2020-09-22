@@ -8,6 +8,9 @@ import hxy.dream.entity.enums.GenderEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @author iris
+ */
 @Data
 @TableName("users")
 @EqualsAndHashCode(callSuper=false)

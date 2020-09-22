@@ -9,8 +9,11 @@ import lombok.Getter;
 
 public enum GenderEnum implements BaseEnum {
     BOY(100, "男"), GIRL(200, "女"),UNKNOWN(0, "未知");
+
+
     @EnumValue//标记数据库存的值是code
     private final Integer code;
+
     private final String description;
 
     GenderEnum(int code, String description) {
@@ -28,7 +31,6 @@ public enum GenderEnum implements BaseEnum {
         return null;
     }
 
-//    @JsonValue
     @Override
     public Integer code() {
         return code;
@@ -38,16 +40,5 @@ public enum GenderEnum implements BaseEnum {
     public String description() {
         return description;
     }
-
-
-//    @JsonCreator
-//    public static GenderEnum getItem(int code){
-//        for(GenderEnum item : values()){
-//            if(item.getCode() == code){
-//                return item;
-//            }
-//        }
-//        return null;
-//    }
 
 }

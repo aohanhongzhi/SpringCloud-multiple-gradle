@@ -4,6 +4,7 @@ import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
 import hxy.dream.dao.mapper.UserMapper;
 import hxy.dream.dao.modle.UserModel;
+import hxy.dream.entity.dto.UserDTO;
 import hxy.dream.entity.enums.GenderEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
