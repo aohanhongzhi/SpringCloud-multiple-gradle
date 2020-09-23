@@ -23,7 +23,7 @@ public class MybatisAuditHandler implements MetaObjectHandler {
         // 声明自动填充字段的逻辑。
 //        String userId = AuthHolder.getCurrentUserId();
         String userId = "";
-        this.strictInsertFill(metaObject,"creator",String.class, userId);
+//        this.strictInsertFill(metaObject,"creator",String.class, userId);
         this.strictInsertFill(metaObject,"createTime", LocalDateTime.class,LocalDateTime.now());
     }
 
@@ -35,7 +35,7 @@ public class MybatisAuditHandler implements MetaObjectHandler {
         // 声明自动填充字段的逻辑。
 //        String userId = AuthHolder.getCurrentUserId();
         String userId = "";
-        this.strictUpdateFill(metaObject,"updater",String.class,userId);
+//        this.strictUpdateFill(metaObject,"updater",String.class,userId);
         this.strictUpdateFill(metaObject,"updateTime", LocalDateTime.class,LocalDateTime.now());
     }
 }
