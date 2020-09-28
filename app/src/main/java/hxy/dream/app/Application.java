@@ -1,6 +1,7 @@
 package hxy.dream.app;
 
 
+import hxy.dream.app.util.AppVersion;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +13,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 public class Application {
 
     public static void main(String[] args) {
+        System.out.println("\n====>"+AppVersion.getVersion());
         SpringApplication.run(Application.class, args);
     }
 
