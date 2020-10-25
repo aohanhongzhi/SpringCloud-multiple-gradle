@@ -79,6 +79,7 @@ public class UserParam {
 }
 
 ```
+注意参数Field的上面校验注解不可以是lombok的，否则会改变字节码信息，导致类的Field与值无法识别，最后枚举反序列化失败
 
 ### Controller POST方法
 ```java
