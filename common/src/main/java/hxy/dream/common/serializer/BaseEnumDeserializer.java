@@ -24,24 +24,36 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
     public BaseEnum deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 
         try {
-            //前端输入的值
+            // 前端输入的值
             String inputParameter = p.getText();
             if (StringUtils.isBlank(inputParameter)) {
                 return null;
             }
 
             JsonStreamContext parsingContext = p.getParsingContext();
-            String currentName = parsingContext.getCurrentName();//字段名
-            Object currentValue = parsingContext.getCurrentValue();//前端注入的对象(ResDTO)
-            Field field = ReflectionUtils.getField(currentValue.getClass(), currentName); // 通过对象和属性名获取属性的类型
-//            获取对应得枚举类
-            Class enumClass = field.getType();
-//          根据对应的值和枚举类获取相应的枚举值
-            BaseEnum anEnum = DefaultInputJsonToEnum.getEnum(inputParameter, enumClass);
-            log.info("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(), anEnum);
-            return anEnum;
+            // 字段名
+            String currentName = parsingContext.getCurrentName();
+            // 前端注入的对象(如：ResParam)
+            Object currentValue = parsingContext.getCurrentValue();
+            if (currentValue != null) {
+                // 通过对象和属性名获取属性的类型
+                Field field = ReflectionUtils.getField(currentValue.getClass(), currentName);
+                // 获取对应得枚举类
+                Class enumClass = field.getType();
+                // 根据对应的值和枚举类获取相应的枚举值
+                BaseEnum anEnum = DefaultInputJsonToEnum.getEnum(inputParameter, enumClass);
+                if (log.isTraceEnabled()) {
+                    log.trace("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(), anEnum);
+                }
+                return anEnum;
+            } else {
+                throw new RuntimeException("枚举反序列化失败,注意该属性不可以使用lombok的注解，如@NonNull等");
+            }
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+
     }
 }
