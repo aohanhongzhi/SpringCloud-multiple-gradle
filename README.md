@@ -1,6 +1,13 @@
 Eric-Dream
 ===
+
 本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。具体框架如下表：
+
+## gradle安装与配置
+如果IDEA自动下载gradle很慢。那么可以先提前安装好gradle，然后指定下安装目录即可。
+![](./asset/img/gradle-special-location.png)
+![](./asset/img/gradle-wrapper.png)
+
 
 技术 | 说明 | 官网
 ----|----|----
