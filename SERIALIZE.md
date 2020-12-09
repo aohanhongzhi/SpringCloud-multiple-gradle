@@ -79,6 +79,7 @@ public class UserParam {
 }
 
 ```
+注意参数Field的上面校验注解不可以是lombok的，否则会改变字节码信息，导致类的Field与值无法识别，最后枚举反序列化失败
 
 ### Controller POST方法
 ```java
@@ -468,3 +469,9 @@ mybatis-plus:
 以上的操作完成了枚举的从前端接收，反序列化成枚举对象在程序中表达。然后再存储到数据库中。从数据库中取code转成枚举，在程序中表达，再序列化枚举后传输给前端。一个非常完整的循环，基本上满足了程序中对枚举使用的需求。
 
 ---
+
+
+# fastjson枚举自定义序列化器
+
+https://blog.csdn.net/qq_26680031/article/details/83473643
+
