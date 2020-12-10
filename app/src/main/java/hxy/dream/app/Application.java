@@ -13,7 +13,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("\n====>"+AppVersion.getVersion());
+        System.out.println("\n====>AppVersion"+AppVersion.getVersion());
         SpringApplication.run(Application.class, args);
     }
 

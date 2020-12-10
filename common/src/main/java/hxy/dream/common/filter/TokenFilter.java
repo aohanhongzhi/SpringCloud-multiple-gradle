@@ -28,7 +28,7 @@ public class TokenFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        logger.info("\n====>TokenFilter过滤器使用[{}]", chain);
+//        logger.info("\n====>TokenFilter过滤器使用[{}]", chain);
 
 
         chain.doFilter(request, response);

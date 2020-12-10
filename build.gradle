@@ -66,6 +66,8 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         testAnnotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
+// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-sentinel
+        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-alibaba-sentinel', version: '0.9.0.RELEASE'
 
 
     }

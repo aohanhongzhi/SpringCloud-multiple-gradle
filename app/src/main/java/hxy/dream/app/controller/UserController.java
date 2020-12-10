@@ -34,7 +34,7 @@ public class UserController {
 
     @GetMapping("get/{id}")
     public BaseResponseVO get(@PathVariable("id") String id) {
-        log.info("\n====>当前添加的id是{}", id);
+        log.info("\n====>当前获取的id是{}", id);
         UserModel userModel = userService.get(id);
         return BaseResponseVO.success(userModel);
     }

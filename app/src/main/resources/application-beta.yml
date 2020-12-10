@@ -10,6 +10,11 @@ spring:
   servlet:
     multipart:
       enabled: false
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+      #eager: true
 #  redis:
 #    database: 0
 #    host: 119.23.236.94
