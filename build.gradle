@@ -69,7 +69,7 @@ subprojects {
 // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-sentinel
         compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-alibaba-sentinel', version: '0.9.0.RELEASE'
 
-
+        compile 'com.ejlchina:okhttps-fastjson:2.3.0'
     }
 
 }
