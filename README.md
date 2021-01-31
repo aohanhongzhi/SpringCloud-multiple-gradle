@@ -23,6 +23,7 @@ Hibernator-Validator | 验证框架 | [http://hibernate.org/validator/](http://h
 Elasticsearch | 搜索引擎 | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
 RabbitMq | 消息队列 | [https://www.rabbitmq.com/](https://www.rabbitmq.com/)
 Redis | 分布式缓存 | [https://redis.io/](https://redis.io/)
+redisson | 分布式锁，布隆过滤器 | https://github.com/redisson/redisson
 MongoDb | NoSql数据库 | [https://www.mongodb.com/](https://www.mongodb.com/)
 Docker | 应用容器引擎 | [https://www.docker.com/](https://www.docker.com/)
 Hikari | SpringBoot默认数据库连接池 | [https://github.com/brettwooldridge/HikariCP](https://github.com/brettwooldridge/HikariCP)
@@ -31,7 +32,6 @@ JWT | JWT登录支持 | [https://github.com/jwtk/jjwt](https://github.com/jwtk/j
 LogStash | 日志收集 | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder)
 Lombok | 简化对象封装工具 | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)
 loc |代码行数统计 | https://github.com/cgag/loc
-
 
 ### 命令打包，跳过TEST
 ```shell script
