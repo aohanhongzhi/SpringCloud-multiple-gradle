@@ -127,3 +127,9 @@ https://blog.csdn.net/bandancer/article/details/84926383
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
 ```
+
+### 全局异常捕获
+
+这个可以去掉满屏的`try catch` ，还可以结合事务。
+
+https://blog.csdn.net/qq_27127145/article/details/85775240
