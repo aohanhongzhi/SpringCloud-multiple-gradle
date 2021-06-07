@@ -1,7 +1,10 @@
 Eric-Dream
 ===
 
-本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。具体框架如下表：
+本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是自定义枚举序列化的处理。
+
+
+具体框架如下表：
 
 
 ## structure
@@ -31,7 +34,7 @@ Spring Security | 认证和授权框架 | [https://spring.io/projects/spring-sec
 MyBatis | ORM框架  | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)
 MyBatisPlus |ORM框架补充 | [https://mybatis.plus/](https://mybatis.plus/)
 MyBatisGenerator | 数据层代码生成 | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)
-PageHelper | MyBatis物理分页插件 | [https://pagehelper.github.io/](https://pagehelper.github.io/)
+ ~~PageHelper~~ | MyBatis物理分页插件，建议使用mybatis-plus自带的分页插件 | [https://pagehelper.github.io/](https://pagehelper.github.io/)
 Swagger-UI | 文档生产工具 | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)
 Hibernator-Validator | 验证框架 | [http://hibernate.org/validator/](http://hibernate.org/validator/)
 Elasticsearch | 搜索引擎 | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)
