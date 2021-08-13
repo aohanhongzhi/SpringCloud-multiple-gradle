@@ -144,3 +144,6 @@ WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) -
 这个可以去掉满屏的`try catch` ，还可以结合事务。
 
 https://blog.csdn.net/qq_27127145/article/details/85775240
+
+# TODO
+- [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉
