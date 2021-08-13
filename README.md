@@ -67,6 +67,14 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
     id "com.google.cloud.tools.jib" version "2.0.0"
 ```
 
+## 统一Long类型序列化
+
+前端JS内置的number类型是基于32位整数，Number类型的最大安全整数为9007199254740991，当Java Long型的值大小超过JS Number的最大安全整数时，超出此范围的整数值可能会被破坏，丢失精度。
+
+解决办法就是后端将超过精度的Long和long类型转成String给前端展示即可。
+
+> [JSON类库Jackson优雅序列化Java类
+](https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6)
 
 ## 统一序列化枚举
 

@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import hxy.dream.common.serializer.BaseEnumDeserializer;
 import hxy.dream.common.serializer.BaseEnumSerializer;
+import hxy.dream.common.serializer.BaseLongSerializer;
 import hxy.dream.common.serializer.DateJsonDeserializer;
 import hxy.dream.common.serializer.DateJsonSerializer;
 import hxy.dream.common.serializer.SimpleDeserializersWrapper;
@@ -35,6 +36,9 @@ import java.util.Map;
 @Configuration
 public class BeanConfig {
 
+    /**
+     * 看下面的
+     */
     @Deprecated
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer enumCustomizer() {
@@ -68,6 +72,10 @@ public class BeanConfig {
         simpleModule.setDeserializers(deserializers);
         simpleModule.addSerializer(BaseEnum.class, new BaseEnumSerializer());
         simpleModule.addSerializer(Date.class, new DateJsonSerializer());
+
+        // Long类型转成String给前端
+        simpleModule.addSerializer(Long.class, new BaseLongSerializer());
+        simpleModule.addSerializer(Long.TYPE, new BaseLongSerializer());
 
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper.registerModule(simpleModule);
