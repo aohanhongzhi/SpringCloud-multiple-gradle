@@ -470,6 +470,44 @@ mybatis-plus:
 
 ---
 
+# 问题拓展
+
+有一位网友搜了很多的文章内容，都没有找到有效的，最后扒到了我这篇文章。但是使用的时候遇到了一个问题。下面这段代码总是无法获取到已经注入成功的BaseEnumDeserializer对象,
+调试确定这个`this._classMappings`里面是有值的。但是get一直为空。
+
+```java
+
+for (Class<?> typeInterface : type.getInterfaces()) {
+    enumDeserializer = this._classMappings.get(new ClassKey(typeInterface));
+    if (enumDeserializer != null) {
+        logger.info("\n重写枚举查找逻辑[{}]", enumDeserializer);
+        return enumDeserializer;
+    }
+}
+return null;
+```
+
+问题分析，调试定位出问题肯定不是序列化器注入的问题，因为已经在`this._classMappings`中存在了。那么问题只能出在HashMap的key上面了。通过调试
+```java
+this._classMappings.get(key);
+```
+这一个比较发现
+
+![](asset/img/hashMap-get.png)
+
+![](asset/img/ClassKey-equals.png)
+
+经过计算结果是：
+![](asset/img/databind-type-Classkey.png)
+![](asset/img/classmate-util-classkey.png)
+很显然这位老哥import的时候包可能导入错误的了。
+```java
+  // 下面这个才是正确的
+  import com.fasterxml.jackson.databind.type.ClassKey;
+  // 下面这个是错误的。
+  import com.fasterxml.classmate.util.ClassKey;
+```
+![](asset/img/hashMap-equals.png)
 
 # fastjson枚举自定义序列化器
 
