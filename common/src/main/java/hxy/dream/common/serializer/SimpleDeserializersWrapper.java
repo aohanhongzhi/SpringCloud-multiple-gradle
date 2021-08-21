@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 public class SimpleDeserializersWrapper extends SimpleDeserializers {
 
     static final Logger logger = LoggerFactory.getLogger(SimpleDeserializersWrapper.class);
+
     @Override
     public JsonDeserializer<?> findEnumDeserializer(Class<?> type, DeserializationConfig config, BeanDescription beanDesc) throws JsonMappingException {
 
@@ -21,9 +22,15 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
             return enumDeserializer;
         }
         for (Class<?> typeInterface : type.getInterfaces()) {
+
+            /*
+             import com.fasterxml.jackson.databind.type.ClassKey;
+             import com.fasterxml.classmate.util.ClassKey;
+             注意jackson里面有两个相同的类名，如果使用错误，可能得不到自己想要的结果。
+             */
             enumDeserializer = this._classMappings.get(new ClassKey(typeInterface));
             if (enumDeserializer != null) {
-                logger.info("\n重写枚举查找逻辑[{}]",enumDeserializer);
+                logger.info("\n重写枚举查找逻辑[{}]", enumDeserializer);
                 return enumDeserializer;
             }
         }
