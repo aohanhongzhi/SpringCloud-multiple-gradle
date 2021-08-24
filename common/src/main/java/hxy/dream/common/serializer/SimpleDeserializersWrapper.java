@@ -44,6 +44,7 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
      * @param typeInterface
      * @return
      */
+    @Deprecated
     private JsonDeserializer<?> getJsonDeserializer(Class<?> typeInterface) {
         JsonDeserializer<?> enumDeserializer;
         final ClassKey key = new ClassKey(typeInterface);

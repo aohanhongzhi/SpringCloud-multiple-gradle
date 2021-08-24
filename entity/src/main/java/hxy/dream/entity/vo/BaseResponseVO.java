@@ -25,6 +25,10 @@ public class BaseResponseVO<T> implements Serializable {
         return new BaseResponseVO(200, "success", data);
     }
 
+    public static <T> BaseResponseVO<T> success(String message, T data) {
+        return new BaseResponseVO(200, message, data);
+    }
+
     public static <T> BaseResponseVO<T> error(T data) {
         return new BaseResponseVO(500, "error", data);
     }
