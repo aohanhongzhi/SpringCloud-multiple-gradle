@@ -12,12 +12,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @description 线程安全
  * @date 2021/8/24
  * @link https://mp.weixin.qq.com/s/WLCCoC6c8TsME4cKxD6G4w
- *
+ * <p>
  * https://www.jianshu.com/p/6fc3bba12f38
- *
+ * <p>
  * https://blog.csdn.net/qq_28393323/article/details/81003964
- *
- *
  */
 @RestController
 public class SecurityController {
@@ -28,7 +26,7 @@ public class SecurityController {
             new ThreadLocal<AtomicInteger>() {
                 @Override
                 protected AtomicInteger initialValue() {
-                    System.out.println("初始值"+atomicIntegerNum);
+                    System.out.println("初始值" + atomicIntegerNum);
                     return atomicIntegerNum;
                 }
             };
@@ -38,11 +36,16 @@ public class SecurityController {
             new ThreadLocal<Integer>() {
                 @Override
                 protected Integer initialValue() {
-                    System.out.println("初始值num"+num);
+                    System.out.println("初始值num" + num);
                     return num;
                 }
             };
 
+    /**
+     * TODO 线程安全，但是与预期不一致，需要后期再研究下。
+     *
+     * @return
+     */
     @GetMapping("/security")
     public BaseResponseVO security() {
         AtomicInteger num = atomicIntegerThreadLocal.get();
@@ -53,12 +56,21 @@ public class SecurityController {
         return BaseResponseVO.success(x);
     }
 
+    /**
+     * 这个是线程不安全的
+     *
+     * @return
+     */
     @GetMapping("/unsecurity")
     public BaseResponseVO unsecurity() {
-
         return BaseResponseVO.success(unsecurityNum++);
     }
 
+    /**
+     * 这个与预期是一致的，每个线程有自己的变量副本。线程之间是不相互干扰的。
+     *
+     * @return
+     */
     @GetMapping("/addNum")
     public BaseResponseVO addNum() {
         int unum = uniqueNum.get();
