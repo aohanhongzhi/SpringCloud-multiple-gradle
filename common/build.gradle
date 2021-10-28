@@ -15,17 +15,20 @@ repositories {
 
 dependencies {
 //    compile project(':dao')
-    compile project(':dao') /* 子模块之间的依赖 */
+    implementation project(':dao') /* 子模块之间的依赖 */
 // https://mvnrepository.com/artifact/org.javassist/javassist
-    compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
     // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
-    compile group: 'org.aspectj', name: 'aspectjrt', version: '1.9.6'
+    implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.6'
 
-    compile 'org.redisson:redisson:3.15.0'
+    implementation 'org.redisson:redisson:3.15.0'
+
+    implementation 'com.ejlchina:okhttps-jackson:3.3.0'
+
 //    https://cnblogs.com/keeya/p/13846807.html
 //    https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter
 //    compile 'org.redisson:redisson-spring-boot-starter:3.15.0'
 
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }

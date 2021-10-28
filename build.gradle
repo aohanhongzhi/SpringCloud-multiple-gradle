@@ -10,7 +10,7 @@ buildscript {
         springBootVersion = '2.2.9.RELEASE'
     }
     repositories {
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
         mavenCentral()
         mavenCentral()
     }
@@ -53,7 +53,7 @@ subprojects {
 
     repositories {
         mavenLocal()
-        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
         mavenCentral()
     }
 
@@ -67,9 +67,9 @@ subprojects {
         testAnnotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
 // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-sentinel
-        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-alibaba-sentinel', version: '0.9.0.RELEASE'
+//        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-alibaba-sentinel', version: '0.9.0.RELEASE'
 
-        compile 'com.ejlchina:okhttps-fastjson:2.3.0'
+        implementation 'com.ejlchina:okhttps-fastjson:2.3.0'
     }
 
 }

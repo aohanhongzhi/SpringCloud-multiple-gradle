@@ -21,6 +21,10 @@
         </encoder>
     </appender>
 
+    <!-- 第三方日志处理 -->
+    <appender name="DINGTALK" class="hxy.dream.common.configuration.LogbackDingTalkAppender">
+    </appender>
+
     <!-- debug输出到文件 -->
     <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -163,6 +167,7 @@
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DINGTALK"/>
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="WARN_FILE"/>
         <appender-ref ref="ERROR_FILE"/>

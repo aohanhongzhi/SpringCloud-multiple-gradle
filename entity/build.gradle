@@ -9,5 +9,5 @@ dependencies {
 
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上
 //    implementation project(':entity') /* 子模块之间的依赖 */
-    compile 'com.baomidou:mybatis-plus-boot-starter:3.3.0'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.3.0'
 }
