@@ -150,3 +150,13 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 # TODO
 - [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉
+
+### 构建
+
+并行构建
+
+```shell
+gradle build -x test --parallel --build-cache 
+```
+
+https://zhuanlan.zhihu.com/p/372585663

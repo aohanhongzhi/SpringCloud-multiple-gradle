@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
 //    compile project(':dao')
-    implementation project(':dao') /* 子模块之间的依赖 */
+    api project(':dao') /* 子模块之间的依赖 */
 // https://mvnrepository.com/artifact/org.javassist/javassist
     implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
     // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
@@ -24,6 +24,9 @@ dependencies {
     implementation 'org.redisson:redisson:3.15.0'
 
     implementation 'com.ejlchina:okhttps-jackson:3.3.0'
+
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
+
 
 //    https://cnblogs.com/keeya/p/13846807.html
 //    https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter
