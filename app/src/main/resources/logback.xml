@@ -22,7 +22,7 @@
     </appender>
 
     <!-- 第三方日志处理 -->
-    <appender name="DINGTALK" class="hxy.dream.app.util.LogbackDingTalkAppender">
+    <appender name="DINGTALK" class="hxy.dream.common.configuration.LogbackDingTalkAppender">
     </appender>
 
     <!-- debug输出到文件 -->

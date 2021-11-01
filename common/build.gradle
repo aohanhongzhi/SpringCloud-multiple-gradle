@@ -1,7 +1,6 @@
 /* 子模块项目名，jar名 */
 archivesBaseName = 'common'
 
-
 jar.enabled = true
 /* 需要org.springframework.boot插件 不需要打包成可执行的jar*/
 bootJar.enabled = false
@@ -14,24 +13,19 @@ repositories {
 }
 
 dependencies {
-//    compile project(':dao')
     api project(':dao') /* 子模块之间的依赖 */
-// https://mvnrepository.com/artifact/org.javassist/javassist
+
+    api 'com.ejlchina:okhttps-jackson:3.3.0'
+    api 'org.springframework.boot:spring-boot-starter-mail'
+
+
     implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
-    // https://mvnrepository.com/artifact/org.aspectj/aspectjrt
     implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.6'
-
     implementation 'org.redisson:redisson:3.15.0'
-
-    implementation 'com.ejlchina:okhttps-jackson:3.3.0'
-
-    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
-
 
 //    https://cnblogs.com/keeya/p/13846807.html
 //    https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter
 //    compile 'org.redisson:redisson-spring-boot-starter:3.15.0'
-
 
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 }

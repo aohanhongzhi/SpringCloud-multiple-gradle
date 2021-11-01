@@ -62,6 +62,8 @@ loc |代码行数统计 | https://github.com/cgag/loc
     compile project(':entity') /* 子模块之间的依赖 */
 ```
 
+1. [如何使用Gradle管理多模块Java项目](https://zhuanlan.zhihu.com/p/372585663)
+
 ### 版本指定，类似dependencyManager
 
 ### docker自动化跑起来

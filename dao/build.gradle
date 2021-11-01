@@ -7,9 +7,7 @@ bootJar.enabled = false
 dependencies {
 
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上
-//    implementation project(':entity') /* 子模块之间的依赖 */
     api project(':entity') /* 子模块之间的依赖 */
-    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
     runtimeOnly 'mysql:mysql-connector-java:8.0.16'
     testImplementation group: 'junit', name: 'junit', version: '4.12'
 

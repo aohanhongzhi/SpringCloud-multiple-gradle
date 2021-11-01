@@ -31,7 +31,6 @@ public class LogbackDingTalkAppender extends UnsynchronizedAppenderBase<ILogging
         Level level = eventObject.getLevel();
         switch (level.toInt()) {
             case Level.ERROR_INT:
-            case Level.WARN_INT:
                 // 发送到钉钉
                 ConcurrentHashMap<String, Object> postBody = new ConcurrentHashMap<>();
                 long timeStamp = eventObject.getTimeStamp();
@@ -44,6 +43,7 @@ public class LogbackDingTalkAppender extends UnsynchronizedAppenderBase<ILogging
                 String s = http.async("api/dingtalk/v1/notice").setBodyPara(postBody).bodyType(OkHttps.JSON).post().getResult().getBody().toString();
                 log.debug("钉钉返回信息{}", s);
                 break;
+            case Level.WARN_INT:
             case Level.INFO_INT:
                 //
 //                log.info("发送日志信息到钉钉" + eventObject);
