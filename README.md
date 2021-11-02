@@ -9,6 +9,7 @@ Eric-Dream
 jackson序列化 | 自定义序列化器 | 解决参数枚举的序列化问题
 logback钉钉通知 | 自定义Appender | Error消息及时通知
 logback邮件通知 |默认支持 | Error异常及时通知 
+全局异常捕获 |默认支持 | 捕获异常
 
 具体框架如下表：
 
