@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication(scanBasePackages = {"hxy.dream"})
-@MapperScan("hxy.dream.dao")
+@MapperScan("hxy.dream.dao.mapper")
 @ServletComponentScan("hxy.dream")
 public class Application {
 

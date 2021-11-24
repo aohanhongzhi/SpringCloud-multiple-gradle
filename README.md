@@ -61,6 +61,10 @@ loc |代码行数统计 | https://github.com/cgag/loc
 ```shell script
 ./gradlew clean bootJar -x test
 ```
+```shell
+./gradlew dependencyInsight --dependency mybatis
+```
+> 需要解决多工程的依赖分析
 
 ### 多模块构建，依赖关系解决
 ```groovy
