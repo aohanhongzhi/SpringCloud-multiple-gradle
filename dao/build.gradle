@@ -10,7 +10,7 @@ dependencies {
 //    implementation project(':entity') /* 子模块之间的依赖 */
     compile project(':entity') /* 子模块之间的依赖 */
     compile 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
-    runtimeOnly 'mysql:mysql-connector-java:8.0.16'
+    compile 'mysql:mysql-connector-java:8.0.16'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
 }
