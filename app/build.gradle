@@ -5,8 +5,7 @@ bootJar.enabled = true
 
 
 dependencies {
-    compile project(':common') /* 子模块之间的依赖 */
-    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    api project(':common')
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }

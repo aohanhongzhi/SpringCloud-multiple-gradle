@@ -470,6 +470,12 @@ mybatis-plus:
 
 ---
 
+# 国际化方案
+
+国际化是多语言处理，也就是网站不仅支持中文，还支持其他语言，例如英文。
+
+https://gitee.com/-/ide/project/aohanhongzhi/springboot-base/edit/master/-/src/main/java/hxy/base/server/entity/enums/BaseStatusCodeEnum.java
+
 # 问题拓展
 
 有一位网友搜了很多的文章内容，都没有找到有效的，最后扒到了我这篇文章。但是使用的时候遇到了一个问题。下面这段代码总是无法获取到已经注入成功的BaseEnumDeserializer对象,

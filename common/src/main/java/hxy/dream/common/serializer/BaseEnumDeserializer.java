@@ -1,6 +1,5 @@
 package hxy.dream.common.serializer;
 
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.JsonStreamContext;
@@ -26,7 +25,7 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
         try {
             // 前端输入的值
             String inputParameter = p.getText();
-            if (StringUtils.isBlank(inputParameter)) {
+            if (inputParameter == null || inputParameter.length() == 0) {
                 return null;
             }
 

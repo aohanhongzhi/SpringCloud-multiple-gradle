@@ -1,6 +1,5 @@
 package hxy.dream.entity.exception;
 
-import com.ejlchina.okhttps.internal.HttpException;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
@@ -11,7 +10,6 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -32,43 +30,6 @@ import javax.validation.ValidationException;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler implements InitializingBean {
-
-    /**
-     * 业务异常捕获
-     *
-     * @param request
-     * @param e
-     * @param <T>
-     * @return
-     */
-    @ExceptionHandler(BaseException.class)
-    public <T> BaseResponseVO<?> baseExcepitonHandler(HttpServletRequest request, BaseException e) {
-        log.error("{} Exception", request.getRequestURI(), e.getMessage(), e);
-        return BaseResponseVO.error(e.getMessage());
-    }
-
-    /**
-     * okhttps框架异常捕获
-     *
-     * @param request
-     * @param e
-     * @param <T>
-     * @return
-     */
-    @ExceptionHandler(HttpException.class)
-    public <T> BaseResponseVO<?> okhttpsExcepitonHandler(HttpServletRequest request, BaseException e) {
-        log.error("okhttps框架异常，{} Exception", request.getRequestURI(), e.getMessage(), e);
-        return BaseResponseVO.error(e.getMessage());
-    }
-
-    /**
-     * ValidationException
-     */
-    @ExceptionHandler(ValidationException.class)
-    public <T> BaseResponseVO<?> handleValidationException(ValidationException e) {
-        log.warn(e.getMessage(), e);
-        return BaseResponseVO.error("校验出错啦！", e.getMessage());
-    }
 
     /**
      * 参数校验异常捕获 包括各种自定义的参数异常
@@ -153,13 +114,6 @@ public class GlobalExceptionHandler implements InitializingBean {
 
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(NullPointerException.class)
-    public <T> BaseResponseVO<?> nullPointerExcepitonHandler(HttpServletRequest request, NullPointerException e) {
-        log.error("{}", request.getRequestURI(), e);
-        return BaseResponseVO.error("biu，踩雷啦！", e.getMessage());
-    }
-
     /**
      * 这个应该放在最下面比较好，最后加载
      * 处理未定义的其他异常信息
@@ -172,8 +126,18 @@ public class GlobalExceptionHandler implements InitializingBean {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
     public BaseResponseVO exceptionHandler(HttpServletRequest request, Exception exception) {
-        log.error("{} Exception Message: {}", request.getRequestURI(), exception.getMessage(), exception);
-        return BaseResponseVO.error("服务器异常", exception.getMessage());
+        String message = exception.getMessage();
+        log.error("{} Exception Message: {}", request.getRequestURI(), message, exception);
+
+        if (exception instanceof NullPointerException) {
+            message = "biu，踩雷啦！";
+        } else if (exception instanceof ValidationException) {
+            message = "参数检验出错啦！";
+        } else if (exception instanceof BaseException) {
+            message = "业务处理发生错误";
+        }
+
+        return BaseResponseVO.error(message, exception.getMessage());
     }
 
     @Override

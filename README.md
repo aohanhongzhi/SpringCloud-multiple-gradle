@@ -3,6 +3,13 @@ Eric-Dream
 
 本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是自定义枚举序列化的处理。
 
+## 主要实现功能如下
+ 功能 | 实现 | 用途
+--- | --- | ---
+jackson序列化 | 自定义序列化器 | 解决参数枚举的序列化问题
+logback钉钉通知 | 自定义Appender | Error消息及时通知
+logback邮件通知 |默认支持 | Error异常及时通知 
+全局异常捕获 |默认支持 | 捕获异常
 
 具体框架如下表：
 
@@ -61,6 +68,8 @@ loc |代码行数统计 | https://github.com/cgag/loc
 //    implementation project(':entity') /* 子模块之间的依赖 */
     compile project(':entity') /* 子模块之间的依赖 */
 ```
+
+1. [如何使用Gradle管理多模块Java项目](https://zhuanlan.zhihu.com/p/372585663)
 
 ### 版本指定，类似dependencyManager
 
@@ -150,3 +159,13 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 # TODO
 - [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉
+
+### 构建
+
+并行构建
+
+```shell
+gradle build -x test --parallel --build-cache 
+```
+
+https://zhuanlan.zhihu.com/p/372585663

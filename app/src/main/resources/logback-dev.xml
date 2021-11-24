@@ -14,6 +14,10 @@
         </encoder>
     </appender>
 
+    <!-- 第三方日志处理 -->
+    <appender name="DINGTALK" class="hxy.dream.common.configuration.LogbackDingTalkAppender">
+    </appender>
+
     <!-- debug输出到文件 -->
     <appender name="DEBUG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -98,23 +102,10 @@
 
     <root level="info">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DINGTALK"/>
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="WARN_FILE"/>
         <appender-ref ref="ERROR_FILE"/>
     </root>
-
-    <logger name="hxy.print.*" level="info" additivity="false">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="DEBUG_FILE"/>
-        <appender-ref ref="INFO_FILE"/>
-        <appender-ref ref="WARN_FILE"/>
-        <appender-ref ref="ERROR_FILE"/>
-    </logger>
-
-    <!-- 2. 输出SQL 的参数到控制台和文件-->
-    <!--<logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE" >-->
-    <!--<appender-ref ref="DEBUG_FILE" />-->
-    <!--<appender-ref ref="CONSOLE" />-->
-    <!--</logger>-->
 
 </configuration>
