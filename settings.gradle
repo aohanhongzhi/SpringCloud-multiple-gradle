@@ -1,4 +1,4 @@
-rootProject.name = 'eric-dream'
+rootProject.name = 'multi-gradle'
 include 'app'
 include 'entity'
 include 'dao'
