@@ -29,14 +29,11 @@ public class TokenFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        logger.info("\n====>TokenFilter过滤器使用[{}]", chain);
-
-
         chain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
         logger.info("\n====>TokenFilter销毁");
-
     }
 }

@@ -142,7 +142,7 @@ public class GlobalExceptionHandler implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("全局异常注入正常");
+        log.info("\n====>全局异常注入正常");
     }
 }
 
