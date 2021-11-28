@@ -40,8 +40,8 @@ public class LogbackDingTalkAppender extends UnsynchronizedAppenderBase<ILogging
                 String msg = String.format("时间：%s,级别:%s,原因%s", timeStamp, eventObject.getLevel(), eventObject.getFormattedMessage());
                 postBody.put("title", loggerName);
                 postBody.put("msg", msg);
-                String s = http.async("api/dingtalk/v1/notice").setBodyPara(postBody).bodyType(OkHttps.JSON).post().getResult().getBody().toString();
-                log.debug("钉钉返回信息{}", s);
+//                String s = http.async("api/dingtalk/v1/notice").setBodyPara(postBody).bodyType(OkHttps.JSON).post().getResult().getBody().toString();
+//                log.debug("钉钉返回信息{}", s);
                 break;
             case Level.WARN_INT:
             case Level.INFO_INT:

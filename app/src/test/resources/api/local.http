@@ -20,3 +20,10 @@ Accept: application/json
 
 ### 列表
 GET http://localhost:8080/user/list
+
+
+### 事务测试
+GET http://localhost:8080/transaction/
+
+### 事务测试
+GET http://localhost:8080/

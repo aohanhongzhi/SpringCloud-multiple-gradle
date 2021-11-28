@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  * @author iris
  */
 @Data
-@TableName("users")
+@TableName("user_model")
 @EqualsAndHashCode(callSuper=false)
 public class UserModel extends BaseModel<UserModel> {
     @TableId(type = IdType.AUTO)

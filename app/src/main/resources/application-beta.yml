@@ -1,9 +1,9 @@
 #线上测试配置
 spring:
   datasource:
-    url: jdbc:mysql://mysql.cupb.top:3306/erp-test?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8
-    username: erp-test
-    password: newpass
+    url: jdbc:mysql://mysql.cupb.top:3306/eric?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8
+    username: eric
+    password: dream,1234..
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
   #    type:  com.alibaba.druid.pool.DruidDataSource
