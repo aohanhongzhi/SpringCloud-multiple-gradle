@@ -20,7 +20,7 @@ public class TransactionSubService {
     @Resource
     UserMapper userMapper;
 
-//    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public void saveChildren() {
         saveChild1();
         int a = 1 / 0;

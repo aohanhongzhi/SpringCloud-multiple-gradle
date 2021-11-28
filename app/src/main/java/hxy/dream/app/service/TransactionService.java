@@ -37,6 +37,7 @@ public class TransactionService {
         } catch (Exception e) {
             log.error("====>\n", e);
         }
+//        int a = 1 / 0;
         log.info("====>\n运行完成了");
         return BaseResponseVO.success();
     }
