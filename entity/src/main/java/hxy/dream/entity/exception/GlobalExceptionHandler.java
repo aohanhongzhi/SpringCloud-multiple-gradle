@@ -126,7 +126,7 @@ public class GlobalExceptionHandler implements InitializingBean {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(value = Exception.class)
     public BaseResponseVO exceptionHandler(HttpServletRequest request, Exception exception) {
-        String message = exception.getMessage();
+        String message = "系统发生错误";
         log.error("当前URL={} ", request.getRequestURI(), exception);
 
         if (exception instanceof NullPointerException) {

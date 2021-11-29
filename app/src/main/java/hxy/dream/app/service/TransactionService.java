@@ -35,10 +35,10 @@ public class TransactionService {
         try {
             transactionSubService.saveChildren();
         } catch (Exception e) {
-            log.error("====>\n", e);
+            log.error("====>\n异常直接捕获，但是还会抛出事务异常", e);
         }
 //        int a = 1 / 0;
-        log.info("====>\n运行完成了");
+        log.info("====>\n事务测试运行完成了");
         return BaseResponseVO.success();
     }
 
