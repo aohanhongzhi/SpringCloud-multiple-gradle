@@ -49,6 +49,12 @@ Mark the resource transaction as rollback-only.
 
 # 事务的五大隔离机制
 
+Spring的事务五大隔离机制与数据库也是一一对应的，就是多了一个默认的，也就是采用数据库的。
+
+![img.png](asset/img/5Isolation.png)
+
+![img.png](asset/img/isolation.png)
+
 [什么是脏读、不可重复读、幻读？](https://www.zhihu.com/question/458275373)
 
 ![](https://pic3.zhimg.com/80/v2-25ed812ff748a38bd3e4127db1ed7a48_720w.jpg)
