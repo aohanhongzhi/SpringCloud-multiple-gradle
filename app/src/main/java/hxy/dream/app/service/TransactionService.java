@@ -6,6 +6,7 @@ import hxy.dream.dao.modle.UserModel;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,7 +31,7 @@ public class TransactionService {
      * 测试事务
      */
     @Transactional(propagation = Propagation.REQUIRED)
-    public BaseResponseVO experiment() {
+    public BaseResponseVO propagation() {
         saveParent();
         try {
             transactionSubService.saveChildren();
@@ -48,6 +49,46 @@ public class TransactionService {
         stu.setName("parent");
         stu.setAge(19);
         userMapper.insert(stu); // 数据库插入一条parent记录
+    }
+
+
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
+    public BaseResponseVO isolation() {
+        int id = 1;
+        UserModel userModel = userMapper.selectById(id);
+        log.info("\n=====>第一次查询信息{}", userModel);
+
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 这里读到别人未提交的数据，也就是脏数据
+        userModel = userMapper.selectById(id);
+        log.info("\n=====>第二次查询信息{}，是脏数据", userModel);
+        return BaseResponseVO.success();
+    }
+
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
+    public BaseResponseVO isolation1() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        UserModel userModel = new UserModel();
+        userModel.setId(1);
+        userModel.setAge(9);
+        userMapper.updateById(userModel);
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // 发生异常回滚了
+        int a = 1 / 0;
+
+        return BaseResponseVO.success();
     }
 
 

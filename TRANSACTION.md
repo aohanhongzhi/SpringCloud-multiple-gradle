@@ -7,6 +7,8 @@
 
 # 事务四大特性
 
+ACID
+
 # 事务传播传播行为
 
  事务七大传播机制，五大隔离机制。
@@ -54,6 +56,40 @@ Spring的事务五大隔离机制与数据库也是一一对应的，就是多�
 ![img.png](asset/img/5Isolation.png)
 
 ![img.png](asset/img/isolation.png)
+
+事务隔离机制也是在下面注解中使用的
+
+![img.png](asset/img/transactional-isolation.png)
+### [Spring事务隔离级别与MySQL设置的级别不一样怎么办](https://blog.csdn.net/foxException/article/details/109028373) ：结论是`Spring设置的隔离级别会生效`。
+上面这个在实践的时候，第一次未成功复现，原因是因为mybatis的一级缓存，导致同一个事务的第二次查询压根没有实际执行，而是读取了第一次的缓存。
+只要禁用了
+```shell
+
+==>  Preparing: SELECT id,name,age,gender,password,create_time,update_time,deleted FROM user_model WHERE id=? AND deleted=0
+==> Parameters: 1(Integer)
+<==    Columns: id, name, age, gender, password, create_time, update_time, deleted
+<==        Row: 1, 张三, 1, null, null, null, null, 0
+<==      Total: 1
+=====>第一次查询信息UserModel(id=1, name=张三, age=1, gender=null, password=null)
+
+==>  Preparing: UPDATE user_model SET age=?, update_time=? WHERE id=? AND deleted=0
+==> Parameters: 9(Integer), 2021-11-29T16:50:24.196832(LocalDateTime), 1(Integer)
+<==    Updates: 1
+
+==>  Preparing: SELECT id,name,age,gender,password,create_time,update_time,deleted FROM user_model WHERE id=? AND deleted=0
+==> Parameters: 1(Integer)
+<==    Columns: id, name, age, gender, password, create_time, update_time, deleted
+<==        Row: 1, 张三, 9, null, null, null, 2021-11-29 16:50:24, 0
+<==      Total: 1
+=====>第二次查询信息UserModel(id=1, name=张三, age=9, gender=null, password=null)，是脏数据
+
+Exception in thread "Thread-3" java.lang.ArithmeticException: / by zero
+	at hxy.dream.app.service.TransactionService.isolation1(TransactionService.java:89)
+	at hxy.dream.app.service.TransactionService$$FastClassBySpringCGLIB$$6b7cc68d.invoke(<generated>)
+
+```
+
+[springboot+mybatis一级缓存启用/禁用问题](https://blog.csdn.net/NongYeting/article/details/106408985)
 
 [什么是脏读、不可重复读、幻读？](https://www.zhihu.com/question/458275373)
 

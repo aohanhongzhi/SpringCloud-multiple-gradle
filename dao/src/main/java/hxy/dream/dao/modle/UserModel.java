@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class UserModel extends BaseModel<UserModel> {
     @TableId(type = IdType.AUTO)
-    String id;
+    Integer id;
     String name;
     Integer age;
     GenderEnum gender;

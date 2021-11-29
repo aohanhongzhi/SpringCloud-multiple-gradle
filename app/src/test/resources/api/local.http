@@ -6,9 +6,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "gender": 2,
-    "name": "lis1i1",
-    "age": 23
+  "gender": 2,
+  "name": "lis1i1",
+  "age": 23
 }
 
 ###
@@ -22,8 +22,11 @@ Accept: application/json
 GET http://localhost:8080/user/list
 
 
-### 事务测试
-GET http://localhost:8080/transaction/
+### 事务测试传播机制
+GET http://localhost:8080/transaction/propagation
+
+### 事务隔离级别测试
+GET http://localhost:8080/transaction/isolation
 
 ### 事务测试
 GET http://localhost:8080/

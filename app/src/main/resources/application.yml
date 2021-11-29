@@ -25,7 +25,8 @@ mybatis-plus:
   configuration:
     #    配置日志
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-#    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
+    local-cache-scope: statement # 每次执行sql。多个statement可能会在一个session里面。 这个是mybatis的一级缓存控制。
+  #    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
   type-aliases-package: hxy.dream.dao.model
   # 支持通配符 * 或者 ; 分割
   global-config:

@@ -20,10 +20,34 @@ public class TranscationController {
     @Resource
     TransactionService transactionService;
 
-    @RequestMapping("/")
+    /**
+     * 事务传播机制的研究
+     *
+     * @return
+     */
+    @RequestMapping("/propagation")
     public BaseResponseVO test() {
-        return transactionService.experiment();
+        return transactionService.propagation();
     }
 
+
+    /**
+     * 事务隔离机制的研究。
+     * 本方法主要研究，当数据库的隔离级别与Spring设置的隔离级别不一致的时候，到底以谁为准。实际测试结果是以Spring为准。
+     *
+     * @return
+     */
+    @RequestMapping("/isolation")
+    public BaseResponseVO isolation() {
+
+        new Thread(() -> {
+            transactionService.isolation();
+        }).start();
+        new Thread(() -> {
+            transactionService.isolation1();
+        }).start();
+
+        return BaseResponseVO.success();
+    }
 
 }
