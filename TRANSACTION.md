@@ -61,6 +61,9 @@ Spring的事务五大隔离机制与数据库也是一一对应的，就是多�
 
 ![img.png](asset/img/transactional-isolation.png)
 ### [Spring事务隔离级别与MySQL设置的级别不一样怎么办](https://blog.csdn.net/foxException/article/details/109028373) ：结论是`Spring设置的隔离级别会生效`。
+
+[Spring事务隔离级别与数据库隔离级别不一致时，该以谁为准？](https://blog.csdn.net/weixin_44259720/article/details/112826960)
+
 上面这个在实践的时候，第一次未成功复现，原因是因为mybatis的一级缓存，导致同一个事务的第二次查询压根没有实际执行，而是读取了第一次的缓存。
 只要禁用了
 ```shell
@@ -99,3 +102,7 @@ Exception in thread "Thread-3" java.lang.ArithmeticException: / by zero
 
 # 事务的失效场景
 
+
+# 拓展
+
+[分布式事务有这一篇就够了！](https://zhuanlan.zhihu.com/p/263555694) : 鲁友心推荐

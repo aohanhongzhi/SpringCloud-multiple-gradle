@@ -24,7 +24,8 @@ mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     #    配置日志
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
     local-cache-scope: statement # 每次执行sql。多个statement可能会在一个session里面。 这个是mybatis的一级缓存控制。
   #    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
   type-aliases-package: hxy.dream.dao.model
