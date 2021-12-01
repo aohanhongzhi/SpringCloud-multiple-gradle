@@ -48,6 +48,17 @@ Mark the resource transaction as rollback-only.
 ![img.png](asset/img/sql-rollback-commit.png)
 
 [Spring事务嵌套引发的血案---Transaction rolled back because it has been marked as rollback-only](https://www.cnblogs.com/nizuimeiabc1/p/14774125.html)
+[Spring事务异常rollback-only](https://blog.csdn.net/sgls652709/article/details/49472719)
+
+spring默认只对RuntimeException和Error做捕捉，并回滚，其他的异常，直接提交
+
+```java
+public boolean rollbackOn(Throwable ex) {
+        return (ex instanceof RuntimeException || ex instanceof Error);
+}
+```
+
+
 
 # 事务的五大隔离机制
 
