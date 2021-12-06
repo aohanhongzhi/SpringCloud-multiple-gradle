@@ -99,4 +99,20 @@ public class BeanConfig {
         interceptor.addInnerInterceptor(blockAttackInnerInterceptor);
         return interceptor;
     }
+
+    /**
+     *  解决两个斜杠问题。后期搞个方案，直接从一开始就直接去掉多余的斜杠，保证后期处理都是正常的。
+     * //此种方式没起作用
+     * StrictHttpFirewall firewall = new StrictHttpFirewall();
+     * firewall.setAllowSemicolon(true);
+     * return firewall;
+     */
+
+
+//    @Bean
+//    public HttpFirewall allowUrlSemicolonHttpFirewall() {
+//
+//        //起作用
+//        return new DefaultHttpFirewall();
+//    }
 }
