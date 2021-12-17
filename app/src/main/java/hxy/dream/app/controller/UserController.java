@@ -39,6 +39,14 @@ public class UserController {
         return BaseResponseVO.success(userModel);
     }
 
+
+    @GetMapping("exist/{id}")
+    public BaseResponseVO exist(@PathVariable("id") String id) {
+        log.info("\n====>当前获取的id是{}", id);
+       return userService.exist(id);
+    }
+
+
     @GetMapping("list")
     public BaseResponseVO list() {
         List<UserModel> userModels = userService.list();

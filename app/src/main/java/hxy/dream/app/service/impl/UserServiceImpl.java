@@ -1,11 +1,13 @@
 package hxy.dream.app.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
 import hxy.dream.dao.mapper.UserMapper;
 import hxy.dream.dao.modle.UserModel;
 import hxy.dream.entity.dto.UserDTO;
 import hxy.dream.entity.enums.GenderEnum;
+import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class UserServiceImpl implements UserService {
         userModel.setName(userParam.getName());
         GenderEnum gender = userParam.getGender();
         userModel.setGender(gender);
-        if (gender==GenderEnum.UNKNOWN){
+        if (gender == GenderEnum.UNKNOWN) {
             log.error("性别未知");
         }
         int insert = userMapper.insert(userModel);
@@ -44,5 +46,33 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> list() {
         return userMapper.selectList(null);
+    }
+
+    /**
+     * 判断用户id存在否
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public BaseResponseVO exist(String id) {
+
+        // 方案1 ，聚簇索引
+        QueryWrapper<UserModel> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", id).select("id");
+        UserModel userModel = userMapper.selectOne(queryWrapper);
+        if (userModel != null) {
+            log.info("用户存在{}", userModel);
+        }
+
+        // 方案2 count计数
+        QueryWrapper<UserModel> queryWrapper1 = new QueryWrapper<>();
+        queryWrapper1.eq("id", id).select("id").last("limit 1");
+        Integer integer = userMapper.selectCount(queryWrapper1);
+        if (integer > 0) {
+            log.info("用户存在{}", integer);
+        }
+
+        return BaseResponseVO.success();
     }
 }
