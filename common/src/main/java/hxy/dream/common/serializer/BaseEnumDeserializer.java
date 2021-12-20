@@ -56,6 +56,7 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
 
             JsonToken currentToken = jp.getCurrentToken();
             if (currentToken == JsonToken.START_OBJECT) {
+                // 这里专门解决自定义序列化的结果，再次原样反序列化的处理。适用场景，mq，redis，MongoDB等存储。或者okhttps的restful调用。
                 TreeNode treeNode = jp.readValueAsTree();
                 if (treeNode != null) {
                     TreeNode code = treeNode.get("code");

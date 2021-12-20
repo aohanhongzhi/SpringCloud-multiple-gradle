@@ -2,6 +2,13 @@
 
 > 本文基于SpringBoot+Mybatisplus 框架就Java枚举的正反序列化的实际应用进行一次分析与研究，此外顺便带上DAO层关于枚举的操作，使得程序中完全使用枚举编程。由于SpringBoot内置的json处理器是jackson，所以本文的json相关处理也就是采用默认的jackson。
 
+## 本文解决的痛点
+
+枚举在前端的显示和数据库的存储问题，前端可以很方便知道枚举是啥意思，数据库能用int存储枚举，程序中使用枚举既能见名知意，也能提高代码可读性。
+
+看图最直接：
+
+![](./asset/img/enums.png)
 
 ## 背景
 
@@ -9,15 +16,21 @@ N久之前，leo曾经问我枚举的应用，我清楚地记得菜鸟教程(htt
 
 ![](./asset/img/enumeration.png)
 
-当时我还找到了给leo看，说这玩意要被取代了.现在看来是我断章取义了。因为那时候很少会接触到枚举，所以我以为这玩意真的没救了。
+当时我还找到了给leo看，说这玩意要被取代了.现在看来是我断章取义了。这里的枚举有遍历，穷举的意思，也就是此枚举非彼枚举。因为那时候很少会接触到枚举，所以我以为这玩意真的没救了。
 
 现在看来，看多了不去实践与思考，正应了一句话“尽信书不如无书”。
 
-最近《阿里巴巴开发规范-嵩山版版》有下面的一句话，可能会与接下来的内容相冲。不知道为啥不能返回枚举类型，有待考究。
+最近《阿里巴巴开发规范-嵩山版版》有下面的一句话，可能会与接下来的内容相冲。阿里巴巴这个适合一定的场景（主要可能是大企业里面的系统之间的RPC调用比较多，如果采用枚举会导致升级后得全部更新其他依赖系统，这个规定其实有妥的地方也有不妥的地方，所以还是看场景需要而定。），与我使用的场景有点区别，
+所以还是看是否适合自己的场景需要。
 
 ![](./asset/img/emum-respone.png)
 
-无论枚举要怎么使用，我还是按照自己的相关需求来实践了一把，由于项目中有很多枚举，使用和管理起来非常晕乎乎的。需要把枚举与Integer转来转去，前端传输过来了一个Integer，需要手动将Integer转成枚举，存储到数据库的时候，又得将枚举转成Integer保存。如果纯粹使用Integer传值，编码又不能知道这个数字代表啥意思，最后找来找去。不光是后端很是晕乎乎的。前端由于也只接受了Integer，需要显示文字的时候，只能前后端共同定，一旦后端修改了枚举，那么前端必须同步修改。所以我在网上找了一些解决办法，但是都不尽人意。最后折腾了jackson源码并求助于jackson的维护者解决了枚举正反序列化的问题。
+
+无论枚举要怎么使用，我还是按照自己的相关需求来实践了一把，由于项目中有很多枚举，使用和管理起来非常晕乎乎的。
+需要把枚举与Integer转来转去，前端传输过来了一个Integer，需要手动将Integer转成枚举，存储到数据库的时候，又得将枚举转成Integer保存。
+如果纯粹使用Integer传值，编码又不能知道这个数字代表啥意思，最后找来找去，注释也不全。不光是后端很是晕乎乎的。
+前端由于也只接受了Integer，需要显示文字的时候，只能前后端共同定，一旦后端修改了枚举，那么前端则必须同步修改。
+为了解决这个问题，我在网上找了一些解决办法，但是都不尽人意。最后折腾了jackson源码并求助于jackson的维护者解决了枚举正反序列化的问题。
 
 
 ## 基础框架
@@ -53,6 +66,7 @@ https://gitee.com/eric-tutorial/SpringCloud-multiple-gradle
 
 ```java
 public enum GenderEnum  {
+    
     BOY(100, "男"), GIRL(200, "女"),UNKNOWN(0, "未知");
 
     private final Integer code;
@@ -63,6 +77,7 @@ public enum GenderEnum  {
         this.code = code;
         this.description = description;
     }
+    
 }
 ```
 ### 接受参数的对象
@@ -70,12 +85,16 @@ public enum GenderEnum  {
 ```java
 @Data
 public class UserParam {
+    
     @NotBlank(message = "name不能为空")
     String name;
+    
     @NotNull(message = "gender为1或者2")
     GenderEnum gender;
+    
     @NotNull(message = "age不能为空")
     Integer age;
+    
 }
 
 ```
@@ -90,13 +109,17 @@ public class UserParam {
     }
 ```
 
-上面代码可以看出来框架在接受参数的时候将网络传输过来的数据进行了反序列化，在返回给前端的时候进行了正序列化成json返回的。默认的jackson是无法直接按照`GenderEnum`中的`code`来正反序列化枚举的，因为jackson有一套自己的枚举序列化机制，从源代码中看出来，它是按照name和ordinal来正反序列化的。但是这个不能满足我自己定义的`code`和`description`来正反序列化的需求。因此我在网上搜了下，看看有木有人完成这样的需求，我想这个需求应该比较正常，网上一搜果然有很多。很快就有了下面的代码(最后发现都是采用默认的jackson枚举正反序列化器,并不满足需求)。
+上面代码可以看出来框架在接受参数的时候将网络传输过来的数据进行了反序列化，在返回给前端的时候进行了正序列化成json返回的。
+默认的jackson是无法直接按照`GenderEnum`中的`code`来正反序列化枚举的，因为jackson有一套自己的枚举序列化机制，从源代码中看出来，
+它是按照`java.lang.Enum.class`的`name`和`ordinal`来正反序列化的。但是这个不能满足我自己定义的`code`和`description`来正反序列化的需求。
+因此我在网上搜了下，看看有木有人完成这样的需求，我想这个需求应该比较正常，网上一搜果然有很多，但是能实现的却没几个。
+于是经过自己折腾，很快就有了下面的代码(最后发现都是采用默认的jackson枚举正反序列化器,并不满足需求，需要自己重写序列化器)。
 
 ### 自定义的枚举序列化器
 
 #### 面向接口编程
 
-为我需要正序列化的枚举统一定义了一个接口.所以需要参与正序列化的枚举都得实现这个接口.
+为我需要正序列化的枚举统一定义了一个接口.所以需要参与正序列化的枚举都得实现这个接口.目的是为了不影响其他枚举的正常序列化，只序列化我自己特定的枚举。
 
 ```java
 public interface BaseEnum {
@@ -130,6 +153,7 @@ public class BaseEnumSerializer extends JsonSerializer<BaseEnum> {
         gen.writeNumberField("code", value.code());
         gen.writeStringField("description", value.description());
         gen.writeEndObject();
+        
     }
 
 }
@@ -369,7 +393,26 @@ com.fasterxml.jackson.databind.deser.std.EnumDeserializer#deserialize
 ```
 
 ![](./asset/img/ordinal-param.png)
+
 ![](./asset/img/code-ordinal.png)
+
+> 除了上面特殊的传参方式，也是支持原样返回，即回传自定义序列化的结果。这种场景会在redis，mq,mongodb存储中应用到。
+>  ```json
+>   POST http://localhost:8080/user/add/body
+>    Content-Type: application/json
+>    Accept: application/json
+>    
+>    {
+>       "gender": {
+>           "code": 200,
+>           "description": "女"
+>       },
+>       "name": "lis1i1",
+>       "age": 23
+>    }
+>```
+
+
 ![](./asset/img/ordinal数组.png)
 
 > Java的枚举本质上是java.lang.Enum.class，自带有ordinal和name两个属性。ordinal可以理解成数组的下标。
