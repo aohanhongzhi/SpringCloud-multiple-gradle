@@ -14,12 +14,18 @@ public class BaseEnumSerializer extends JsonSerializer<BaseEnum> {
 
     @Override
     public void serialize(BaseEnum value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-
         log.info("\n====>开始序列化[{}]", value);
-        gen.writeStartObject();
-        gen.writeNumberField("code", value.code());
-        gen.writeStringField("description", value.description());
-        gen.writeEndObject();
+        if (value != null) {
+            gen.writeStartObject();
+            Integer code = value.code();
+            if (code != null) {
+                gen.writeNumberField("code", code);
+            } else {
+                log.warn("\n====>该枚举[{}]的code为空", value);
+            }
+            gen.writeStringField("description", value.description());
+            gen.writeEndObject();
+        }
     }
 
 }

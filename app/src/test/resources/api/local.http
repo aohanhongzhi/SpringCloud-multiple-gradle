@@ -6,7 +6,21 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "gender": 2,
+  "gender": 200,
+  "name": "lis1i1",
+  "age": 23
+}
+
+### 添加
+POST http://localhost:8080/user/add/body
+Content-Type: application/json
+Accept: application/json
+
+{
+  "gender": {
+    "code": 200,
+    "description": "女"
+  },
   "name": "lis1i1",
   "age": 23
 }
