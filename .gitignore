@@ -2,7 +2,7 @@
 /dao/build/
 /entity/build/
 /common/build/
-/logs/
+/logs/*
 .idea/
 .gradle/
 build/
