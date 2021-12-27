@@ -28,6 +28,9 @@ eric-dream
 上面后缀server是服务治理模块。platform是业务应用模块。 **微服务=分布式开发+服务治理**
 
 ## gradle安装与配置
+
+https://hub.fastgit.org/GradleCN/GradleSide
+
 如果IDEA自动下载gradle很慢。那么可以先提前安装好gradle，然后指定下安装目录即可。
 ![](./asset/img/gradle-special-location.png)
 ![](./asset/img/gradle-wrapper.png)
