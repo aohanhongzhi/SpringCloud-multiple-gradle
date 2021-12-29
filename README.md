@@ -60,6 +60,10 @@ LogStash | 日志收集 | [https://github.com/logstash/logstash-logback-encoder]
 Lombok | 简化对象封装工具 | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)
 loc |代码行数统计 | https://github.com/cgag/loc
 
+#### SpringBoot支持
+
+https://spring.io/projects/spring-boot#support
+
 ### 命令打包，跳过TEST
 ```shell script
 ./gradlew clean bootJar -x test

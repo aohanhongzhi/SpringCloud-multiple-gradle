@@ -44,24 +44,24 @@ public class SimpleDeserializersWrapper extends SimpleDeserializers {
      * @param typeInterface
      * @return
      */
-    @Deprecated
-    private JsonDeserializer<?> getJsonDeserializer(Class<?> typeInterface) {
-        JsonDeserializer<?> enumDeserializer;
-        final ClassKey key = new ClassKey(typeInterface);
-        final int keyHashCode = key.hashCode();
-        enumDeserializer = this._classMappings.get(key);
-        final com.fasterxml.classmate.util.ClassKey key1 = new com.fasterxml.classmate.util.ClassKey(typeInterface);
-        final int keyHashCode1 = key1.hashCode();
-        if (keyHashCode == keyHashCode1) {
-            logger.info("\n====>hashCode相同,{}", keyHashCode);
-        }
-
-        JsonDeserializer<?> enumDeserializerNull = this._classMappings.get(key1);
-        logger.info("\n====>{}", enumDeserializerNull);
-        if (enumDeserializer != null) {
-            logger.info("\n重写枚举查找逻辑[{}]", enumDeserializer);
-            return enumDeserializer;
-        }
-        return null;
-    }
+//    @Deprecated
+//    private JsonDeserializer<?> getJsonDeserializer(Class<?> typeInterface) {
+//        JsonDeserializer<?> enumDeserializer;
+//        final ClassKey key = new ClassKey(typeInterface);
+//        final int keyHashCode = key.hashCode();
+//        enumDeserializer = this._classMappings.get(key);
+//        final com.fasterxml.classmate.util.ClassKey key1 = new com.fasterxml.classmate.util.ClassKey(typeInterface);
+//        final int keyHashCode1 = key1.hashCode();
+//        if (keyHashCode == keyHashCode1) {
+//            logger.info("\n====>hashCode相同,{}", keyHashCode);
+//        }
+//
+//        JsonDeserializer<?> enumDeserializerNull = this._classMappings.get(key1);
+//        logger.info("\n====>{}", enumDeserializerNull);
+//        if (enumDeserializer != null) {
+//            logger.info("\n重写枚举查找逻辑[{}]", enumDeserializer);
+//            return enumDeserializer;
+//        }
+//        return null;
+//    }
 }

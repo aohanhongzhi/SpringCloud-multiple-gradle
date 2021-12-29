@@ -15,7 +15,7 @@ import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
 @Order(1)
-@WebFilter(filterName = "TokenFilter", urlPatterns = "/*" , initParams = {
+@WebFilter(filterName = "TokenFilter", urlPatterns = "/*", initParams = {
         @WebInitParam(name = "URL", value = "http://localhost:8080")})
 public class TokenFilter implements Filter {
 
@@ -26,6 +26,15 @@ public class TokenFilter implements Filter {
         logger.info("\n====>TokenFilter初始化配置信息[{}]", filterConfig);
     }
 
+    /**
+     * 这里就是获取token，提取用户信息到SpringSecurity安全上下文中
+     *
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 //        logger.info("\n====>TokenFilter过滤器使用[{}]", chain);

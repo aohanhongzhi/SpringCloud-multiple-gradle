@@ -9,4 +9,5 @@ dependencies {
 
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上api
     api 'com.baomidou:mybatis-plus-boot-starter:3.4.0'
+    api 'javax.validation:validation-api:2.0.1.Final'
 }
