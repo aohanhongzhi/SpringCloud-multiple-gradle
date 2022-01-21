@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @author eric
  * @program eric-dream
@@ -15,14 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SystemController {
     @GetMapping("/")
-    public BaseResponseVO index(){
+    public BaseResponseVO index() {
 
 //        try {
 //            Thread.sleep(10);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        log.info("{}",Thread.currentThread().getName());
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        log.info("{}", Thread.currentThread().getName());
 
         return BaseResponseVO.success("SpringBoot");
     }
