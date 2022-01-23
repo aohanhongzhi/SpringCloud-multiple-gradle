@@ -32,7 +32,7 @@ public class AsyncConfig {
 
 //    @Bean
 //    @Primary
-//    public DispatcherServletRegistrationBean dispatcherServlet1() {
+//    public DispatcherServletRegistrationBean dispatcherServlet1( ) {
 //        DispatcherServletRegistrationBean registration = new DispatcherServletRegistrationBean(
 //                new DispatcherServlet(), "/*");
 ////        registration.setName("dispatcherServlet1");

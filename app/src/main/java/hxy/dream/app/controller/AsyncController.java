@@ -22,6 +22,8 @@ public class AsyncController {
 
     /**
      * 从这个接口可以更好的理解异步模型的一种实现手段就是多线程！
+     * <p>
+     * 来自一本书《Java工程师修炼之道》
      *
      * @return
      */
