@@ -19,7 +19,7 @@ public class LongController {
         HashMap map = new HashMap();
         map.put("string", "1111111");
         Long l = 9112222222222222222L;
-        Long l2 = new Long(9112222222222222222L);
+        Long l2 = Long.valueOf(9112222222222222222L);
         long l3 = 90071992547409912L;
         long l4 = 9007199254740990L;
         map.put("long", l);

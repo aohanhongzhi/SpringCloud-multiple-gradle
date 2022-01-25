@@ -15,7 +15,7 @@ repositories {
 dependencies {
     api project(':dao') /* 子模块之间的依赖 */
 
-    api 'com.ejlchina:okhttps-jackson:3.3.0'
+    api 'com.ejlchina:okhttps-jackson:3.4.0'
     api 'org.springframework.boot:spring-boot-starter-mail'
 
 

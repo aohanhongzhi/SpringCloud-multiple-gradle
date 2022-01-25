@@ -10,7 +10,19 @@ buildscript {
     }
     repositories {
         mavenLocal()
-        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
+        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
+        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
+        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
+        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
+        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
+        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven {
+            url "https://mirrors.huaweicloud.com/repository/maven/"
+            name = "华为开源镜像库"
+        }
+        maven { url "https://repo.spring.io/libs-release" }
         mavenCentral()
     }
     dependencies {
@@ -35,7 +47,20 @@ allprojects {
     group "org.springframework.boot"
 
     repositories {
-        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenLocal()
+        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
+        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
+        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
+        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
+        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
+        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
+        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven {
+            url "https://mirrors.huaweicloud.com/repository/maven/"
+            name = "华为开源镜像库"
+        }
+        maven { url "https://repo.spring.io/libs-release" }
         mavenCentral()
         if (version.contains('-')) {
             maven { url "https://repo.spring.io/milestone" }
@@ -50,7 +75,7 @@ allprojects {
     }
 
     test {
-        // 要用junit可以换成：useJUnitPlatform()
+        // 要用junit可以换成：useJUnitPlatform() TestNG更好更丰富
         useTestNG()
     }
 }
@@ -69,15 +94,27 @@ subprojects {
     group = 'hxy.dream'
     version = '1.0-SNAPSHOT'
     /* 指定jdk版本 */
-//    sourceCompatibility = 11
-//    targetCompatibility = 11
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     /* java编译的时候缺省状态下会因为中文字符而失败 */
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     repositories {
         mavenLocal()
-        maven { url "https://maven.aliyun.com/nexus/content/groups/public/" }
+        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
+        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
+        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
+        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
+        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
+        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
+        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven {
+            url "https://mirrors.huaweicloud.com/repository/maven/"
+            name = "华为开源镜像库"
+        }
+        maven { url "https://repo.spring.io/libs-release" }
         mavenCentral()
     }
 
@@ -90,10 +127,10 @@ subprojects {
         annotationProcessor 'org.projectlombok:lombok'
         testAnnotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
+
 // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-sentinel
 //        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-alibaba-sentinel', version: '0.9.0.RELEASE'
 
-        implementation 'com.ejlchina:okhttps-fastjson:2.3.0'
     }
 
 }

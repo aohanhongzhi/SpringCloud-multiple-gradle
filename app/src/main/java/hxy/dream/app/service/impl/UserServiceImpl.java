@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
 
         // 方案1 ，聚簇索引
         QueryWrapper<UserModel> queryWrapper = new QueryWrapper<>();
+        // 只查询id这一列
         queryWrapper.eq("id", id).select("id");
         UserModel userModel = userMapper.selectOne(queryWrapper);
         if (userModel != null) {
@@ -68,9 +69,9 @@ public class UserServiceImpl implements UserService {
         // 方案2 count计数
         QueryWrapper<UserModel> queryWrapper1 = new QueryWrapper<>();
         queryWrapper1.eq("id", id).select("id").last("limit 1");
-        Integer integer = userMapper.selectCount(queryWrapper1);
-        if (integer > 0) {
-            log.info("用户存在{}", integer);
+        Long count = userMapper.selectCount(queryWrapper1);
+        if (count > 0) {
+            log.info("用户存在{}", count);
         }
 
         return BaseResponseVO.success();
