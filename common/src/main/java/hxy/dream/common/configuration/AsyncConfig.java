@@ -1,7 +1,9 @@
 package hxy.dream.common.configuration;
 
+import hxy.dream.common.filter.TokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +32,7 @@ public class AsyncConfig {
 //    @Autowired(required = false)
 //    private MultipartConfigElement multipartConfig;
 
-//    @Bean
+    //    @Bean
 //    @Primary
 //    public DispatcherServletRegistrationBean dispatcherServlet1( ) {
 //        DispatcherServletRegistrationBean registration = new DispatcherServletRegistrationBean(
@@ -44,4 +46,14 @@ public class AsyncConfig {
 //        }
 //        return registration;
 //    }
+    @Bean
+    public FilterRegistrationBean someFilterRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new TokenFilter());
+        registration.addUrlPatterns("/*");
+        registration.setAsyncSupported(true);
+        registration.setName("repeatableFilter");
+        registration.setOrder(FilterRegistrationBean.LOWEST_PRECEDENCE);
+        return registration;
+    }
 }
