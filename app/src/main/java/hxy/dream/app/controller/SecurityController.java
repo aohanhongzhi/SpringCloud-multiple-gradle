@@ -63,7 +63,9 @@ public class SecurityController {
      */
     @GetMapping("/unsecurity")
     public BaseResponseVO unsecurity() {
-        return BaseResponseVO.success(unsecurityNum++);
+        unsecurityNum = unsecurityNum + 1;
+        System.out.println(unsecurityNum);
+        return BaseResponseVO.success(unsecurityNum);
     }
 
     /**

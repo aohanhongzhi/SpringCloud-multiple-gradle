@@ -14,6 +14,9 @@ import lombok.EqualsAndHashCode;
 @TableName("user_model")
 @EqualsAndHashCode(callSuper=false)
 public class UserModel extends BaseModel<UserModel> {
+    /**
+     * 参考yaml文件配置id-type: auto
+     */
     @TableId(type = IdType.AUTO)
     Integer id;
     String name;
