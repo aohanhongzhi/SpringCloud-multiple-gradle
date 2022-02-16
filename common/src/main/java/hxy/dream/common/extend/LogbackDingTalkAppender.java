@@ -1,10 +1,9 @@
-package hxy.dream.common.configuration;
+package hxy.dream.common.extend;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.UnsynchronizedAppenderBase;
 import com.ejlchina.okhttps.HTTP;
-import com.ejlchina.okhttps.OkHttps;
 import com.ejlchina.okhttps.jackson.JacksonMsgConvertor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

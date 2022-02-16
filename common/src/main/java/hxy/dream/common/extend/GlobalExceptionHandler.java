@@ -1,5 +1,6 @@
-package hxy.dream.entity.exception;
+package hxy.dream.common.extend;
 
+import hxy.dream.entity.exception.BaseException;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
