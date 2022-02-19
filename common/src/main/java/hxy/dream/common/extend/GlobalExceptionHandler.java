@@ -1,9 +1,14 @@
 package hxy.dream.common.extend;
 
 import hxy.dream.entity.exception.BaseException;
+import hxy.dream.entity.exception.WebException;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.boot.web.error.ErrorAttributeOptions;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -19,8 +24,11 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
+import java.io.IOException;
+import java.util.Map;
 
 /**
  * Description:全局异常处理，采用@RestControllerAdvice + @ExceptionHandler解决
@@ -31,6 +39,28 @@ import javax.validation.ValidationException;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler implements InitializingBean {
+
+    /**
+     * Hide exception field in the return object
+     *
+     * @return
+     */
+    @Bean
+    public ErrorAttributes errorAttributes() {
+        return new DefaultErrorAttributes() {
+            @Override
+            public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+                return super.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults().excluding(ErrorAttributeOptions.Include.EXCEPTION));
+            }
+        };
+    }
+
+    @ExceptionHandler(WebException.class)
+    public void handleCustomException(HttpServletResponse res, WebException ex) throws IOException {
+        // 这里可以设置status，但是还不能设置 status code
+        res.sendError(ex.getHttpStatus().value(), ex.getMessage());
+    }
+
 
     /**
      * 参数校验异常捕获 包括各种自定义的参数异常

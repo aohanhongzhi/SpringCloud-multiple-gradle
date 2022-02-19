@@ -44,3 +44,6 @@ GET http://localhost:8080/transaction/isolation
 
 ### 事务测试
 GET http://localhost:8080/
+
+### 返回json测试
+GET http://localhost:8080/exception
