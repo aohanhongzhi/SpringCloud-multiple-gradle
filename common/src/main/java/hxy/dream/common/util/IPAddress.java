@@ -8,11 +8,11 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 /**
- * 有待验证
+ * 经过实际验证确实可以取到nginx代理后的真实客户端地址
  */
 public class IPAddress {
     private static final Logger log = LoggerFactory.getLogger(IPAddress.class);
-    
+
     /**
      * 客户端获取 ip
      * 可以适配 nginx 能正确的获取访问的ip地址
