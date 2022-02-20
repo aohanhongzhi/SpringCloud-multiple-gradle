@@ -8,6 +8,9 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 
+/**
+ * @author iris
+ */
 @SpringBootApplication(scanBasePackages = {"hxy.dream"})
 @MapperScan("hxy.dream.dao.mapper")
 @ServletComponentScan("hxy.dream")
