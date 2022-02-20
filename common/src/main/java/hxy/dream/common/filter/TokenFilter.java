@@ -16,7 +16,7 @@ import java.io.IOException;
 
 @Order(1)
 @WebFilter(filterName = "TokenFilter", urlPatterns = "/*", initParams = {
-        @WebInitParam(name = "URL", value = "http://localhost:8080")})
+        @WebInitParam(name = "URL", value = "http://localhost:8080")}, asyncSupported = true)
 public class TokenFilter implements Filter {
 
     Logger logger = LoggerFactory.getLogger(TokenFilter.class);
