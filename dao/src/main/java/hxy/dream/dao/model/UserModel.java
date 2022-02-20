@@ -1,4 +1,4 @@
-package hxy.dream.dao.modle;
+package hxy.dream.dao.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

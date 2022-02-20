@@ -1,7 +1,7 @@
 package hxy.dream.app.service;
 
 import hxy.dream.dao.mapper.UserMapper;
-import hxy.dream.dao.modle.UserModel;
+import hxy.dream.dao.model.UserModel;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

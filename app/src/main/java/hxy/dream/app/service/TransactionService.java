@@ -2,7 +2,7 @@ package hxy.dream.app.service;
 
 
 import hxy.dream.dao.mapper.UserMapper;
-import hxy.dream.dao.modle.UserModel;
+import hxy.dream.dao.model.UserModel;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
