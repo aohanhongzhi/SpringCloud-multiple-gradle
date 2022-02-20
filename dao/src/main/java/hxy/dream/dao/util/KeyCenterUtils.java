@@ -2,12 +2,6 @@ package hxy.dream.dao.util;
 
 import java.util.Base64;
 
-/**
- * @author HealerJean
- * @ClassName AES
- * @date 2020/4/9  14:28.
- * @Description
- */
 public class KeyCenterUtils {
 
     /**
