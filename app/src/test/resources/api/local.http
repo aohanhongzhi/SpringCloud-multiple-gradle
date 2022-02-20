@@ -58,3 +58,6 @@ Content-Type: application/json
 {
   "aa": "a"
 }
+
+### AsyncServlet
+GET localhost:8080/AsyncServlet

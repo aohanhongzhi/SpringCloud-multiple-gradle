@@ -14,6 +14,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
 
+/**
+ * @author iris
+ */
 @Order(1)
 @WebFilter(filterName = "TokenFilter", urlPatterns = "/*", initParams = {
         @WebInitParam(name = "URL", value = "http://localhost:8080")}, asyncSupported = true)
