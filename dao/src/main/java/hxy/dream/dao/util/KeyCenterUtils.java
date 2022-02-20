@@ -1,7 +1,4 @@
-package hxy.dream.common.util;
-
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+package hxy.dream.dao.util;
 
 import java.util.Base64;
 

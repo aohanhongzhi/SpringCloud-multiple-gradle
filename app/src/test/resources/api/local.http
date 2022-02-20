@@ -8,7 +8,8 @@ Accept: application/json
 {
   "gender": 200,
   "name": "lis1i1",
-  "age": 23
+  "age": 23 ,
+  "address": "安徽省安庆市"
 }
 
 ### 添加

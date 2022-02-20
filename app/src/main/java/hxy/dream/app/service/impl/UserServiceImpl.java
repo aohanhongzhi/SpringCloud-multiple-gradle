@@ -30,6 +30,8 @@ public class UserServiceImpl implements UserService {
         userModel.setName(userParam.getName());
         GenderEnum gender = userParam.getGender();
         userModel.setGender(gender);
+        userModel.setAddress(userParam.getAddress());
+        userModel.setAge(userModel.getAge());
         if (gender == GenderEnum.UNKNOWN) {
             log.error("性别未知");
         }

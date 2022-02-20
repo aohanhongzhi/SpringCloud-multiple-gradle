@@ -13,8 +13,8 @@ import lombok.EqualsAndHashCode;
  * @author iris
  */
 @Data
-@TableName("user_model")
-@EqualsAndHashCode(callSuper=false)
+@TableName(value = "user_model", autoResultMap = true)  //有了这个BaseMapper查询的结果才能解密
+@EqualsAndHashCode(callSuper = false)
 public class UserModel extends BaseModel<UserModel> {
     /**
      * 参考yaml文件配置id-type: auto
@@ -25,6 +25,7 @@ public class UserModel extends BaseModel<UserModel> {
     Integer age;
     GenderEnum gender;
     String password;
+
     //有了这个数据库BaseMapper插入的时候才能加密
     @TableField(typeHandler = CustomTypeHandler.class)
     String address;

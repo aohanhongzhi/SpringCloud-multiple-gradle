@@ -18,4 +18,5 @@ public class UserParam {
     @NotNull(message = "age不能为空")
     Integer age;
 
+    String address;
 }

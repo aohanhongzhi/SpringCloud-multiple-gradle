@@ -20,7 +20,7 @@ public class BaseModel<T extends Model<?>> extends Model<T> {
     private LocalDateTime createTime;
     //    @TableField(fill = FieldFill.UPDATE)
 //    private String updater;
-    @TableField(fill = FieldFill.UPDATE)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     /**

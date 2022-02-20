@@ -13,10 +13,17 @@ public class UserServiceImplTest  extends BaseTest {
     @Autowired
     UserService userService;
     @Test
-    public void runTest(){
+    public void arunTest(){
         UserParam userParam = new UserParam();
         userParam.setName("111");
         UserModel userModel = userService.add(userParam);
+        log.info("\n====>{}",userModel);
+    }
+
+    @Test
+    public void bGetTest(){
+
+        UserModel userModel = userService.get("87");
         log.info("\n====>{}",userModel);
     }
 }

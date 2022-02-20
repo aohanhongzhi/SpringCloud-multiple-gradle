@@ -1,14 +1,14 @@
 package hxy.dream.dao.configuration.mybatis;
 
 /**
- * @author HealerJean
  * @ClassName AESTypeHandler
  * @date 2020/4/9  14:27.
  * @Description
  */
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import hxy.dream.common.util.KeyCenterUtils;
+
+import hxy.dream.dao.util.KeyCenterUtils;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Service;
