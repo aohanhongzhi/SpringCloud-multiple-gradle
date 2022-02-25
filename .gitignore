@@ -10,3 +10,4 @@ build/
 /.scannerwork/
 *.hprof
 **/build/
+**/out/
