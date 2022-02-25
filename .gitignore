@@ -9,3 +9,4 @@ build/
 *.log
 /.scannerwork/
 *.hprof
+**/build/
