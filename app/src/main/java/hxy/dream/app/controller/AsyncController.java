@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -56,17 +57,22 @@ public class AsyncController {
 
     @RequestMapping("concurrency")
     public Object concurrency() {
-        log.info("请求开始执行");
+        log.info("请求开始执行，是否为守护线程={}", Thread.currentThread().isDaemon());
 
         long start = System.currentTimeMillis();
 
         HashMap<String, Object> map = new HashMap();
+
+//        CountDownLatch countDownLatch = new CountDownLatch();
 
         // 异步执行
         CompletableFuture<Void> voidCompletableFuture = CompletableFuture.runAsync(() -> {
             try {
                 TimeUnit.SECONDS.sleep(3);
                 map.put("线程1", System.currentTimeMillis());
+                // 有非守护线程，那么守护线程就不会退出。
+                log.info("{}是否为守护线程={}", Thread.currentThread().getName(), Thread.currentThread().isDaemon());
+
             } catch (InterruptedException e) {
                 log.error("{}", e.getMessage(), e);
             }
@@ -78,6 +84,7 @@ public class AsyncController {
             try {
                 TimeUnit.SECONDS.sleep(3);
                 map.put("线程2", System.currentTimeMillis());
+                log.info("{}是否为守护线程={}", Thread.currentThread().getName(), Thread.currentThread().isDaemon());
 
             } catch (InterruptedException e) {
                 log.error("{}", e.getMessage(), e);
