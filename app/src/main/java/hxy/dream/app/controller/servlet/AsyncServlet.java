@@ -2,7 +2,9 @@ package hxy.dream.app.controller.servlet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.ServletException;
@@ -23,6 +25,11 @@ import java.io.PrintWriter;
 public class AsyncServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(AsyncServlet.class);
 
+    /**
+     * 注意这个线程池的最大线程数队列长度
+     */
+    @Autowired
+    ThreadPoolTaskExecutor applicationTaskExecutor;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,7 +39,8 @@ public class AsyncServlet extends HttpServlet {
         asyncContext.setTimeout(2 * 1000);
 
         // 这里是开启一个新线程的，生产使用线程池更好，这样就做到了Tomcat的IO线程与业务线程的分离，能提高吞吐量！
-        new Thread(new BusinessRunnable(req, resp)).start();
+        applicationTaskExecutor.execute(new BusinessRunnable(req, resp));
+//        new Thread(new BusinessRunnable(req, resp)).start();
 
     }
 
