@@ -2,10 +2,16 @@ package hxy.dream.app.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -19,6 +25,11 @@ import java.util.concurrent.TimeUnit;
 public class AsyncController {
     private static final Logger log = LoggerFactory.getLogger(AsyncController.class);
 
+    /**
+     * 注意这个线程池的最大线程数队列长度
+     */
+    @Autowired
+    ThreadPoolTaskExecutor applicationTaskExecutor;
 
     /**
      * 从这个接口可以更好的理解异步模型的一种实现手段就是多线程！
@@ -41,5 +52,52 @@ public class AsyncController {
                 return "Async Controller Result";
             }
         };
+    }
+
+    @RequestMapping("concurrency")
+    public Object concurrency() {
+        log.info("请求开始执行");
+
+        long start = System.currentTimeMillis();
+
+        HashMap<String, Object> map = new HashMap();
+
+        // 异步执行
+        CompletableFuture<Void> voidCompletableFuture = CompletableFuture.runAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                map.put("线程1", System.currentTimeMillis());
+            } catch (InterruptedException e) {
+                log.error("{}", e.getMessage(), e);
+            }
+        }, applicationTaskExecutor);
+
+
+        // 异步执行
+        CompletableFuture<Void> voidCompletableFuture1 = CompletableFuture.runAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+                map.put("线程2", System.currentTimeMillis());
+
+            } catch (InterruptedException e) {
+                log.error("{}", e.getMessage(), e);
+            }
+        }, applicationTaskExecutor);
+
+        try {
+            // 等待上面返回结果
+            CompletableFuture.allOf(voidCompletableFuture1, voidCompletableFuture).get();
+        } catch (InterruptedException e) {
+            log.error("{}", e.getMessage(), e);
+        } catch (ExecutionException e) {
+            log.error("{}", e.getMessage(), e);
+        }
+
+        long end = System.currentTimeMillis();
+        long totalTime = (end - start) / 1000;
+        map.put("消耗时间", totalTime);
+        log.info("请求处理完成{}", totalTime);
+
+        return map;
     }
 }
