@@ -9,7 +9,7 @@
     <springProperty scope="context" name="password" source="email.password"/>
 
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <!-- 自动新建文件夹 -->
+    <!-- 自动新建文件夹 ，可能多个jar部署在同一个目录下，区分日志就加了一个app目录名 -->
     <property name="DEV_HOME" value="./logs/codesec"/>
 
     <!-- 控制台输出 -->
