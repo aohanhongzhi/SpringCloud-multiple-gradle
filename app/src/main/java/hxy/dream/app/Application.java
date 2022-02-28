@@ -23,7 +23,7 @@ public class Application {
 
 
     public static void main(String[] args) {
-        log.info("{}是否为守护线程={}", Thread.currentThread().getName(), Thread.currentThread().isDaemon());
+        log.info("当前CPU核心={}，{}是否为守护线程={}",Runtime.getRuntime().availableProcessors(), Thread.currentThread().getName(), Thread.currentThread().isDaemon());
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         log.trace("方便打断点");
     }
