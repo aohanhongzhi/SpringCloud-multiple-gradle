@@ -30,7 +30,7 @@ public class TranscationController {
     @Resource
     TransactionService transactionService;
 
-    private ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 200, TimeUnit.MILLISECONDS,
+    private ThreadPoolExecutor executor = new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(), Runtime.getRuntime().availableProcessors() * 2, 200, TimeUnit.MILLISECONDS,
             new LinkedBlockingQueue<Runnable>(5), new ThreadPoolExecutor.CallerRunsPolicy());
 
     /**
