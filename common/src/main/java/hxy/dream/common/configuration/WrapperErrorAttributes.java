@@ -3,6 +3,7 @@ package hxy.dream.common.configuration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 
@@ -17,6 +18,7 @@ import java.util.Set;
  */
 @Component
 @Slf4j
+@Profile(value = {"prod"})
 public class WrapperErrorAttributes extends DefaultErrorAttributes {
     /**
      * 返回json 403 500
