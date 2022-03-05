@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.PropertiesPropertySource;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import java.util.Properties;
  * @date 2022/2/25
  */
 @Component
+@Profile(value = {"prod", "beta"})
 public class RemoteEnvironmentPostProcessor implements EnvironmentPostProcessor {
     private static final Logger log = LoggerFactory.getLogger(RemoteEnvironmentPostProcessor.class);
 
