@@ -56,3 +56,7 @@ server:
 #    #    trust-store-password: Sigh,0404
 #    #    trust-store-type: JKS
 #    protocol: TLS
+info:
+  app:
+    java:
+#      version: @java.version@

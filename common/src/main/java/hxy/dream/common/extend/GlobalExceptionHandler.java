@@ -9,6 +9,7 @@ import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -47,6 +48,7 @@ public class GlobalExceptionHandler implements InitializingBean {
      * @return
      */
     @Bean
+    @Profile("prod")
     public ErrorAttributes errorAttributes() {
         return new DefaultErrorAttributes() {
             @Override
