@@ -61,3 +61,10 @@ Content-Type: application/json
 
 ### AsyncServlet
 GET localhost:8080/AsyncServlet
+
+
+### ThreadLocal 线程安全测试
+GET localhost:8080/threadlocal/wrong?userId=122
+
+### ConcurentHashMap
+GET localhost:8080/concurrentHashMap/wrong
