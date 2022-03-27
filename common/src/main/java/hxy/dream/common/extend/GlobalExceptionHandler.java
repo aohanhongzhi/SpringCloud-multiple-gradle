@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolationException;
@@ -176,6 +177,11 @@ public class GlobalExceptionHandler implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         log.info("\n====>全局异常注入正常");
+    }
+
+    @PostConstruct
+    public void init() {
+        log.info("\n====>@PostConstruct 全局异常注入正常");
     }
 }
 

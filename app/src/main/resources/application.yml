@@ -46,6 +46,9 @@ pagehelper:
   reasonable: true
 server:
   port: 8080
+#  tomcat:
+#    threads:
+#      max: 2
 #  ssl:
 #    key-store: classpath:cupbtop.jks
 #    key-store-password: Sigh,0404
