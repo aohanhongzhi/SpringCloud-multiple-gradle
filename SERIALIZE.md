@@ -569,3 +569,6 @@ this._classMappings.get(key);
 
 https://blog.csdn.net/qq_26680031/article/details/83473643
 
+# 数据库的json序列化处理，将数据库存储的json字段自动映射成对象
+
+https://github.com/baomidou/mybatis-plus-samples/tree/master/mybatis-plus-sample-typehandler/src/main/java/com/baomidou/mybatisplus/samples/typehandler
