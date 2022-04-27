@@ -6,13 +6,14 @@ Eric-Dream
 本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是自定义枚举序列化的处理。
 
 ## 主要实现功能如下
- 功能 | 实现          | 用途
---- |-------------| ---
-jackson序列化 | 自定义序列化器     | 解决参数枚举的序列化问题
-logback钉钉通知 | 自定义Appender | Error消息及时通知
-logback邮件通知 | 默认支持        | Error异常及时通知 
-全局异常捕获 | 默认支持        | 捕获异常
-数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)   | 给部分数据库字段加解密
+ 功能 | 实现                                                                                                  | 用途
+--- |-----------------------------------------------------------------------------------------------------| ---
+jackson序列化 | 自定义序列化器                                                                                             | 解决参数枚举的序列化问题
+logback钉钉通知 | 自定义Appender                                                                                         | Error消息及时通知
+logback邮件通知 | 默认支持                                                                                                | Error异常及时通知 
+全局异常捕获 | 默认支持                                                                                                | 捕获异常
+数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密
+执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    | 
 
 具体框架如下表：
 
