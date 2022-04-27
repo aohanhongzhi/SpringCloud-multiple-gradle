@@ -46,7 +46,7 @@ public class UserModel extends BaseModel<UserModel> {
      * 注意！！选择对应的 JSON 处理器也必须存在对应依赖包
      */
     @TableField(typeHandler = BasicInfoDTOTypeHandler.class)
-    List<BasicInfoDTO> basicInfoDTO;
+    List<BasicInfoDTO> basicInfos;
 
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private OtherInfo otherInfo;

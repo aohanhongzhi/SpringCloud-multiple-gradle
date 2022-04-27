@@ -6,6 +6,8 @@ spring:
     password: dream,1234..
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: mysql
+    hikari:
+      max-lifetime: 120000 # 池中连接关闭后的最长生命周期 20分钟
   #    type:  com.alibaba.druid.pool.DruidDataSource
   servlet:
     multipart:
