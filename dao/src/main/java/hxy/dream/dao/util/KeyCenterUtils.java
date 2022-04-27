@@ -25,7 +25,7 @@ public class KeyCenterUtils {
             String result = new String(asBytes, "UTF-8");
             return result;
         } catch (Exception e) {
-            throw new RuntimeException("decrypt fail!", e);
+            throw new RuntimeException("decrypt fail!可能是因为这个不是加密后的文字，而是正常的字符", e);
         }
     }
 
