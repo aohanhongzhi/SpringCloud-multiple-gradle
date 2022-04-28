@@ -11,6 +11,9 @@ import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * @link https://blog.csdn.net/m0_37456570/article/details/83751401
+ */
 @Slf4j
 @Component
 public class ApplicationStartupRunner implements CommandLineRunner {
