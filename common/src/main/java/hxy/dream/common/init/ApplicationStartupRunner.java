@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 @Slf4j
 @Component
 public class ApplicationStartupRunner implements CommandLineRunner {
+
     @Value("${spring.datasource.driver-class-name}")
     private String driver;
     @Value("${spring.datasource.url}")
@@ -54,8 +55,13 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
             ScriptRunner scriptRunner = new ScriptRunner(connection);
             scriptRunner.runScript(Resources.getResourceAsReader("table.sql"));
+            connection.commit();
         } catch (Exception e) {
             log.error("{}", e);
+        } finally {
+            if (connection != null) {
+                connection.close();// 连接关闭
+            }
         }
     }
 }
