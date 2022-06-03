@@ -9,21 +9,41 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Slf4j
-public class UserServiceImplTest  extends BaseTest {
+public class UserServiceImplTest extends BaseTest {
     @Autowired
     UserService userService;
+
     @Test
-    public void arunTest(){
+    public void arunTest() {
         UserParam userParam = new UserParam();
         userParam.setName("111");
         UserModel userModel = userService.add(userParam);
-        log.info("\n====>{}",userModel);
+        log.info("\n====>{}", userModel);
     }
 
     @Test
-    public void bGetTest(){
+    public void bGetTest() {
 
         UserModel userModel = userService.get("87");
-        log.info("\n====>{}",userModel);
+        log.info("\n====>{}", userModel);
+    }
+
+
+    @Test
+    public void cTest() {
+        UserModel userModel = new UserModel();
+        userModel.setName("AA");
+        userModel.setPhone(12111L);
+        userModel.setId(3);
+
+        userService.saveOrUpdate(userModel);
+    }
+
+    @Test
+    public void dTest() {
+        UserModel userModel = new UserModel();
+        userModel.setName("AA");
+        userModel.setPhone(12111L);
+        userService.saveOrUpdate(userModel);
     }
 }

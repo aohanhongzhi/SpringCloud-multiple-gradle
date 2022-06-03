@@ -36,6 +36,8 @@ public class UserModel extends BaseModel<UserModel> {
     @TableField(typeHandler = CustomTypeHandler.class)
     String address;
 
+    long phone;
+
     /**
      * 注意！！ 必须开启映射注解
      *
