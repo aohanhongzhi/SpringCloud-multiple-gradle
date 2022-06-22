@@ -127,11 +127,11 @@ public class GlobalExceptionHandler implements InitializingBean {
      * @param e
      * @return
      */
-    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ResponseStatus(org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED)
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public BaseResponseVO handleHttpRequestMethodNotSupportedException(HttpServletRequest request, HttpRequestMethodNotSupportedException e) {
-        log.warn("\n====>[{}]不支持当前[{}]请求方法,应该是[{},{}]", request.getRequestURI(), e.getMethod(), e.getSupportedHttpMethods(), e.getSupportedMethods(), e);
-        return BaseResponseVO.badrequest("请求方法不支持", e.getMessage());
+        log.warn("\n====>[{}]不支持当前[{}]请求方法,应该是[{}]", request.getRequestURI(), e.getMethod(), e.getSupportedMethods());
+        return BaseResponseVO.error("请求方法不支持", e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
