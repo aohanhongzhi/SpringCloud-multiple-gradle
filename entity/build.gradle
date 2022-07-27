@@ -8,7 +8,7 @@ bootJar.enabled = false
 dependencies {
 
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上api
-    api 'com.baomidou:mybatis-plus-boot-starter:3.5.1'
+    api 'com.baomidou:mybatis-plus-boot-starter:3.5.2'
     api 'org.springframework.boot:spring-boot-starter-validation'
 
 }
