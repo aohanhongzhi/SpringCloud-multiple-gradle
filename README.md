@@ -69,6 +69,14 @@ https://app.planetscale.com/aohanhongzhi
 
 使用github登录。
 
+```java
+Class.forName("com.mysql.cj.jdbc.Driver");
+Connection conn = DriverManager.getConnection(
+  "jdbc:mysql://qk2vq6ckknd4.us-east-2.psdb.cloud/springboot?sslMode=VERIFY_IDENTITY",
+  "mfkeegzwnyip",
+  "pscale_pw_sj1ZNBTw9fJhWqRKsJg--M7P8M7KB9ZInDe2CKt3bRU");
+```
+
 
 #### SpringBoot支持
 
