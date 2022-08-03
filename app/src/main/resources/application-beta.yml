@@ -1,9 +1,9 @@
 #线上测试配置
 spring:
   datasource:
-    url: jdbc:mysql://mysql.cupb.top:3306/eric?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8
-    username: eric
-    password: dream,1234..
+    url: jdbc:mysql://qk2vq6ckknd4.us-east-2.psdb.cloud:3306/springboot?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8&sslMode=VERIFY_IDENTITY
+    username: mfkeegzwnyip
+    password: pscale_pw_sj1ZNBTw9fJhWqRKsJg--M7P8M7KB9ZInDe2CKt3bRU
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       max-lifetime: 120000 # 池中连接关闭后的最长生命周期 20分钟
