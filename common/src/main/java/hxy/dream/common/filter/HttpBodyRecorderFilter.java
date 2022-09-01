@@ -143,8 +143,19 @@ public abstract class HttpBodyRecorderFilter extends OncePerRequestFilter {
 
     }
 
+    /**
+     * 对请求的入参和回参的处理
+     *
+     * @param payload  入参
+     * @param response 回参
+     */
     protected abstract void recordBody(String payload, String response);
 
+    /**
+     * 指定记录的类型，例如 "401,500"
+     *
+     * @return
+     */
     protected abstract String recordCode();
 
 }
