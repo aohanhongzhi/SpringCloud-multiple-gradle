@@ -15,6 +15,7 @@ public class UserParam {
     String name;
     @NotNull(message = "gender为100或者200")
     GenderEnum gender;
+
     @NotNull(message = "age不能为空")
     Integer age;
 

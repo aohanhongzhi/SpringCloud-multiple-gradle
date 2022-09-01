@@ -1,6 +1,8 @@
 package hxy.dream.app;
 
 
+import hxy.dream.common.filter.ErrorHttpBodyRecorderFilter;
+import hxy.dream.common.filter.HttpBodyRecorderFilter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +25,17 @@ public class Application {
 
 
     public static void main(String[] args) {
-        log.info("当前CPU核心={}，{}是否为守护线程={}",Runtime.getRuntime().availableProcessors(), Thread.currentThread().getName(), Thread.currentThread().isDaemon());
+        log.info("当前CPU核心={}，{}是否为守护线程={}", Runtime.getRuntime().availableProcessors(), Thread.currentThread().getName(), Thread.currentThread().isDaemon());
         log.info("\n<============ \uD83D\uDE80  JAVA版本:{}  CPU核心数:{}  \uD83D\uDE80 ============>", System.getProperty("java.version"), Runtime.getRuntime().availableProcessors());
 
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         log.trace("方便打断点");
+        ErrorHttpBodyRecorderFilter bean = context.getBean(ErrorHttpBodyRecorderFilter.class);
+        if (bean != null) {
+            log.info("bean{}", bean);
+        } else {
+            log.error("注入失败HttpBodyRecorderFilter");
+        }
     }
 
 }

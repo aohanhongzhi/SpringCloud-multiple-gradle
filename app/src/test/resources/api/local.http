@@ -8,7 +8,7 @@ Accept: application/json
 {
   "gender": 200,
   "name": "lis1i1",
-  "age": 23,
+  "age": {{$randomInt}},
   "address": "安徽省安庆市"
 }
 
