@@ -63,21 +63,6 @@ LogStash | 日志收集 | [https://github.com/logstash/logstash-logback-encoder]
 Lombok | 简化对象封装工具 | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)
 loc |代码行数统计 | https://github.com/cgag/loc
 
-##### 免费的云数据库
-
-https://app.planetscale.com/aohanhongzhi
-
-使用github登录。
-
-```java
-Class.forName("com.mysql.cj.jdbc.Driver");
-Connection conn = DriverManager.getConnection(
-  "jdbc:mysql://qk2vq6ckknd4.us-east-2.psdb.cloud/springboot?sslMode=VERIFY_IDENTITY",
-  "mfkeegzwnyip",
-  "pscale_pw_sj1ZNBTw9fJhWqRKsJg--M7P8M7KB9ZInDe2CKt3bRU");
-```
-
-
 #### SpringBoot支持
 
 https://spring.io/projects/spring-boot#support
