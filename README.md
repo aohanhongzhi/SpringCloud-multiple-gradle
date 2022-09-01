@@ -16,8 +16,9 @@ logback邮件通知 | 默认支持                                              
 全局异常捕获 | 默认支持                                                                                                | 捕获异常
 数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密
 执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    |
-指定请求类型的参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                  |  可以记录400.500错误的请求参数
-匹配URL的请求参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                  |  可以正则化匹配URL，记录特定类型的URL
+所有请求的参数记录 | [ParameterRecord.java](common/src/main/java/hxy/dream/common/extend/ParameterRecord.java)     |  记录所有的请求参数
+指定请求类型的参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                    |  可以记录400.500错误的请求参数
+匹配URL的请求参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                    |  可以正则化匹配URL，记录特定类型的URL
 
 具体框架如下表：
 
@@ -172,7 +173,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###    
+###      
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
