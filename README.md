@@ -8,17 +8,18 @@ Eric-Dream
 
 ## 主要实现功能如下
 
-功能 | 实现                                                                                                  | 用途
---- |-----------------------------------------------------------------------------------------------------| ---
-jackson序列化 | 自定义序列化器                                                                                             | 解决参数枚举的序列化问题
-logback钉钉通知 | 自定义Appender                                                                                         | Error消息及时通知
-logback邮件通知 | 默认支持                                                                                                | Error异常及时通知
-全局异常捕获 | 默认支持                                                                                                | 捕获异常
-数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密
-执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    |
-所有请求的参数记录 | [ParameterRecord.java](common/src/main/java/hxy/dream/common/extend/ParameterRecord.java)     |  记录所有的请求参数
-指定请求类型的参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                    |  可以记录400.500错误的请求参数
-匹配URL的请求参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                    |  可以正则化匹配URL，记录特定类型的URL
+功能 | 实现                                                                                                      | 用途                                                     
+--- |---------------------------------------------------------------------------------------------------------|--------------------------------------------------------
+jackson序列化 | 自定义序列化器                                                                                                 | 解决参数枚举的序列化问题                                           
+logback钉钉通知 | 自定义Appender                                                                                             | Error消息及时通知                                            
+logback邮件通知 | 默认支持                                                                                                    | Error异常及时通知                                            
+全局异常捕获 | 默认支持                                                                                                    | 捕获异常                                                   
+数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)     | 给部分数据库字段加解密                                            
+执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                        |
+打印可执行SQL语句 | [SqlLoggerInterceptor](dao/src/main/java/hxy/dream/dao/configuration/mybatis/SqlLoggerInterceptor.java) | https://blog.csdn.net/UsaWjq/article/details/122199354 |
+所有请求的参数记录 | [ParameterRecord.java](common/src/main/java/hxy/dream/common/extend/ParameterRecord.java)               | 记录所有的请求参数                                              
+指定请求类型的参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                        | 可以记录400.500错误的请求参数                                     
+匹配URL的请求参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                        | 可以正则化匹配URL，记录特定类型的URL                                  
 
 具体框架如下表：
 
