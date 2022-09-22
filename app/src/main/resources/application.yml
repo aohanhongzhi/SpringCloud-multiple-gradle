@@ -19,6 +19,16 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      minimum-idle: 5
+      max-lifetime: 120000
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: BaseHikariCP
+      connection-timeout: 30000
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml

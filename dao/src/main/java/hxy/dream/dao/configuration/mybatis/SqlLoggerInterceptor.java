@@ -75,7 +75,7 @@ public class SqlLoggerInterceptor implements Interceptor {
         //得到执行sql语句的用了多长时间
         long time = (end - start);
         //以毫秒为单位打印
-        logger.debug("<== sql执行历时：" + time + "毫秒");
+        logger.debug("<==== sql执行历时：" + time + "毫秒");
         //返回值，如果是多条记录，那么此对象是一个list，如果是一个bean对象，那么此处就是一个对象，也有可能是一个map
         return returnValue;
     }
