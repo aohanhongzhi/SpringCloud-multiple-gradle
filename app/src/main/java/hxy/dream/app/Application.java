@@ -36,6 +36,21 @@ public class Application {
         } else {
             log.error("注入失败HttpBodyRecorderFilter");
         }
+        shutdownHook();
+
+    }
+
+
+    /**
+     * 程序关闭监听函数，程序正常关闭可以邮件通知
+     */
+    private static void shutdownHook() {
+        Thread shutdownThread = new Thread(() -> {
+            //  发送邮件,监听服务关闭
+            log.error("\n====>后端服务正在关闭,当前程序启动时间");
+        });
+        shutdownThread.setName("app-shutdown@thread");
+        Runtime.getRuntime().addShutdownHook(shutdownThread);
     }
 
 }
