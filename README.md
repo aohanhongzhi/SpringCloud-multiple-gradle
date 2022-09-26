@@ -1,22 +1,27 @@
 Eric-Dream
 ===
-本工程承担日常实验的作用，任何先行的尝试都在这里实践与落地。成熟的方案设计会在 [base-server](https://gitee.com/aohanhongzhi/springboot-base) 里面落地到生产。
+本工程承担日常实验的作用，任何先行的尝试都在这里实践与落地。成熟的方案设计会在 [base-server](https://gitee.com/aohanhongzhi/springboot-base)
+里面落地到生产。
 
-
-本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是自定义枚举序列化的处理。
+本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`
+的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是自定义枚举序列化的处理。
 
 ## 主要实现功能如下
- 功能 | 实现                                                                                                  | 用途
---- |-----------------------------------------------------------------------------------------------------| ---
-jackson序列化 | 自定义序列化器                                                                                             | 解决参数枚举的序列化问题
-logback钉钉通知 | 自定义Appender                                                                                         | Error消息及时通知
-logback邮件通知 | 默认支持                                                                                                | Error异常及时通知 
-全局异常捕获 | 默认支持                                                                                                | 捕获异常
-数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密
-执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    | 
+
+功能 | 实现                                                                                                      | 用途                                                     
+--- |---------------------------------------------------------------------------------------------------------|--------------------------------------------------------
+jackson序列化 | 自定义序列化器                                                                                                 | 解决参数枚举的序列化问题                                           
+logback钉钉通知 | 自定义Appender                                                                                             | Error消息及时通知                                            
+logback邮件通知 | 默认支持                                                                                                    | Error异常及时通知                                            
+全局异常捕获 | 默认支持                                                                                                    | 捕获异常                                                   
+数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)     | 给部分数据库字段加解密                                            
+执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                        |
+打印可执行SQL语句 | [SqlLoggerInterceptor](dao/src/main/java/hxy/dream/dao/configuration/mybatis/SqlLoggerInterceptor.java) | https://blog.csdn.net/UsaWjq/article/details/122199354 |
+所有请求的参数记录 | [ParameterRecord.java](common/src/main/java/hxy/dream/common/extend/ParameterRecord.java)               | 记录所有的请求参数                                              
+指定请求类型的参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                        | 可以记录400.500错误的请求参数                                     
+匹配URL的请求参数记录 | https://github.com/aohanhongzhi/httpBodyRecorder                                                        | 可以正则化匹配URL，记录特定类型的URL                                  
 
 具体框架如下表：
-
 
 ## structure
 
@@ -29,6 +34,7 @@ eric-dream
 ├── common -- 公共，配置文件，脚手架等
 └── dao -- 数据持久层
 ```
+
 上面后缀server是服务治理模块。platform是业务应用模块。 **微服务=分布式开发+服务治理**
 
 ## gradle安装与配置
@@ -38,7 +44,6 @@ https://hub.fastgit.org/GradleCN/GradleSide
 如果IDEA自动下载gradle很慢。那么可以先提前安装好gradle，然后指定下安装目录即可。
 ![](./asset/img/gradle-special-location.png)
 ![](./asset/img/gradle-wrapper.png)
-
 
 技术 | 说明 | 官网
 ----|----|----
@@ -68,19 +73,23 @@ loc |代码行数统计 | https://github.com/cgag/loc
 https://spring.io/projects/spring-boot#support
 
 ### 命令打包，跳过TEST
+
 ```shell script
 ./gradlew clean bootJar -x test
 ```
+
 ```shell
 ./gradlew dependencyInsight --dependency mybatis
 ```
+
 > 需要解决多工程的依赖分析
 
 ### 多模块构建，依赖关系解决
+
 ```groovy
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上
 //    implementation project(':entity') /* 子模块之间的依赖 */
-    compile project(':entity') /* 子模块之间的依赖 */
+compile project(':entity') /* 子模块之间的依赖 */
 ```
 
 1. [如何使用Gradle管理多模块Java项目](https://zhuanlan.zhihu.com/p/372585663)
@@ -88,14 +97,17 @@ https://spring.io/projects/spring-boot#support
 ### 版本指定，类似dependencyManager
 
 ### docker自动化跑起来
+
 google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓库
+
 ```groovy
     id "com.google.cloud.tools.jib" version "2.0.0"
 ```
 
 ## 统一Long类型序列化
 
-前端JS内置的number类型是基于32位整数，Number类型的最大安全整数为9007199254740991，当Java Long型的值大小超过JS Number的最大安全整数时，超出此范围的整数值可能会被破坏，丢失精度。
+前端JS内置的number类型是基于32位整数，Number类型的最大安全整数为9007199254740991，当Java Long型的值大小超过JS
+Number的最大安全整数时，超出此范围的整数值可能会被破坏，丢失精度。
 
 解决办法就是后端将超过精度的Long和long类型转成String给前端展示即可。
 
@@ -110,7 +122,9 @@ https://juejin.im/post/6844904196693557255
 可能这种规范并不会被所有人认可，所以也可以用限制包的方式，自己配置指定包的枚举可以被统一处理。
 
 #### Controller层
+
 ##### 入参
+
 ###### 表单提交
 
 ![](./asset/img/枚举表单序列化.png)
@@ -126,6 +140,7 @@ https://juejin.im/post/6844904196693557255
 现在的问题在于jackson将枚举反序列化的时候需要使用code而不是ordinal。显然之前的Convert在这里貌似并没有什么作用。因为这里基本上全部靠jackson来序列化。
 
 ##### 返回
+
 > 参考：[JSON类库Jackson优雅序列化Java枚举类
 ](https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6)
 
@@ -134,6 +149,7 @@ https://juejin.im/post/6844904196693557255
 如果发生无法正常解析的时候，那么可能是注入的bean无法使用
 
 如果发现注入的bean无法解决json序列化问题，那么可以在`BaseEnum`加上这个注解
+
 ```java
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
 ```
@@ -145,6 +161,7 @@ https://juejin.im/post/6844904196693557255
 1. [自动填充字段](https://docs.qq.com/doc/DSG5Zbk9RR1FHRVZE)
 
 #### 总结
+
 通过上面方法，对数据库层和Controller层的转换操作，可以很好的处理枚举在应用中的形态，程序中可以很好的使用枚举了。
 
 #### 自定义date的序列化器
@@ -153,13 +170,11 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [基于fastjson在mvc中解决enum类型序列化反序列化](https://zhuanlan.zhihu.com/p/121112597)
 
-
-
 ### 过滤器
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-### 
+###      
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
@@ -178,13 +193,12 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 > https://blog.csdn.net/u012954706/article/details/105437768
 
-
 ## 数据脱敏
 
 https://mp.weixin.qq.com/s/wEfGJIM3ddAOQ99o8buNDA
 
-
 # TODO
+
 - [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉
 
 ### 构建

@@ -7,6 +7,8 @@ import javassist.CtField;
 import javassist.util.proxy.ProxyObject;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.Advised;
 import org.springframework.core.BridgeMethodResolver;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
@@ -24,6 +26,9 @@ import java.util.List;
  * @author Chenzx
  */
 public class ReflectionUtils {
+
+    private static final Logger log = LoggerFactory.getLogger(ReflectionUtils.class);
+
 
     public static ParameterNameDiscoverer parameterNameDiscoverer = new LocalVariableTableParameterNameDiscoverer();
 
@@ -172,7 +177,7 @@ public class ReflectionUtils {
             try {
                 return getTargetObject(((Advised) proxy).getTargetSource().getTarget());
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("{}", e.getMessage(), e);
                 return proxy;
             }
         }
