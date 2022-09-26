@@ -51,7 +51,7 @@ Spring Boot | 容器+MVC框架 | [https://spring.io/projects/spring-boot](https:
 Gradle | 项目构建工具 | [https://gradle.com/](https://gradle.com/)
 Spring Security | 认证和授权框架 | [https://spring.io/projects/spring-security](https://spring.io/projects/spring-security)
 MyBatis | ORM框架  | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)
-MyBatisPlus |ORM框架补充 | [https://mybatis.plus/](https://mybatis.plus/)
+MyBatisPlus |ORM框架补充 | [https://mybatis.plus/](https://baomidou.com/) https://github.com/baomidou/mybatis-plus
 MyBatisGenerator | 数据层代码生成 | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)
 Swagger-UI | 文档生产工具 | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)
 Hibernator-Validator | 验证框架 | [http://hibernate.org/validator/](http://hibernate.org/validator/)
@@ -67,6 +67,7 @@ JWT | JWT登录支持 | [https://github.com/jwtk/jjwt](https://github.com/jwtk/j
 LogStash | 日志收集 | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder)
 Lombok | 简化对象封装工具 | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)
 loc |代码行数统计 | https://github.com/cgag/loc
+ P6spy | P6spy日志记录sql| https://blog.csdn.net/qq_45297578/article/details/125734338
 
 #### SpringBoot支持
 

@@ -29,6 +29,7 @@ import java.util.Properties;
 /**
  * @date:2020-11-10 23:16:22
  * @description:打印sql语句
+ * TODO: dev环境有效，线上环境去掉。 其实直接使用   implementation 'p6spy:p6spy:3.9.1' 依赖就可以打印出sql语句。
  */
 @Intercepts({
         //type指定代理的是那个对象，method指定代理Executor中的那个方法,args指定Executor中的query方法都有哪些参数对象
