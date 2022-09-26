@@ -12,13 +12,25 @@ spring:
   profiles:
     active: beta #环境隔离
   mail:
-    username: inform@islab.net.cn
-    password: Alerter.2019
+    username: aohanhongzhi@qq.com
+    password: cfldkovgpfeccgig
     default-encoding: UTF-8
-    host: smtp.exmail.qq.com
+    host: smtp.qq.com
+    from: aohanhongzhi@qq.com
+    to: aohanhongzhi@qq.com
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1 FROM DUAL
+      minimum-idle: 5
+      max-lifetime: 120000
+      maximum-pool-size: 10
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: BaseHikariCP
+      connection-timeout: 30000
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
@@ -38,12 +50,6 @@ mybatis-plus:
       id-type: auto
   type-enums-package: hxy.dream.entity.enums
 
-# pagehelper分页插件
-pagehelper:
-  # 数据库的方言
-  helperDialect: mysql
-  # 启用合理化，如果pageNum < 1会查询第一页，如果pageNum > pages会查询最后一页
-  reasonable: true
 server:
   port: 8080
 #  tomcat:
