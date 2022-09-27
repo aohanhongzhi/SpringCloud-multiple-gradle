@@ -52,19 +52,19 @@ mybatis-plus:
 
 server:
   port: 8080
-#  tomcat:
-#    threads:
-#      max: 2
+  tomcat:
+    threads:
+      max: 2
 #  ssl:
 #    key-store: classpath:cupbtop.jks
 #    key-store-password: Sigh,0404
 #    key-store-type: JKS #RSA
 #    enabled: true
-#    #    key-password: Sigh,0404
-#    #    trust-store: classpath:cupbtop.jks
-#    #    trust-store-password: Sigh,0404
-#    #    trust-store-type: JKS
 #    protocol: TLS
+    #    key-password: Sigh,0404
+    #    trust-store: classpath:cupbtop.jks
+    #    trust-store-password: Sigh,0404
+    #    trust-store-type: JKS
 info:
   app:
     java:
