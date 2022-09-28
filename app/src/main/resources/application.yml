@@ -31,12 +31,29 @@ spring:
       idle-timeout: 30000
       pool-name: BaseHikariCP
       connection-timeout: 30000
+  boot:
+    admin:
+      client:
+        url: http://spring-admin.bosch-smartlife.com/
+        period: 59000
+        connect-timeout: 30000
+        read-timeout: 30000
+        instance:
+          #          health-url: http://el.bosch-smartlife.com/prod-api/actuator/health # 配置成功
+          service-url: http://40.73.65.226:8282/ # 自定义节点的地址，例如公网ip，域名都行
+          #          prefer-ip: true
+          #          service-base-url: http://el.bosch-smartlife.com:8283/
+          #          service-path: prod-api/
+          #          management-base-url: http://el.bosch-smartlife.com:8283/
+        #          management-url: http://el.bosch-smartlife.com:8282/actuator
 
+        username: bosch
+        password: bosch
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     #    配置日志
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     #    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
     local-cache-scope: statement # 每次执行sql。多个statement可能会在一个session里面。 这个是mybatis的一级缓存控制。
   #    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
@@ -55,12 +72,12 @@ server:
   tomcat:
     threads:
       max: 2
-#  ssl:
-#    key-store: classpath:cupbtop.jks
-#    key-store-password: Sigh,0404
-#    key-store-type: JKS #RSA
-#    enabled: true
-#    protocol: TLS
+    #  ssl:
+    #    key-store: classpath:cupbtop.jks
+    #    key-store-password: Sigh,0404
+    #    key-store-type: JKS #RSA
+    #    enabled: true
+    #    protocol: TLS
     #    key-password: Sigh,0404
     #    trust-store: classpath:cupbtop.jks
     #    trust-store-password: Sigh,0404
@@ -69,3 +86,14 @@ info:
   app:
     java:
 #      version: @java.version@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-components: always
+    heapdump:
+      enabled: false
