@@ -14,6 +14,7 @@ import java.util.Set;
  * 这个类并不能决定SpringBoot返回是html还是json。这个类的主要作用在返回json的时候增加或者修改一些自定义属性
  * 其实SpringBoot本来就有两种返回方式--html和json。至于返回啥取决于客户端的访问方式中是否带有 Content-Type=text/html
  *
+ * @link https://docs.qq.com/doc/DSExnbXFSS0Nub0V3  【腾讯文档】500,404返回json数据的增加或者修改
  * @see org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController
  */
 @Component
