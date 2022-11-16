@@ -42,21 +42,22 @@ import java.util.Map;
 @Slf4j
 public class GlobalExceptionHandler implements InitializingBean {
 
-    /**
-     * Hide exception field in the return object
-     *
-     * @return
-     */
-    @Bean
-    @Profile("prod")
-    public ErrorAttributes errorAttributes() {
-        return new DefaultErrorAttributes() {
-            @Override
-            public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
-                return super.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults().excluding(ErrorAttributeOptions.Include.EXCEPTION));
-            }
-        };
-    }
+//    查看这个类  hxy.dream.common.configuration.WrapperErrorAttributes
+//    /**
+//     * Hide exception field in the return object
+//     *
+//     * @return
+//     */
+//    @Bean
+//    @Profile("prod")
+//    public ErrorAttributes errorAttributes() {
+//        return new DefaultErrorAttributes() {
+//            @Override
+//            public Map<String, Object> getErrorAttributes(WebRequest webRequest, ErrorAttributeOptions options) {
+//                return super.getErrorAttributes(webRequest, ErrorAttributeOptions.defaults().excluding(ErrorAttributeOptions.Include.EXCEPTION));
+//            }
+//        };
+//    }
 
     @ExceptionHandler(WebException.class)
     public void handleCustomException(HttpServletResponse res, WebException ex) throws IOException {

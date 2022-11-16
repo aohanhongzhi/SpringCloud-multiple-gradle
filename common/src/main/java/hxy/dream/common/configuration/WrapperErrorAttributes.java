@@ -1,6 +1,7 @@
 package hxy.dream.common.configuration;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.context.annotation.Profile;
@@ -21,6 +22,13 @@ import java.util.Set;
 @Slf4j
 @Profile(value = {"prod"})
 public class WrapperErrorAttributes extends DefaultErrorAttributes {
+
+    @Value("${spring.application.name}")
+    String applicationName ;
+
+    @Value("${spring.profiles.active}")
+    String environment ;
+
     /**
      * 返回json 403 500
      *
@@ -42,7 +50,9 @@ public class WrapperErrorAttributes extends DefaultErrorAttributes {
             log.debug("返回error信息key :{} value : {}", it, o);
         }
 
-        errorAttributes.put("user", "Eric");
+//        errorAttributes.put("user", "Eric");
+        errorAttributes.put("app", applicationName);
+        errorAttributes.put("env", environment);
         log.debug("\n=====>结果：[{}]", errorAttributes);
         return errorAttributes;
     }
