@@ -93,27 +93,23 @@ public class ParameterRecord {
 
 
             final Map<String, String[]> parameterMap = request.getParameterMap();
+            if (parameterMap.size() != 0) {
+                params = "Query=" + objectMapper.writeValueAsString(parameterMap);
+            }
 
-            if (parameterMap.size() == 0) {
-                BufferedReader reader = null;
-                try {
-                    reader = request.getReader();
-                    String str, wholeStr = "";
-                    while ((str = reader.readLine()) != null) {
-                        wholeStr += str;
-                    }
-                    if (StringUtils.isNotEmpty(wholeStr)) {
-                        params = wholeStr;
-                    }
-                } catch (IOException e1) {
-                    log.error("{}", e1.getMessage(), e1);
+
+            BufferedReader reader = null;
+            try {
+                reader = request.getReader();
+                String str, wholeStr = "";
+                while ((str = reader.readLine()) != null) {
+                    wholeStr += str;
                 }
-            } else {
-                params = objectMapper.writeValueAsString(parameterMap);
-//                参数记录的目的就是为了数据恢复，所以这里无论多大的参数都要记录下来！
-//                if (params.length() > paramLength) {
-//                    params = params.substring(0, paramLength) + "....eg....";
-//                }
+                if (StringUtils.isNotEmpty(wholeStr)) {
+                    params += "\tBody=" + wholeStr;
+                }
+            } catch (IOException e1) {
+                log.error("{}", e1.getMessage(), e1);
             }
 
             ip = request.getRemoteHost();
