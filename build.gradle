@@ -6,7 +6,7 @@
 */
 buildscript {
     ext {
-        springBootVersion = '2.3.12.RELEASE'
+        springBootVersion = '3.0.0'
     }
     repositories {
         mavenLocal()
@@ -33,6 +33,7 @@ buildscript {
 
 
 plugins {
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'java-library'
     id 'idea'
     id "com.google.cloud.tools.jib" version "2.0.0"
@@ -67,6 +68,9 @@ allprojects {
         if (version.endsWith('-SNAPSHOT')) {
             maven { url "https://repo.spring.io/snapshot" }
         }
+
+        // 临时解决mybatis没有适配 SpringBoot3.0问题
+        maven { name "OSS Snapshot repository"; url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     configurations.all {
@@ -93,8 +97,8 @@ subprojects {
     group = 'hxy.dream'
     version = '1.0-SNAPSHOT'
     /* 指定jdk版本 */
-    sourceCompatibility = 11
-    targetCompatibility = 11
+    sourceCompatibility = 17
+    targetCompatibility = 17
 
     /* java编译的时候缺省状态下会因为中文字符而失败 */
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'

@@ -7,7 +7,7 @@ import hxy.dream.BaseTest;
 import hxy.dream.entity.enums.GenderEnum;
 import org.junit.Test;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 /**
  * @author eric
