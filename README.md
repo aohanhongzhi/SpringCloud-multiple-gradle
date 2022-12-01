@@ -14,7 +14,7 @@ logback邮件通知 | 默认支持                                              
 全局异常捕获 | 默认支持                                                                                                | 捕获异常
 数据库字段加解密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密
 执行SQL语句 | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    | 
-
+SpringBoot 3.0 声明式API远程调用 | 参考 [RemoteApi](common/src/main/java/hxy/dream/common/manager/RemoteApi.java)                                                                                             | 
 具体框架如下表：
 
 
