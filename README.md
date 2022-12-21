@@ -17,6 +17,13 @@ logback邮件通知 | 默认支持                                              
 SpringBoot 3.0 声明式API远程调用 | 参考 [RemoteApi](common/src/main/java/hxy/dream/common/manager/RemoteApi.java)                                                                                             | 
 具体框架如下表：
 
+### OpenFeign要退出历史舞台了
+
+推荐 RestTemplate或者WebClient
+
+WebClient 声明式的API调用：
+[RemoteApiConfig](common/src/main/java/hxy/dream/common/configuration/RemoteApiConfig.java)
+
 
 ## structure
 
