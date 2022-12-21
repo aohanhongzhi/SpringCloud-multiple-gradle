@@ -17,25 +17,29 @@ public class MybatisAuditHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        if (LOG.isDebugEnabled()){
-            LOG.debug("\n====>mybatis自动填充创建时间字段");
+        LocalDateTime now = LocalDateTime.now();
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("\n====>mybatis自动填充创建时间字段 ,当前时间 {}", now);
         }
         // 声明自动填充字段的逻辑。
 //        String userId = AuthHolder.getCurrentUserId();
         String userId = "";
 //        this.strictInsertFill(metaObject,"creator",String.class, userId);
-        this.strictInsertFill(metaObject,"createTime", LocalDateTime.class,LocalDateTime.now());
+        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, now);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        if (LOG.isDebugEnabled()){
-            LOG.debug("\n====>mybatis自动填充更新时间字段");
+        LocalDateTime now = LocalDateTime.now();
+
+        if (LOG.isDebugEnabled()) {
+            LOG.debug("\n====>mybatis自动填充更新时间字段 ,当前时间 {}", now);
         }
         // 声明自动填充字段的逻辑。
 //        String userId = AuthHolder.getCurrentUserId();
         String userId = "";
 //        this.strictUpdateFill(metaObject,"updater",String.class,userId);
-        this.strictUpdateFill(metaObject,"updateTime", LocalDateTime.class,LocalDateTime.now());
+        this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, now);
     }
 }
