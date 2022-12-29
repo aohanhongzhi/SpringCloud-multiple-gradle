@@ -161,7 +161,8 @@ https://juejin.im/post/6844904196693557255
 
 #### ORM层
 
-> 参考 mybatis-plus:https://mp.baomidou.com/guide/enum.html
+> 参考 [mybatis-plus官网](https://baomidou.com/pages/8390a4/#%E6%AD%A5%E9%AA%A41-%E5%A3%B0%E6%98%8E%E9%80%9A%E7%94%A8%E6%9E%9A%E4%B8%BE%E5%B1%9E%E6%80%A7)
+
 
 1. [自动填充字段](https://docs.qq.com/doc/DSG5Zbk9RR1FHRVZE)
 
