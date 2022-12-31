@@ -11,3 +11,4 @@ build/
 *.hprof
 **/build/
 **/out/
+/app/src/main/resources/application-dev.yml
