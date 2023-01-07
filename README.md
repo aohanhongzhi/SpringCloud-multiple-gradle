@@ -15,11 +15,21 @@ Eric-Dream
  logback邮件通知                                                                       | 默认支持                                                                                                | Error异常及时通知  
  全局异常捕获                                                                            | 默认支持                                                                                                | 捕获异常         
  数据库字段加解密                                                                          | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密  
- 执行SQL语句                                                                           | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    |
+ 执行初始化SQL语句                                                                           | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    |
  [MybatisPlus的SQL脚本自动维护](common/src/main/java/hxy/dream/common/init/MysqlDdl.java) | https://baomidou.com/pages/1812u1/                                                                  | 自动建表         
  SpringBoot 3.0 声明式API远程调用                                                         | 参考 [RemoteApi](common/src/main/java/hxy/dream/common/manager/RemoteApi.java)                        |
 
 具体框架如下表：
+
+### 执行初始化的sql语句
+有两种方案。一种借助与mybatis-plus 另一种就是mybatis的
+#### 基于mybatis的sql执行方案
+
+[hxy.dream.common.init.ApplicationStartupRunner](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)
+
+#### 基于mybatis-plus的sql执行方案
+
+[hxy.dream.common.init.MysqlDdl](common/src/main/java/hxy/dream/common/init/MysqlDdl.java)
 
 ### OpenFeign要退出历史舞台了
 
@@ -44,11 +54,11 @@ eric-dream
 
 ## gradle安装与配置
 
-https://hub.fastgit.org/GradleCN/GradleSide
+https://github.com/GradleCN/GradleSide
 
 如果IDEA自动下载gradle很慢。那么可以先提前安装好gradle，然后指定下安装目录即可。
 ![](./asset/img/gradle-special-location.png)
-![](./asset/img/gradle-wrapper.png)
+![img.png](asset/img/gradle-wrapper.png)
 
  技术                   | 说明                 | 官网                                                                                                           
 ----------------------|--------------------|--------------------------------------------------------------------------------------------------------------
@@ -89,8 +99,12 @@ https://spring.io/projects/spring-boot#support
 
 > 需要解决多工程的依赖分析
 
-### 多模块构建，依赖关系解决
+### gradle多模块构建，依赖关系解决
 
+```groovy
+ api project(':dao') 
+```
+以下是 gradle6前后的使用方式：
 ```groovy
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上
 //    implementation project(':entity') /* 子模块之间的依赖 */
@@ -201,7 +215,7 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 # TODO
 
-- [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉
+- [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉。需要设计一个方案做下全局的参数trim()
 
 ### 构建
 
