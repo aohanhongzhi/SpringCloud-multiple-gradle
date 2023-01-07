@@ -4,7 +4,7 @@ Eric-Dream
 里面落地到生产。
 
 本项目是基于Gradle构建的多模块SpringCloud工程。采用`传统线程模型`
-的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是自定义枚举序列化的处理。
+的SpringWeb框架，mybatis-plus和mysql官方驱动。非常适合入门者学习。本项目的一大亮点就是[自定义枚举序列化的处理](SERIALIZE.md)。
 
 ## 主要实现功能如下
 
