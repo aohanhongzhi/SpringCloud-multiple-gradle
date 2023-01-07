@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.util.Date;
+import java.util.TimeZone;
 
 @Slf4j
 @Configuration
@@ -48,6 +49,7 @@ public class BeanConfig {
         simpleModule.addSerializer(Long.class, new BaseLongSerializer());
         simpleModule.addSerializer(Long.TYPE, new BaseLongSerializer());
 
+        builder.timeZone(TimeZone.getDefault());
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper.registerModule(simpleModule);
 
