@@ -10,7 +10,8 @@
 
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
     <!-- 自动新建文件夹 ，可能多个jar部署在同一个目录下，区分日志就加了一个app目录名 -->
-    <property name="DEV_HOME" value="./logs/codesec"/>
+    <!-- 监听器，指定日志文件存放目录 -->
+    <contextListener class="hxy.base.server.config.CustomLogContextListener" />
 
     <!-- 控制台输出 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
