@@ -18,29 +18,32 @@ public class DefaultInputJsonToEnum {
         if (debugEnabled) {
             logger.debug("\n====>反序列化，当前输入的值[{}]对应的枚举类是[{}]", inputParameter, enumClass);
         }
-        try {
+        if (inputParameter != null && inputParameter.length() > 0) {
+            inputParameter = inputParameter.trim();
+            try {
 //            values是默认的方法，必定存在
-            Method valuesMethod = enumClass.getDeclaredMethod("values");
+                Method valuesMethod = enumClass.getDeclaredMethod("values");
 //          通过反射获取该枚举类的所有枚举值
-            BaseEnum[] values = (BaseEnum[]) valuesMethod.invoke(null);
-            BaseEnum baseEnum = null;
+                BaseEnum[] values = (BaseEnum[]) valuesMethod.invoke(null);
+                BaseEnum baseEnum = null;
 
-            for (BaseEnum value : values) {
-                //因为inputParameter都是string类型的,code转成字符串才能比较
-                if (inputParameter.equals(String.valueOf(value.code())) || inputParameter.equals(value.description())) {
-                    baseEnum = value;
-                    break;
+                for (BaseEnum value : values) {
+                    //因为inputParameter都是string类型的,code转成字符串才能比较
+                    if (inputParameter.equals(String.valueOf(value.code())) || inputParameter.equals(value.description())) {
+                        baseEnum = value;
+                        break;
+                    }
                 }
+                //如果都拿不到,那就直接抛出异常了
+                if (baseEnum == null) {
+                    throw new RuntimeException(String.format("枚举反序列化错误，输入参数[%s]找不到对应的枚举值", inputParameter));
+                }
+                return baseEnum;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-
-            //如果都拿不到,那就直接抛出异常了
-            if (baseEnum == null) {
-                throw new RuntimeException(String.format("枚举反序列化错误，输入参数[%s]找不到对应的枚举值", inputParameter));
-            }
-            return baseEnum;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
+        return null;
     }
 
     private BaseEnum getEnumByName(String inputParameter, Class enumClass) {
