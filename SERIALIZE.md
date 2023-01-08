@@ -609,6 +609,7 @@ https://github.com/baomidou/mybatis-plus-samples/tree/master/mybatis-plus-sample
   public static final SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
   String dateStirng =   format.format(date)
 ```
+> https://www.cnblogs.com/xwzp/p/14685452.html
 
 ### 配置文件
 
