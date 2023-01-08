@@ -49,6 +49,9 @@ GET http://localhost:8080/
 ### 返回json测试
 GET http://localhost:8080/exception
 
+###
+GET http://localhost:8080/exception-output
+
 
 ### servlet
 
