@@ -20,6 +20,7 @@ import hxy.dream.common.serializer.BaseLongSerializer;
 import hxy.dream.common.serializer.DateJsonDeserializer;
 import hxy.dream.common.serializer.DateJsonSerializer;
 import hxy.dream.common.serializer.SimpleDeserializersWrapper;
+import hxy.dream.common.serializer.StringTrimDeserializer;
 import hxy.dream.entity.enums.BaseEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +33,7 @@ import java.util.TimeZone;
 @Slf4j
 @Configuration
 public class BeanConfig {
+
 
     @Bean
     public ObjectMapper objectMapper(Jackson2ObjectMapperBuilder builder) {
@@ -48,6 +50,8 @@ public class BeanConfig {
         // 超过浏览器处理精度的Long类型转成String给前端
         simpleModule.addSerializer(Long.class, new BaseLongSerializer());
         simpleModule.addSerializer(Long.TYPE, new BaseLongSerializer());
+
+        simpleModule.addDeserializer(String.class, new StringTrimDeserializer(String.class));
 
         builder.timeZone(TimeZone.getDefault());
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();

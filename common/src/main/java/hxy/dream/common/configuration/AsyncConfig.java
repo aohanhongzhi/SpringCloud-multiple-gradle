@@ -46,14 +46,5 @@ public class AsyncConfig {
 //        }
 //        return registration;
 //    }
-    @Bean
-    public FilterRegistrationBean someFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        registration.setFilter(new TokenFilter());
-        registration.addUrlPatterns("/*");
-        registration.setAsyncSupported(true);
-        registration.setName("repeatableFilter");
-        registration.setOrder(FilterRegistrationBean.LOWEST_PRECEDENCE);
-        return registration;
-    }
+
 }

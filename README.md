@@ -18,6 +18,8 @@ Eric-Dream
  执行初始化SQL语句                                                                           | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    |
  [MybatisPlus的SQL脚本自动维护](common/src/main/java/hxy/dream/common/init/MysqlDdl.java) | https://baomidou.com/pages/1812u1/                                                                  | 自动建表         
  SpringBoot 3.0 声明式API远程调用                                                         | 参考 [RemoteApi](common/src/main/java/hxy/dream/common/manager/RemoteApi.java)                        |
+参数全局trim() | [StringTrimDeserializer](common/src/main/java/hxy/dream/common/serializer/StringTrimDeserializer.java)                    | 避免异常数据
+Long类型超长转String |                                                                                                     | 解决前端无法正确显示超长String
 
 具体框架如下表：
 
@@ -215,7 +217,7 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 # TODO
 
-- [ ] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉。需要设计一个方案做下全局的参数trim()
+- [x] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉。需要设计一个方案做下全局的参数trim()
 
 ### 构建
 
