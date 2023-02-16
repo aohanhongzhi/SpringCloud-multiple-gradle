@@ -536,6 +536,107 @@ mybatis-plus:
 
 https://gitee.com/-/ide/project/aohanhongzhi/springboot-base/edit/master/-/src/main/java/hxy/base/server/entity/enums/BaseStatusCodeEnum.java
 
+# mybatis xml兼容处理
+
+mybatis的xml文件会报下面错误
+
+```java
+org.mybatis.spring.MyBatisSystemException:nested exception is org.apache.ibatis.exceptions.PersistenceException:
+        ### Error querying database.Cause:java.lang.IllegalArgumentException:invalid comparison:com.bosch.project.install.domain.enums.InstallStatusEnum and java.lang.String
+        ### Cause:java.lang.IllegalArgumentException:invalid comparison:com.bosch.project.install.domain.enums.InstallStatusEnum and java.lang.String
+
+        at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:96)
+        at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+        at jdk.proxy2/jdk.proxy2.$Proxy140.selectList(Unknown Source)
+        at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224)
+        at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.executeForMany(MybatisMapperMethod.java:166)
+        at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:77)
+        at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:148)
+        at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+        at jdk.proxy2/jdk.proxy2.$Proxy183.selectSpfInstallApplicationJoinList(Unknown Source)
+        at com.bosch.project.install.mapper.InstallApplicationMapperTest.test(InstallApplicationMapperTest.java:26)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+        at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+        at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+        at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+        at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+        at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:74)
+        at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)
+        at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)
+        at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)
+        at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)
+        at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+        at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)
+        at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)
+        at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+        at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+        at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+        at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+        at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+        at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+        at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)
+        at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+        at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)
+        at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+        at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:69)
+        at com.intellij.rt.junit.IdeaTestRunner$Repeater$1.execute(IdeaTestRunner.java:38)
+        at com.intellij.rt.execution.junit.TestsRepeater.repeat(TestsRepeater.java:11)
+        at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:35)
+        at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:235)
+        at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:54)
+        Caused by:org.apache.ibatis.exceptions.PersistenceException:
+        ### Error querying database.Cause:java.lang.IllegalArgumentException:invalid comparison:com.bosch.project.install.domain.enums.InstallStatusEnum and java.lang.String
+        ### Cause:java.lang.IllegalArgumentException:invalid comparison:com.bosch.project.install.domain.enums.InstallStatusEnum and java.lang.String
+        at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+        at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:149)
+        at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+        at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+        at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427)
+        ...40more
+        Caused by:java.lang.IllegalArgumentException:invalid comparison:com.bosch.project.install.domain.enums.InstallStatusEnum and java.lang.String
+        at org.apache.ibatis.ognl.OgnlOps.compareWithConversion(OgnlOps.java:98)
+        at org.apache.ibatis.ognl.OgnlOps.isEqual(OgnlOps.java:153)
+        at org.apache.ibatis.ognl.OgnlOps.equal(OgnlOps.java:814)
+        at org.apache.ibatis.ognl.ASTNotEq.getValueBody(ASTNotEq.java:53)
+        at org.apache.ibatis.ognl.SimpleNode.evaluateGetValueBody(SimpleNode.java:212)
+        at org.apache.ibatis.ognl.SimpleNode.getValue(SimpleNode.java:258)
+        at org.apache.ibatis.ognl.ASTAnd.getValueBody(ASTAnd.java:61)
+        at org.apache.ibatis.ognl.SimpleNode.evaluateGetValueBody(SimpleNode.java:212)
+        at org.apache.ibatis.ognl.SimpleNode.getValue(SimpleNode.java:258)
+        at org.apache.ibatis.ognl.Ognl.getValue(Ognl.java:560)
+        at org.apache.ibatis.ognl.Ognl.getValue(Ognl.java:524)
+        at org.apache.ibatis.scripting.xmltags.OgnlCache.getValue(OgnlCache.java:46)
+        at org.apache.ibatis.scripting.xmltags.ExpressionEvaluator.evaluateBoolean(ExpressionEvaluator.java:32)
+        at org.apache.ibatis.scripting.xmltags.IfSqlNode.apply(IfSqlNode.java:34)
+        at org.apache.ibatis.scripting.xmltags.MixedSqlNode.lambda$apply$0(MixedSqlNode.java:32)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.apache.ibatis.scripting.xmltags.MixedSqlNode.apply(MixedSqlNode.java:32)
+        at org.apache.ibatis.scripting.xmltags.TrimSqlNode.apply(TrimSqlNode.java:55)
+        at org.apache.ibatis.scripting.xmltags.MixedSqlNode.lambda$apply$0(MixedSqlNode.java:32)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at org.apache.ibatis.scripting.xmltags.MixedSqlNode.apply(MixedSqlNode.java:32)
+        at org.apache.ibatis.scripting.xmltags.DynamicSqlSource.getBoundSql(DynamicSqlSource.java:39)
+        at org.apache.ibatis.mapping.MappedStatement.getBoundSql(MappedStatement.java:305)
+        at com.github.pagehelper.PageInterceptor.intercept(PageInterceptor.java:82)
+        at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:61)
+        at jdk.proxy2/jdk.proxy2.$Proxy238.query(Unknown Source)
+        at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+        ...46more
+
+```
+
+![img_1.png](asset/img/xml1.png)
+
+删除下面圈出内容即可，其他不需要变化。查询结果映射也是正常的，没有问题。
+
+![img_2.png](asset/img/xml2.png)
+
 # 问题拓展
 
 有一位网友搜了很多的文章内容，都没有找到有效的，最后扒到了我这篇文章。但是使用的时候遇到了一个问题。下面这段代码总是无法获取到已经注入成功的BaseEnumDeserializer对象,
@@ -597,18 +698,19 @@ https://github.com/baomidou/mybatis-plus-samples/tree/master/mybatis-plus-sample
 1. 线程安全
 
 ```java
-  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-  ZoneId zoneId = ZoneId.systemDefault();
-  LocalDateTime localDateTime = date.toInstant().atZone(zoneId).toLocalDateTime();
-  String yearMonth = localDateTime.format(dtf);
+  DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        ZoneId zoneId=ZoneId.systemDefault();
+        LocalDateTime localDateTime=date.toInstant().atZone(zoneId).toLocalDateTime();
+        String yearMonth=localDateTime.format(dtf);
 ```
 
 2. 线程不安全
 
 ```java
   public static final SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-  String dateStirng =   format.format(date)
+        String dateStirng=format.format(date)
 ```
+
 > https://www.cnblogs.com/xwzp/p/14685452.html
 
 ### 配置文件
