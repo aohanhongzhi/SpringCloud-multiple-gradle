@@ -14,7 +14,9 @@ public class BaseEnumSerializer extends JsonSerializer<BaseEnum> {
 
     @Override
     public void serialize(BaseEnum value, JsonGenerator gen, SerializerProvider serializerProvider) throws IOException {
-        log.info("\n====>开始序列化[{}]", value);
+        if (log.isDebugEnabled()) {
+            log.debug("\n====>开始序列化[{}]", value);
+        }
         if (value != null) {
             gen.writeStartObject();
             Integer code = value.code();

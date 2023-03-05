@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: dragon
   thymeleaf:
     mode: HTML #LEGACYHTML5
     cache: false
@@ -12,13 +14,17 @@ spring:
   profiles:
     active: beta #环境隔离
   mail:
-    username: inform@islab.net.cn
-    password: Alerter.2019
+    username: aohanhongzhi@qq.com
+    password: vtrxapjtpcivdbcb
     default-encoding: UTF-8
-    host: smtp.exmail.qq.com
+    host: smtp.qq.com
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
+email:
+  from: aohanhongzhi@qq.com
+  to: aohanhongzhi@qq.com
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml

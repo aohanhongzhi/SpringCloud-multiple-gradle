@@ -115,5 +115,6 @@ Exception in thread "Thread-3" java.lang.ArithmeticException: / by zero
 
 
 # 拓展
+[详解Spring事务的7种传播行为](https://mp.weixin.qq.com/s/dzKmS2HtoS0Yt4dKFuwSBg)
 
 [分布式事务有这一篇就够了！](https://zhuanlan.zhihu.com/p/263555694) : 鲁友心推荐

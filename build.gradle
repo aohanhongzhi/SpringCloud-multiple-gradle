@@ -128,13 +128,13 @@ subprojects {
         implementation 'com.zaxxer:HikariCP:5.0.1'
         implementation 'p6spy:p6spy:3.9.1'
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        implementation 'commons-io:commons-io:2.11.0'
 
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         testAnnotationProcessor 'org.projectlombok:lombok'
         testCompileOnly 'org.projectlombok:lombok'
         testImplementation 'io.projectreactor:reactor-test'
-
 // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-alibaba-sentinel
 //        compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-alibaba-sentinel', version: '0.9.0.RELEASE'
 

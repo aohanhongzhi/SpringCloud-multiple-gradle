@@ -84,7 +84,11 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
 
                 Class enumClass = field.getType();
                 BaseEnum anEnum = DefaultInputJsonToEnum.getEnum(inputParameter, enumClass);
-                log.debug("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(), anEnum);
+                if (anEnum != null) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("\n====>测试反序列化枚举[{}]==>[{}.{}]", inputParameter, anEnum.getClass(), anEnum);
+                    }
+                }
                 return anEnum;
             } else {
                 throw new BaseException("自定义枚举反序列化错误:json的这个字段[" + parsingContext.getParent() + "]没有值。枚举反序列化失败,注意该属性不可以使用lombok的注解，如@NonNull等");

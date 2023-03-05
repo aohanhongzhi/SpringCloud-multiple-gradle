@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 /**
@@ -26,7 +27,11 @@ public class ExceptionController {
         } catch (IOException e) {
             log.error("{}", e.getMessage(), e);
         }
+    }
 
+    @RequestMapping("/exception-output")
+    public void exceptionOutput() {
+        throw new IllegalArgumentException("异常啊");
     }
 
 }
