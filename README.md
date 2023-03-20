@@ -10,6 +10,7 @@ Eric-Dream
 
  功能                                                                                | 实现                                                                                                  | 用途           
 -----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|--------------
+IDEA开发热加载实现 | JBR + HotswapAgent | https://github.com/HotswapProjects/HotswapAgent
  [jackson序列化](SERIALIZE.md)                                                                        | 自定义序列化器                                                                                             | 解决参数枚举的序列化问题 
  logback钉钉通知                                                                       | 自定义Appender                                                                                         | Error消息及时通知  
  logback邮件通知                                                                       | 默认支持                                                                                                | Error异常及时通知  
@@ -22,6 +23,20 @@ Eric-Dream
 Long类型超长转String |                                                                                                     | 解决前端无法正确显示超长String
 
 具体框架如下表：
+
+### 热加载技术
+
+https://github.com/HotswapProjects/HotswapAgent
+
+```shell
+-XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=fatjar
+```
+
+![img_1.png](asset/img/update-vm-param.png)
+
+Ctrl + Shift + F9 重新编译和加载修改的类文件即可。
+
+> http://blog.houxiaoyi.cn/#/src/Java/%E7%83%AD%E5%8A%A0%E8%BD%BD
 
 ### 执行初始化的sql语句
 有两种方案。一种借助与mybatis-plus 另一种就是mybatis的
