@@ -8,9 +8,11 @@ import hxy.dream.dao.model.UserModel;
 import hxy.dream.entity.enums.GenderEnum;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
+
 import java.util.List;
 
 /**
@@ -40,6 +42,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Cacheable(value = "UserService#36000", key = "'getUser'")
     public UserModel get(String id) {
         return userMapper.selectById(id);
     }

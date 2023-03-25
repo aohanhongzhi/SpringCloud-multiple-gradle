@@ -20,20 +20,26 @@ spring:
   sql:
     init:
       platform: mysql
-#  redis:
-#    database: 0
-#    host: 119.23.236.94
-#    port: 6379
-#    password: newpass
-#    jedis:
-#      pool:
-#        max-active: 8
-#  cache:
-#    redis:
-#      time-to-live: 0s # 缓存过期时间30分钟
-#    type: redis
-#  rabbitmq:
-#    host: 119.23.236.94
+  data:
+    # redis 配置
+    redis:
+      # 地址  121.36.136.109  localhost
+      host: 52.131.246.191
+      # 端口，默认为6379
+      port: 6379
+      # 数据库索引
+      database: 3
+      # 密码
+      password: newpass
+      # 连接超时时间
+      timeout: 10s
+      jedis:
+        pool:
+          min-idle: 10
+          max-idle: 20
+          max-wait: -1ms
+          max-active: 200
+#      ssl: true
 
 logging:
   level:
