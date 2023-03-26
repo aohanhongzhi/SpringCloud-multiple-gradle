@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import hxy.dream.common.util.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.cache.CacheKeyPrefix;
 import org.springframework.data.redis.cache.RedisCache;
@@ -36,10 +35,10 @@ public class RedisConfigCacheManager extends RedisCacheManager {
     @Override
     protected RedisCache createRedisCache(String name, RedisCacheConfiguration cacheConfig) {
 
-        ObjectMapper objectMapper = SpringUtils.getBean(ObjectMapper.class);
+//        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = SpringUtils.getBean(GenericJackson2JsonRedisSerializer.class);
 
         RedisSerializationContext.SerializationPair<Object> DEFAULT_PAIR = RedisSerializationContext.SerializationPair
-                .fromSerializer(new GenericJackson2JsonRedisSerializer(objectMapper));
+                .fromSerializer(genericJackson2JsonRedisSerializer());
 
         if (name != null && name.length() > 0) {
             final int lastIndexOf = name.lastIndexOf('#');
@@ -62,6 +61,22 @@ public class RedisConfigCacheManager extends RedisCacheManager {
         cacheConfig = cacheConfig.computePrefixWith(DEFAULT_CACHE_KEY_PREFIX)
                 .serializeValuesWith(DEFAULT_PAIR);
         return super.createRedisCache(name, cacheConfig);
+    }
+
+    public GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer() {
+        ObjectMapper om = new ObjectMapper();
+        // 解决查询缓存转换异常的问题
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        // 支持 jdk 1.8 日期   ---- start ---
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        om.registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule())
+                .registerModule(new ParameterNamesModule());
+        // --end --
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(om);
+        return genericJackson2JsonRedisSerializer;
     }
 
     public static boolean isNumeric(String str) {

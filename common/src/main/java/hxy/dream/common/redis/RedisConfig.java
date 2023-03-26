@@ -39,8 +39,28 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
 
-    @Autowired
-    ObjectMapper objectMapper;
+    /**
+     * 这个仅仅针对Redis 序列化问题解决！ 不能纳入到全局，否则会造成返回前端带上了类名。
+     *
+     * @return
+     */
+    @Bean
+    @Primary
+    public GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer() {
+        ObjectMapper om = new ObjectMapper();
+        // 解决查询缓存转换异常的问题
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        // 支持 jdk 1.8 日期   ---- start ---
+        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        om.registerModule(new Jdk8Module())
+                .registerModule(new JavaTimeModule())
+                .registerModule(new ParameterNamesModule());
+        // --end --
+        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(om);
+        return genericJackson2JsonRedisSerializer;
+    }
 
     @Bean
     @Primary
@@ -50,7 +70,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         // 这里
         redisTemplate.setKeySerializer(new StringRedisSerializer());
-        GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        GenericJackson2JsonRedisSerializer serializer = genericJackson2JsonRedisSerializer();
         redisTemplate.setValueSerializer(serializer);
         // 这里
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
@@ -85,8 +105,9 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringSerializer))
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer))
                 .disableCachingNullValues()
-                // 缓存过期时间
-                .entryTtl(Duration.ofMinutes(30));
+                // 缓存过期时间 Duration.ZERO -> eternal
+                .entryTtl(Duration.ZERO);
+//                .entryTtl(Duration.ofMinutes(30));
 
         boolean ok = false;
         if (ok) {
