@@ -29,7 +29,7 @@ public class DefaultInputJsonToEnum {
 
                 for (BaseEnum value : values) {
                     //因为inputParameter都是string类型的,code转成字符串才能比较
-                    if (inputParameter.equals(String.valueOf(value.code())) || inputParameter.equals(value.description())) {
+                    if (inputParameter.equals(String.valueOf(value.code())) || inputParameter.equals(value.description())|| inputParameter.equals(value.name())) {
                         baseEnum = value;
                         break;
                     }
