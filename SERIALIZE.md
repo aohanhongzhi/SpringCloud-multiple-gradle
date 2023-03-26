@@ -713,6 +713,10 @@ https://github.com/baomidou/mybatis-plus-samples/tree/master/mybatis-plus-sample
 
 > https://www.cnblogs.com/xwzp/p/14685452.html
 
+# 解决 redis 序列化 java8 LocalDateTime 问题
+
+https://blog.csdn.net/zhuzhoulin/article/details/106758473
+
 ### 配置文件
 
 ![img.png](img.png)
