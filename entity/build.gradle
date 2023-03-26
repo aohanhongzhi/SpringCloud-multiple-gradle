@@ -11,6 +11,6 @@ dependencies {
     api 'com.baomidou:mybatis-plus-boot-starter:3.5.3'
     api 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
     api 'org.springframework.boot:spring-boot-starter-validation'
-
+    api 'jakarta.annotation:jakarta.annotation-api:2.1.1'
 
 }
