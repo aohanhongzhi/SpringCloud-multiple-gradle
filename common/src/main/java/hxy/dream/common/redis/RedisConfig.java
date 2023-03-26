@@ -39,23 +39,8 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Autowired
     RedisConnectionFactory redisConnectionFactory;
 
-    @Bean
-    @Primary
-    public GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer() {
-        ObjectMapper om = new ObjectMapper();
-        // 解决查询缓存转换异常的问题
-        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        // 支持 jdk 1.8 日期   ---- start ---
-        om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        om.registerModule(new Jdk8Module())
-                .registerModule(new JavaTimeModule())
-                .registerModule(new ParameterNamesModule());
-        // --end --
-        GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(om);
-        return genericJackson2JsonRedisSerializer;
-    }
+    @Autowired
+    ObjectMapper objectMapper;
 
     @Bean
     @Primary
@@ -63,12 +48,13 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
+        // 这里
         redisTemplate.setKeySerializer(new StringRedisSerializer());
+        GenericJackson2JsonRedisSerializer serializer = new GenericJackson2JsonRedisSerializer(objectMapper);
+        redisTemplate.setValueSerializer(serializer);
         // 这里
-        redisTemplate.setValueSerializer(genericJackson2JsonRedisSerializer());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        // 这里
-        redisTemplate.setHashValueSerializer(genericJackson2JsonRedisSerializer());
+        redisTemplate.setHashValueSerializer(serializer);
         redisTemplate.setEnableTransactionSupport(true);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;

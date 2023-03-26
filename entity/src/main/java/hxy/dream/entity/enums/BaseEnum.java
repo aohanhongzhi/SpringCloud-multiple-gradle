@@ -20,4 +20,6 @@ public interface BaseEnum {
      */
     String description();
 
+    String name();
+
 }

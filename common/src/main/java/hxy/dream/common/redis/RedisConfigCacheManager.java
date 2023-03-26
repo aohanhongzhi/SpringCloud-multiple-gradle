@@ -1,5 +1,13 @@
 package hxy.dream.common.redis;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import hxy.dream.common.util.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.cache.CacheKeyPrefix;
 import org.springframework.data.redis.cache.RedisCache;
@@ -22,13 +30,16 @@ public class RedisConfigCacheManager extends RedisCacheManager {
         super(cacheWriter, defaultCacheConfiguration);
     }
 
-    private static final RedisSerializationContext.SerializationPair<Object> DEFAULT_PAIR = RedisSerializationContext.SerializationPair
-            .fromSerializer(new GenericJackson2JsonRedisSerializer());
 
     private static final CacheKeyPrefix DEFAULT_CACHE_KEY_PREFIX = cacheName -> cacheName + ":";
 
     @Override
     protected RedisCache createRedisCache(String name, RedisCacheConfiguration cacheConfig) {
+
+        ObjectMapper objectMapper = SpringUtils.getBean(ObjectMapper.class);
+
+        RedisSerializationContext.SerializationPair<Object> DEFAULT_PAIR = RedisSerializationContext.SerializationPair
+                .fromSerializer(new GenericJackson2JsonRedisSerializer(objectMapper));
 
         if (name != null && name.length() > 0) {
             final int lastIndexOf = name.lastIndexOf('#');
