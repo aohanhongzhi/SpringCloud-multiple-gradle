@@ -19,7 +19,6 @@ import hxy.dream.common.serializer.BaseEnumSerializer;
 import hxy.dream.common.serializer.BaseLongSerializer;
 import hxy.dream.common.serializer.DateJsonDeserializer;
 import hxy.dream.common.serializer.DateJsonSerializer;
-import hxy.dream.common.serializer.LocalDateTimeJsonSerializer;
 import hxy.dream.common.serializer.SimpleDeserializersWrapper;
 import hxy.dream.common.serializer.StringTrimDeserializer;
 import hxy.dream.entity.enums.BaseEnum;
@@ -28,7 +27,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -48,7 +46,6 @@ public class BeanConfig {
 
         simpleModule.addSerializer(BaseEnum.class, new BaseEnumSerializer());
         simpleModule.addSerializer(Date.class, new DateJsonSerializer());
-        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeJsonSerializer());
 
         // 超过浏览器处理精度的Long类型转成String给前端
         simpleModule.addSerializer(Long.class, new BaseLongSerializer());
