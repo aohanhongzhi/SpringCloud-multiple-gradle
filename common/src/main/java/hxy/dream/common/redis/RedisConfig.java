@@ -111,7 +111,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         boolean ok = false;
         if (ok) {
-            // TODO 这一部分不会报错，但是redis的缓存失效时间就没有实现了
+            // TODO 这一部分不会报错，但是redis的缓存失效时间就没有实现了。使用的是默认失效时间，应该就是不失效
             RedisCacheManager.RedisCacheManagerBuilder builder = RedisCacheManager.RedisCacheManagerBuilder
                     .fromConnectionFactory(redisConnectionFactory)
                     .cacheDefaults(config)
@@ -125,7 +125,7 @@ public class RedisConfig extends CachingConfigurerSupport {
             builder.initialCacheNames(cacheNames);
             return builder.build();
         } else {
-            // FIXME 使用这一部分就会报错
+            // FIXME 使用这个可以自定义管理缓存时间
             RedisCacheWriter cacheWriter = RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory);
             return new RedisConfigCacheManager(cacheWriter, config);
         }
