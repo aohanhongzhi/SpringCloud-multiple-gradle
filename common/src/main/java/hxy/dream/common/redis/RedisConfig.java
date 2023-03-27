@@ -86,7 +86,6 @@ public class RedisConfig extends CachingConfigurerSupport {
 
         // 设置序列化
         RedisSerializer<String> stringSerializer = new StringRedisSerializer();
-        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
 
         //解决查询缓存转换异常的问题
         ObjectMapper om = new ObjectMapper();
@@ -99,7 +98,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         om.registerModule(new Jdk8Module())
                 .registerModule(new JavaTimeModule())
                 .registerModule(new ParameterNamesModule());
-        jackson2JsonRedisSerializer.setObjectMapper(om);
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(om, Object.class);
 
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(stringSerializer))
