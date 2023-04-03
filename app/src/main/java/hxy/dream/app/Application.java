@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cglib.core.DebuggingClassWriter;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -23,6 +24,8 @@ public class Application {
 
 
     public static void main(String[] args) {
+        log.info("\n<============ \uD83D\uDE80  JAVA版本:{}  CPU核心数:{}  \uD83D\uDE80 ============>", System.getProperty("java.version"), Runtime.getRuntime().availableProcessors());
+        System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "class");
         log.info("当前CPU核心={}，{}是否为守护线程={}",Runtime.getRuntime().availableProcessors(), Thread.currentThread().getName(), Thread.currentThread().isDaemon());
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
         log.trace("方便打断点");
