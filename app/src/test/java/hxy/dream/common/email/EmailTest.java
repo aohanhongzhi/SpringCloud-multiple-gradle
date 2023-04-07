@@ -1,5 +1,6 @@
 package hxy.dream.common.email;
 
+import com.sun.mail.pop3.POP3Folder;
 import hxy.dream.BaseTest;
 import jakarta.mail.Flags;
 import jakarta.mail.Folder;
@@ -50,6 +51,7 @@ public class EmailTest extends BaseTest {
 
             Properties props = new Properties();
             Session session = Session.getDefaultInstance(props);
+            session.setDebug(true);
             //取得pop3协议的邮件服务器
             Store store = null;
             store = session.getStore("pop3");
@@ -57,10 +59,43 @@ public class EmailTest extends BaseTest {
             //连接pop.qq.com邮件服务器
             store.connect("pop.qq.com", "aohanhongzhi@qq.com", "vtrxapjtpcivdbcb");
 
+            Folder[] personalNamespaces = store.getPersonalNamespaces();
+            for (Folder folder : personalNamespaces) {
+
+                if (folder instanceof POP3Folder) {
+                    start(folder);
+                }
+
+            }
+//            //返回文件夹对象
+            Folder defaultFolder = store.getDefaultFolder();
+            Folder[] allFolder = defaultFolder.list();
+
+            for (Folder folder : allFolder) {
+
+                if (folder instanceof POP3Folder) {
+                    start(folder);
+                }
+
+            }
+
+            // POP3Folder
+            Folder folder = store.getFolder("INBOX");
+            start(folder);
+
+            store.close();
+        } catch (NoSuchProviderException e) {
+            throw new RuntimeException(e);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void start(Folder folder) throws MessagingException {
+        if (folder instanceof POP3Folder) {
             int k = 0;
             while (k < 100) {
-                //返回文件夹对象
-                Folder folder = store.getFolder("INBOX");
                 //设置读写
                 folder.open(Folder.READ_WRITE);
                 //获取信息
@@ -70,7 +105,7 @@ public class EmailTest extends BaseTest {
                     String subject = message[i].getSubject();
                     String from = message[i].getFrom()[0].toString();
 
-                    if (subject.contains("RBLC-ADMIN") || subject.contains("GitHub") || subject.contains("物联网通信计费策略调整") || from.contains("register.csdn.net")|| from.contains("tencent.com") || from.contains("github.com") ) {
+                    if (subject.contains("RBLC-ADMIN") || subject.contains("GitHub") || subject.contains("物联网通信计费策略调整") || from.contains("register.csdn.net") || from.contains("tencent.com") || from.contains("github.com")) {
                         //设置删除标记
                         message[i].setFlag(Flags.Flag.DELETED, true);
                         j++;
@@ -88,13 +123,8 @@ public class EmailTest extends BaseTest {
                 }
                 k++;
             }
-
-            store.close();
-        } catch (NoSuchProviderException e) {
-            throw new RuntimeException(e);
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
         }
+
     }
 
 }

@@ -6,6 +6,7 @@ import hxy.dream.app.service.UserService;
 import hxy.dream.common.converter.StringToEnumConverter;
 import hxy.dream.common.serializer.BaseEnumDeserializer;
 import hxy.dream.dao.model.UserModel;
+import hxy.dream.entity.dto.OtherInfo;
 import hxy.dream.entity.vo.BaseResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+
 import java.util.List;
 
 /**
@@ -36,6 +38,14 @@ public class UserController {
     public BaseResponseVO get(@PathVariable("id") String id) {
         log.info("\n====>当前获取的id是{}", id);
         UserModel userModel = userService.get(id);
+        if (userModel != null) {
+            OtherInfo otherInfo = userModel.getOtherInfo();
+            if (otherInfo != null) {
+                String city = otherInfo.city();
+                log.info("city: " + city);
+            }
+
+        }
         return BaseResponseVO.success(userModel);
     }
 
@@ -43,7 +53,7 @@ public class UserController {
     @GetMapping("exist/{id}")
     public BaseResponseVO exist(@PathVariable("id") String id) {
         log.info("\n====>当前获取的id是{}", id);
-       return userService.exist(id);
+        return userService.exist(id);
     }
 
 
@@ -75,7 +85,7 @@ public class UserController {
      * @see StringToEnumConverter
      */
     @PostMapping("add/form")
-    public BaseResponseVO   saveForm(@Valid UserParam userParam) {
+    public BaseResponseVO saveForm(@Valid UserParam userParam) {
         log.debug("\n====>当前添加的用户信息是{}", userParam);
         UserModel userModel = userService.add(userParam);
         return BaseResponseVO.success(userModel);
