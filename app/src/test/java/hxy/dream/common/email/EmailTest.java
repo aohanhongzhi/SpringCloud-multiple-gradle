@@ -8,6 +8,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.NoSuchProviderException;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
+import jakarta.mail.search.SubjectTerm;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,14 +64,16 @@ public class EmailTest extends BaseTest {
                 Folder folder = store.getFolder("INBOX");
                 //设置读写
                 folder.open(Folder.READ_WRITE);
+                String subjectTitle = "dragon";
                 //获取信息
                 Message message[] = folder.getMessages();
+//                Message message[] = folder.search(new SubjectTerm("dragon"));
                 int j = 0;
                 for (int i = 0; i < message.length && j < 200; i++) {
                     String subject = message[i].getSubject();
                     String from = message[i].getFrom()[0].toString();
 
-                    if (subject.contains("RBLC-ADMIN") || subject.contains("GitHub") || subject.contains("物联网通信计费策略调整") || from.contains("register.csdn.net")|| from.contains("tencent.com") || from.contains("github.com") ) {
+                    if (subject.contains(subjectTitle) || subject.contains("RBLC-ADMIN") || subject.contains("GitHub") || subject.contains("物联网通信计费策略调整") || from.contains("register.csdn.net") || from.contains("tencent.com") || from.contains("github.com")) {
                         //设置删除标记
                         message[i].setFlag(Flags.Flag.DELETED, true);
                         j++;
