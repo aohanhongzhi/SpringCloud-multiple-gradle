@@ -21,8 +21,9 @@ public class BaseLongSerializer extends JsonSerializer<Long> {
      */
     @Override
     public void serialize(Long value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        if (value > 9007199254740990L) {
+        if (value != null && (value > 9007199254740990L || value.toString().length() > 16)) {
             gen.writeNumber("\"" + value + "\"");
+//            gen.writeString(value.toString());
         } else {
             gen.writeNumber(value);
         }

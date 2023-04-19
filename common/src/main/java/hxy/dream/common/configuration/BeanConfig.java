@@ -14,6 +14,8 @@ import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerIntercept
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import hxy.dream.common.serializer.BaseEnumDeserializer;
 import hxy.dream.common.serializer.BaseEnumSerializer;
 import hxy.dream.common.serializer.BaseLongSerializer;
@@ -27,6 +29,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -46,6 +50,10 @@ public class BeanConfig {
 
         simpleModule.addSerializer(BaseEnum.class, new BaseEnumSerializer());
         simpleModule.addSerializer(Date.class, new DateJsonSerializer());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
+        simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
 
         // 超过浏览器处理精度的Long类型转成String给前端
         simpleModule.addSerializer(Long.class, new BaseLongSerializer());
