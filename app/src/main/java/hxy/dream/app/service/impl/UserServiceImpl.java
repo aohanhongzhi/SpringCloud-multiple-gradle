@@ -7,6 +7,7 @@ import hxy.dream.dao.mapper.UserMapper;
 import hxy.dream.dao.model.UserModel;
 import hxy.dream.entity.enums.GenderEnum;
 import hxy.dream.entity.vo.BaseResponseVO;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,11 @@ import java.util.List;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Resource
-    UserMapper userMapper;
+    //    @Resource 可以通过上面的 @RequiredArgsConstructor注解来生成构造器。需要final标记
+    private final UserMapper userMapper;
 
     @Override
     public UserModel add(UserParam userParam) {

@@ -32,7 +32,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("get/{id}")
     public BaseResponseVO get(@PathVariable("id") String id) {
