@@ -45,7 +45,7 @@ public class EnumTest extends BaseTest {
     @org.junit.Test
     public void enumJsonTest2(){
 
-            GenderEnum byCode = GenderEnum.getEnumByCode(1);
+            GenderEnum byCode = GenderEnum.getEnumByCode(100);
             System.out.println(byCode);
 
     }

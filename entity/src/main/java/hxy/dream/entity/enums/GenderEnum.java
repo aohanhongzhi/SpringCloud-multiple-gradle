@@ -2,13 +2,13 @@ package hxy.dream.entity.enums;
 
 
 import com.baomidou.mybatisplus.annotation.EnumValue;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import lombok.Getter;
+
+import java.util.Arrays;
+import java.util.Optional;
 
 
 public enum GenderEnum implements BaseEnum {
-    BOY(100, "男"), GIRL(200, "女"),UNKNOWN(0, "未知");
+    BOY(100, "男"), GIRL(200, "女"), UNKNOWN(0, "未知");
 
 
     @EnumValue//标记数据库存的值是code
@@ -22,13 +22,19 @@ public enum GenderEnum implements BaseEnum {
     }
 
 
-    public static GenderEnum getEnumByCode(Integer code){
-        for (GenderEnum genderEnum:values()){
-            if (genderEnum.code.equals(code)){
-                return genderEnum;
-            }
+    public static GenderEnum getEnumByCode(Integer code) {
+//        for (GenderEnum genderEnum:values()){
+//            if (genderEnum.code.equals(code)){
+//                return genderEnum;
+//            }
+//        }
+        Optional<GenderEnum> first = Arrays.stream(GenderEnum.values()).filter(item -> item.code().equals(code)).findFirst();
+        if (first.isEmpty()) {
+            return null;
+        } else {
+            GenderEnum status = first.get();
+            return status;
         }
-        return null;
     }
 
     @Override
