@@ -77,6 +77,15 @@ https://github.com/GradleCN/GradleSide
 ![](./asset/img/gradle-special-location.png)
 ![img.png](asset/img/gradle-wrapper.png)
 
+腾讯的代理镜像
+
+https://mirrors.cloud.tencent.com/gradle/gradle-7.5.1-bin.zip
+
+https\://services.gradle.org/distributions/gradle-7.4-bin.zip
+
+![img_1.png](asset/img/gradle.png)
+
+
  技术                   | 说明                 | 官网                                                                                                           
 ----------------------|--------------------|--------------------------------------------------------------------------------------------------------------
  Spring Boot          | 容器+MVC框架           | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)                             
