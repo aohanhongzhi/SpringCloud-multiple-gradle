@@ -713,6 +713,34 @@ https://github.com/baomidou/mybatis-plus-samples/tree/master/mybatis-plus-sample
 
 > https://www.cnblogs.com/xwzp/p/14685452.html
 
+# @JsonInclude(Include.NON_NULL)全局配置
+
+配置对象Field属性，当值为null的时候，就可以序列化忽略掉。
+
+![img.png](asset/img/jackson-serialize-null.png)
+
+https://blog.csdn.net/u012477144/article/details/99731418
+
+```
+spring.jackson.default-property-inclusion=non_null
+```
+或者
+
+```java
+@Configuration
+@EnableWebMvc
+@Slf4j
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
+   
+    //@JsonInclude(Include.NON_NULL)全局配置
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters){
+        Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
+                .serializationInclusion(JsonInclude.Include.NON_NULL);
+        converters.add(new MappingJackson2HttpMessageConverter(builder.build()));
+    }
+}
+```
 # 解决 redis 序列化 java8 LocalDateTime 问题
 
 https://blog.csdn.net/zhuzhoulin/article/details/106758473
