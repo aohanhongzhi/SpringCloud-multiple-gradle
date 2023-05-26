@@ -15,12 +15,12 @@ repositories {
 dependencies {
     api project(':dao') /* 子模块之间的依赖 */
 
-    api 'com.ejlchina:okhttps-jackson:3.4.0'
+    api 'com.ejlchina:okhttps-jackson:3.5.3'
     api 'org.springframework.boot:spring-boot-starter-mail'
 
     implementation 'org.springframework.data:spring-data-redis'
     implementation 'redis.clients:jedis'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.10.3'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.0'
 
     implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
     implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.6'

@@ -13,6 +13,6 @@ dependencies {
 
     // mysql的驱动版本应该是受啥控制了，可以忽略版本号，后期可以调查下，通过依赖分析目前没有找到原因
     runtimeOnly 'mysql:mysql-connector-java:8.0.33'
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 
 }
