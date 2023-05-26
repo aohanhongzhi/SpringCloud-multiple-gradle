@@ -11,6 +11,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 import java.util.List;
 
+/**
+ * 这个只是配置了 SpringMVC那一层，此外还有对外的MQ消息啥的，其他使用jackson序列化redis啥的
+ */
 @EnableWebMvc
 @Configuration
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
