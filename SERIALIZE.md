@@ -723,6 +723,32 @@ https://blog.csdn.net/weixin_44299027/article/details/104516280
     objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
 ```
 
+或者可以试试
+
+https://blog.csdn.net/qq_21567385/article/details/107303684
+
+```yaml
+spring:
+  jackson:
+    #  返回时间戳
+    serialization:
+      write-dates-as-timestamps: true
+```
+
+```yaml
+spring:
+  jackson:
+    #  格式化返回时间 yyyy-MM-dd HH:mm:ss
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+```
+
+个别注解配置太繁琐
+
+```java
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+```
+
 java.sql.Date与java.util.Date的两者区别：
 
 区别：
