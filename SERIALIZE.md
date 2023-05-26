@@ -769,8 +769,9 @@ java.sql.Date：年月日
 https://blog.csdn.net/u012477144/article/details/99731418
 
 ```
-spring.jackson.default-property-inclusion=non_null
+spring.jackson.default-property-inclusion=non_null #这个应该是全局的
 ```
+
 或者
 
 ```java
@@ -779,7 +780,7 @@ spring.jackson.default-property-inclusion=non_null
 @Slf4j
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
    
-    //@JsonInclude(Include.NON_NULL)全局配置
+    //@JsonInclude(Include.NON_NULL) SpringMVC层的配置（也不算全局配置，估计不影响redis啥的Jackson序列化啥的）
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters){
         Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
