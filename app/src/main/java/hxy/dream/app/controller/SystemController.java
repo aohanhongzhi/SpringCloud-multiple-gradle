@@ -31,6 +31,12 @@ public class SystemController {
         }
         log.info("{}", Thread.currentThread().getName());
 
-        return BaseResponseVO.success("SpringBoot");
+        return BaseResponseVO.success("SpringBoot项目工程");
     }
+
+    @GetMapping("encoding")
+    public String encoding() {
+        return "encoding text/plain, 中文应该是乱码的。 Content-Type:text/html;charset=UTF-8就不会乱码 ";
+    }
+
 }
