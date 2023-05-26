@@ -713,6 +713,27 @@ https://github.com/baomidou/mybatis-plus-samples/tree/master/mybatis-plus-sample
 
 > https://www.cnblogs.com/xwzp/p/14685452.html
 
+
+java.sql.Date的序列化，默认是转成时间戳。默认序列化器：com.fasterxml.jackson.databind.ser.std.SqlDateSerializer
+
+https://blog.csdn.net/weixin_44299027/article/details/104516280
+
+```java
+    // 修改配置即可。从com.fasterxml.jackson.databind.ser.std.SqlDateSerializer源代码看出来的。 没必要自定义一个序列化器。
+    objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+```
+
+java.sql.Date与java.util.Date的两者区别：
+
+区别：
+java.util.Date：年月日 时分秒
+java.sql.Date：年月日
+
+联系：
+`java.sql.Date(子类) extends java.util.Date （父类
+
+
+
 # @JsonInclude(Include.NON_NULL)全局配置
 
 配置对象Field属性，当值为null的时候，就可以序列化忽略掉。
@@ -750,3 +771,6 @@ https://blog.csdn.net/zhuzhoulin/article/details/106758473
 ![img.png](asset/img/jackson-date-format.png)
 
 
+### 序列化作用顺序
+
+全局配置的大于单个注解，测试 [hxy.dream.util.JacksonTest.testSqlDate](app/src/test/java/hxy/dream/util/JacksonTest.java)
