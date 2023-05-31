@@ -8,19 +8,20 @@ Eric-Dream
 
 ## 主要实现功能如下
 
- 功能                                                                                | 实现                                                                                                  | 用途           
------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|--------------
-IDEA开发热加载实现 | JBR + HotswapAgent | https://github.com/HotswapProjects/HotswapAgent
- [jackson序列化](SERIALIZE.md)                                                                        | 自定义序列化器                                                                                             | 解决参数枚举的序列化问题 
- logback钉钉通知                                                                       | 自定义Appender                                                                                         | Error消息及时通知  
- logback邮件通知                                                                       | 默认支持                                                                                                | Error异常及时通知  
- 全局异常捕获                                                                            | 默认支持                                                                                                | 捕获异常         
- 数据库字段加解密                                                                          | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java) | 给部分数据库字段加解密  
- 执行初始化SQL语句                                                                           | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                    |
- [MybatisPlus的SQL脚本自动维护](common/src/main/java/hxy/dream/common/init/MysqlDdl.java) | https://baomidou.com/pages/1812u1/                                                                  | 自动建表         
- SpringBoot 3.0 声明式API远程调用                                                         | 参考 [RemoteApi](common/src/main/java/hxy/dream/common/manager/RemoteApi.java)                        |
-参数全局trim() | [StringTrimDeserializer](common/src/main/java/hxy/dream/common/serializer/StringTrimDeserializer.java)                    | 避免异常数据
-Long类型超长转String |                                                                                                     | 解决前端无法正确显示超长String
+ 功能                                                                                | 实现                                                                                                      | 用途                                              
+-----------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------
+ IDEA开发热加载实现                                                                       | JBR + HotswapAgent                                                                                      | https://github.com/HotswapProjects/HotswapAgent 
+ [jackson序列化](SERIALIZE.md)                                                        | 自定义序列化器                                                                                                 | 解决参数枚举的序列化问题                                    
+ logback钉钉通知                                                                       | 自定义Appender                                                                                             | Error消息及时通知                                     
+ logback邮件通知                                                                       | 默认支持                                                                                                    | Error异常及时通知                                     
+ 全局异常捕获                                                                            | 默认支持                                                                                                    | 捕获异常                                            
+ 数据库字段加解密                                                                          | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)     | 给部分数据库字段加解密                                     
+ 执行初始化SQL语句                                                                        | [自动建表](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)                        |
+ [MybatisPlus的SQL脚本自动维护](common/src/main/java/hxy/dream/common/init/MysqlDdl.java) | https://baomidou.com/pages/1812u1/                                                                      | 自动建表                                            
+ SpringBoot 3.0 声明式API远程调用                                                         | 参考 [RemoteApi](common/src/main/java/hxy/dream/common/manager/RemoteApi.java)                            |
+ 参数全局trim()                                                                        | [StringTrimDeserializer](common/src/main/java/hxy/dream/common/serializer/StringTrimDeserializer.java)  | 避免异常数据                                          
+ Long类型超长转String                                                                   |                                                                                                         | 解决前端无法正确显示超长String                              
+ 前端null传到后端成"null"字符串                                                              | [StringToStringConverter](common/src/main/java/hxy/dream/common/converter/StringToStringConverter.java) | 解决"null"等问题                                     
 
 具体框架如下表：
 
@@ -39,7 +40,9 @@ Ctrl + Shift + F9 重新编译和加载修改的类文件即可。
 > http://blog.houxiaoyi.cn/#/src/Java/%E7%83%AD%E5%8A%A0%E8%BD%BD
 
 ### 执行初始化的sql语句
+
 有两种方案。一种借助与mybatis-plus 另一种就是mybatis的
+
 #### 基于mybatis的sql执行方案
 
 [hxy.dream.common.init.ApplicationStartupRunner](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)
@@ -85,7 +88,6 @@ https\://services.gradle.org/distributions/gradle-7.4-bin.zip
 
 ![img_1.png](asset/img/gradle.png)
 
-
  技术                   | 说明                 | 官网                                                                                                           
 ----------------------|--------------------|--------------------------------------------------------------------------------------------------------------
  Spring Boot          | 容器+MVC框架           | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)                             
@@ -130,7 +132,9 @@ https://spring.io/projects/spring-boot#support
 ```groovy
  api project(':dao') 
 ```
+
 以下是 gradle6前后的使用方式：
+
 ```groovy
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上
 //    implementation project(':entity') /* 子模块之间的依赖 */
@@ -201,8 +205,8 @@ https://juejin.im/post/6844904196693557255
 
 #### ORM层
 
-> 参考 [mybatis-plus官网](https://baomidou.com/pages/8390a4/#%E6%AD%A5%E9%AA%A41-%E5%A3%B0%E6%98%8E%E9%80%9A%E7%94%A8%E6%9E%9A%E4%B8%BE%E5%B1%9E%E6%80%A7)
-
+>
+参考 [mybatis-plus官网](https://baomidou.com/pages/8390a4/#%E6%AD%A5%E9%AA%A41-%E5%A3%B0%E6%98%8E%E9%80%9A%E7%94%A8%E6%9E%9A%E4%B8%BE%E5%B1%9E%E6%80%A7)
 
 1. [自动填充字段](https://docs.qq.com/doc/DSG5Zbk9RR1FHRVZE)
 
@@ -220,7 +224,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###   
+###    
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
@@ -241,7 +245,8 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 # TODO
 
-- [x] 有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉。需要设计一个方案做下全局的参数trim()
+- [x] 
+  有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉。需要设计一个方案做下全局的参数trim()
 
 ### 构建
 
