@@ -19,7 +19,7 @@ public class StringToStringConverter implements Converter<String, String> {
     @Override
     public String convert(String source) {
         log.info("convert source: {}", source);
-        if (source != null && "null".equals(source.toLowerCase()) || !"nil".equals(source)) {
+        if (source != null && "null".equals(source.toLowerCase())) {
             return "";
         }
         return source;
