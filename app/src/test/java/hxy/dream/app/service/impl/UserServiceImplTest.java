@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @Slf4j
 public class UserServiceImplTest  extends BaseTest {
     @Autowired
@@ -25,5 +27,12 @@ public class UserServiceImplTest  extends BaseTest {
 
         UserModel userModel = userService.get("87");
         log.info("\n====>{}",userModel);
+    }
+
+    @Test
+    public void listTest(){
+
+        List<UserModel> userModels = userService.list();
+        log.info("\n====>{}",userModels);
     }
 }

@@ -79,7 +79,8 @@ allprojects {
 
     test {
         // 要用junit可以换成：useJUnitPlatform() TestNG更好更丰富
-        useTestNG()
+//        useTestNG()
+        useJUnitPlatform()
     }
 }
 
