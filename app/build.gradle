@@ -7,3 +7,7 @@ bootJar.enabled = true
 dependencies {
     api project(':common')
 }
+
+test {
+    useJUnitPlatform()
+}

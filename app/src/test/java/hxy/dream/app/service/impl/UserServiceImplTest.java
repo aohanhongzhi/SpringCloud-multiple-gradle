@@ -5,16 +5,20 @@ import hxy.dream.app.entity.param.UserParam;
 import hxy.dream.app.service.UserService;
 import hxy.dream.dao.model.UserModel;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 @Slf4j
 public class UserServiceImplTest  extends BaseTest {
+
     @Autowired
     UserService userService;
+
     @Test
+    @Order(1)
     public void arunTest(){
         UserParam userParam = new UserParam();
         userParam.setName("111");

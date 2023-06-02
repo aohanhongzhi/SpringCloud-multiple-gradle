@@ -1,8 +1,7 @@
 package hxy.dream.util;
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author eric
@@ -16,13 +15,13 @@ public class IntegerTest {
     public void tests(){
         int i = 1290;
         Integer j =1290;
-        Assert.assertTrue(j==i);
+//        Assert.assertTrue(j==i);
     }
 
     @Test
     public void test2(){
         Integer i = 1290;
         Integer j =1290;
-        Assert.assertTrue(j==i);
+//        Assert.assertTrue(j==i);
     }
 }

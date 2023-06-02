@@ -2,7 +2,7 @@ package hxy.dream.common.study;
 
 import hxy.dream.BaseTest;
 import hxy.dream.app.Application;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

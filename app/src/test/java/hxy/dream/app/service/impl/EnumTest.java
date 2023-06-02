@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
 import hxy.dream.BaseTest;
 import hxy.dream.entity.enums.GenderEnum;
-import org.junit.Test;
 
 import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author eric
@@ -31,7 +31,7 @@ public class EnumTest extends BaseTest {
     }
 
 
-    @org.junit.Test
+    @Test
     public void enumJsonTest(){
         try {
             String s = objectMapper.writeValueAsString(GenderEnum.BOY);
@@ -42,7 +42,7 @@ public class EnumTest extends BaseTest {
             e.printStackTrace();
         }
     }
-    @org.junit.Test
+    @Test
     public void enumJsonTest2(){
 
             GenderEnum byCode = GenderEnum.getEnumByCode(100);
