@@ -6,6 +6,9 @@ bootJar.enabled = true
 
 dependencies {
     api project(':common')
+
+    implementation 'org.springframework.data:spring-data-redis'
+
 }
 
 test {
