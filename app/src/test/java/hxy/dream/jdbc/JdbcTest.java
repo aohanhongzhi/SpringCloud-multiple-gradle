@@ -25,7 +25,7 @@ public class JdbcTest {
         // 查看驱动类源码,注册两次驱动,浪费资源
         Class.forName("com.mysql.cj.jdbc.Driver");
         // 2. 获得连接
-        // uri:数据库地址 jdbc:mysql://连接主机ip:端口号//数据库名字
+        // uri:数据库地址 jdbc:mysql://连接主机ip:端口号//数据库名字=
         String url = "jdbc:mysql://mysql.cupb.top:3306/eric";
         // static Connection getConnection(String url, String user, String password)
         // 返回值是java.sql.Connection接口的实现类,在MySQL驱动程序中
@@ -67,7 +67,7 @@ public class JdbcTest {
         // 3.获取执行SQL语句
         //Connection接口
         PreparedStatement pst = conn.prepareStatement(sql);
-        //调用pst对象的setXXX方法设置问号占位符的参数
+        //调用pst对象的setXXX方法设置问号占位符的参数 下面参数的设置具体是由 mysql驱动实现的。（面向接口编程，只管申明，具体执行由接口实现）
         pst.setObject(1, id);
         pst.setObject(2, name);
         System.out.println(sql);
