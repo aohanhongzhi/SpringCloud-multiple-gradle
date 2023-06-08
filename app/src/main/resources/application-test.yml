@@ -47,6 +47,7 @@ logging:
     hxy.dream.dao: trace # 显示mybatis的操作时候所有级别的日志
     hxy.dream: debug
     com.fasterxml.jackson: debug
+    com.baomidou.mybatisplus: debug
 
 mybatis-plus:
   configuration:
