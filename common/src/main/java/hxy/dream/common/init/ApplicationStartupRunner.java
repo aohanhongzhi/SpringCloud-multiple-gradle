@@ -3,10 +3,12 @@ package hxy.dream.common.init;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +17,7 @@ import java.sql.DriverManager;
  * @link https://blog.csdn.net/m0_37456570/article/details/83751401
  */
 @Slf4j
-//@Component
+@Component
 public class ApplicationStartupRunner implements CommandLineRunner {
 
     @Value("${spring.datasource.driver-class-name}")
@@ -27,16 +29,25 @@ public class ApplicationStartupRunner implements CommandLineRunner {
     @Value("${spring.datasource.password}")
     private String password;
 
+    @Autowired
+    DataSource dataSource;
+
     @Override
     public void run(String... args) throws Exception {
         log.info("ApplicationStartupRunner run method Started !!");
-        // 执行sql脚本语句
+
         Connection connection = null;
+        boolean jdbc = false;
         try {
-            Class.forName(driver);
-            connection = DriverManager.getConnection(url, userName, password);
-            // 设置不自动提交
-            connection.setAutoCommit(false);
+            if (jdbc) {
+                Class.forName(driver);
+                connection = DriverManager.getConnection(url, userName, password);
+                // 设置不自动提交
+                connection.setAutoCommit(false);
+            } else {
+                connection = dataSource.getConnection();
+            }
+
             ScriptRunner runner = new ScriptRunner(connection);
             // 设置不自动提交
             runner.setAutoCommit(false);
@@ -55,15 +66,17 @@ public class ApplicationStartupRunner implements CommandLineRunner {
             runner.setLogWriter(null);
             // 如果又多个sql文件，可以写多个runner.runScript(xxx),
             Resources.setCharset(Charset.forName("UTF8"));
-
+            // 执行sql脚本语句
             ScriptRunner scriptRunner = new ScriptRunner(connection);
             scriptRunner.runScript(Resources.getResourceAsReader("table.sql"));
             connection.commit();
         } catch (Exception e) {
-            log.error("{}", e);
+            log.error("执行sql脚本失败 {}", e);
         } finally {
-            if (connection != null) {
-                connection.close();// 连接关闭
+            if (jdbc) {
+                if (connection != null) {
+                    connection.close();// 连接关闭
+                }
             }
         }
     }
