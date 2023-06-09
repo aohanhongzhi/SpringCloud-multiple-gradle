@@ -1,11 +1,5 @@
 package hxy.dream.dao.configuration.mybatis;
 
-/**
- * @ClassName AESTypeHandler
- * @date 2020/4/9  14:27.
- * @Description
- */
-
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 
 import hxy.dream.dao.util.KeyCenterUtils;
@@ -19,7 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * 数据库字段加解密处理
+ * 数据库字段加解密处理。
+ * 加密后就有一个问题，没办法对数据进行检索了。比如like查询。但是mybatis-plus提供了自己企业版的加密方式可以做到。https://baomidou.com/pages/1864e1/#%E5%AD%97%E6%AE%B5%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86
  *
  * @param <T>
  */

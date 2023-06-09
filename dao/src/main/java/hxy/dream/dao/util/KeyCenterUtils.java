@@ -9,6 +9,7 @@ public class KeyCenterUtils {
      */
     public static String encrypt(String src) {
         try {
+            // 最好替换成 RSA 或者 AES 。 Base64只能算是编码，不算加密。
             String result = Base64.getEncoder().encodeToString(src.getBytes("UTF-8"));
             return result;
         } catch (Exception e) {
