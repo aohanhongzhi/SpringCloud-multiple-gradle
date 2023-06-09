@@ -29,6 +29,10 @@ public class ApplicationStartupRunner implements CommandLineRunner {
     @Value("${spring.datasource.password}")
     private String password;
 
+    /**
+     * javax.sql.DataSource 是一个接口，所以不用关心这个具体是谁实现的。
+     * 可以是 mysql，p6spy，hikari，mybatis等
+     */
     @Autowired
     DataSource dataSource;
 
@@ -71,7 +75,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
             scriptRunner.runScript(Resources.getResourceAsReader("table.sql"));
             connection.commit();
         } catch (Exception e) {
-            log.error("执行sql脚本失败 {}", e);
+            log.error("执行sql脚本失败", e);
         } finally {
             if (jdbc) {
                 if (connection != null) {
