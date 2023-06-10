@@ -262,6 +262,13 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 > https://blog.csdn.net/u012954706/article/details/105437768
 
+# 封装类型与基础类型
+
+1. 所有POJO类属性必须使用包装数据类型
+2. 所有的局部变量使用基本数据类型。
+
+> 来自 《阿里巴巴Java开发规范》
+
 # TODO
 
 - [x] 
