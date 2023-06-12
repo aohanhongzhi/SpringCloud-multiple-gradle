@@ -26,15 +26,15 @@ public class UserModel extends BaseModel<UserModel> {
      * 参考yaml文件配置id-type: auto
      */
     @TableId(type = IdType.AUTO)
-    Integer id;
-    String name;
-    Integer age;
-    GenderEnum gender;
-    String password;
+    private Integer id;
+    private String name;
+    private Integer age;
+    private GenderEnum gender;
+    private String password;
 
     //有了这个数据库BaseMapper插入的时候才能加密
     @TableField(typeHandler = CustomTypeHandler.class)
-    String address;
+    private String address;
 
     /**
      * 注意！！ 必须开启映射注解
@@ -46,7 +46,7 @@ public class UserModel extends BaseModel<UserModel> {
      * 注意！！选择对应的 JSON 处理器也必须存在对应依赖包
      */
     @TableField(typeHandler = BasicInfoDTOTypeHandler.class)
-    List<BasicInfoDTO> basicInfos;
+    private List<BasicInfoDTO> basicInfos;
 
     @TableField(typeHandler = FastjsonTypeHandler.class)
     private OtherInfo otherInfo;
