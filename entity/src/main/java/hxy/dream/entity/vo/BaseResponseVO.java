@@ -1,6 +1,7 @@
 package hxy.dream.entity.vo;
 
 import lombok.Data;
+import org.slf4j.MDC;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ public class BaseResponseVO<T> implements Serializable {
     String message;
     T data;
     Integer code;
+    String xid;
 
     public BaseResponseVO(Integer code, String message, T data) {
         this.code = code;
@@ -39,5 +41,16 @@ public class BaseResponseVO<T> implements Serializable {
 
     public static <T> BaseResponseVO<T> badrequest(String message, T data) {
         return new BaseResponseVO(500, message, data);
+    }
+
+
+    /**
+     * 这个计划是由 spring-cloud-starter-sleuth 实现的。但是貌似spring-cloud-starter-sleuth没咋更新了，样例都是n年前的，还指向了zipkin。
+     * <p>
+     * 所以计划可以尝试用tlog实现下。https://tlog.yomahub.com/  https://github.com/dromara/TLog
+     */
+    public String getXid() {
+        String traceId = MDC.get("traceId");
+        return traceId;
     }
 }
