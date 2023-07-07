@@ -3,6 +3,7 @@ package hxy.dream.common.extend;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hxy.dream.common.util.IPAddress;
+import hxy.dream.common.util.SpringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -50,7 +51,7 @@ public class ParameterRecord {
 
     String[] ignoreUrl = new String[]{"actuator"};
 
-    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectMapper objectMapper = SpringUtils.getBean(ObjectMapper.class);
 
     @Around("execution(* hxy.dream.*.controller.*.*(..))")
     public Object processTx(ProceedingJoinPoint jp) throws Throwable {

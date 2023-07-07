@@ -43,7 +43,7 @@ mybatis-plus:
       logic-delete-value: 1 # 逻辑已删除值(默认为 1)
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
       id-type: auto
-  type-enums-package: hxy.dream.entity.enums
+#      column-format: "`%s`" # 解决数据库关键字问题
 
 server:
   port: 8080

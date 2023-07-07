@@ -801,3 +801,7 @@ https://blog.csdn.net/zhuzhoulin/article/details/106758473
 ### 序列化作用顺序
 
 全局配置的大于单个注解，测试 [hxy.dream.util.JacksonTest.testSqlDate](app/src/test/java/hxy/dream/util/JacksonTest.java)
+
+### Java 8 date/time type `java.time.LocalDateTime` not supported by default
+
+Caused by: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Java 8 date/time type `java.time.LocalDateTime` not supported by default: add Module "com.fasterxml.jackson.datatype:jackson-datatype-jsr310" to enable handling (through reference chain: hxy.dream.entity.vo.BaseResponseVO["data"]->java.util.ArrayList[0]->hxy.dream.dao.model.UserModel["createTime"])
