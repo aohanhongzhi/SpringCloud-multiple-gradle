@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -35,6 +36,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -57,6 +59,7 @@ public class BeanConfig {
         simpleModule.addSerializer(BaseEnum.class, new BaseEnumSerializer());
         simpleModule.addSerializer(Date.class, new DateJsonSerializer());
 
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         simpleModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(formatter));
         simpleModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(formatter));
@@ -71,22 +74,24 @@ public class BeanConfig {
         ObjectMapper objectMapper = builder.createXmlMapper(false).build();
         objectMapper.registerModule(simpleModule);
 
-        // FIXME 解决查询缓存转换异常的问题，这个月应该加在redis自己里面，加在全局，就会操作返回值里面带上类信息。
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        // 设置日期格式化格式
+//        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+
 
         // 解决: Java 8 date/time type `java.time.LocalDateTime` not supported by default
         // 支持 jdk 1.8 日期   ---- start ---
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.registerModule(new Jdk8Module())
-                .registerModule(new JavaTimeModule())
-                .registerModule(new ParameterNamesModule());
+
+//        objectMapper.registerModule(new Jdk8Module())
+//                .registerModule(new JavaTimeModule())
+//                .registerModule(new ParameterNamesModule());
+//        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+//        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         // --end --
+//        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
 
         // 配置忽略未知属性
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         return objectMapper;
     }

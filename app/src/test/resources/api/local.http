@@ -1,4 +1,4 @@
-GET http://localhost:8080/user/get/9
+GET http://localhost:8080/user/get/1
 
 ### 添加
 POST http://localhost:8080/user/add/body
