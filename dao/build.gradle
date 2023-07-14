@@ -12,6 +12,6 @@ dependencies {
     api project(':entity') /* 子模块之间的依赖 */
 
     // mysql的驱动版本应该是受啥控制了，可以忽略版本号，后期可以调查下，通过依赖分析目前没有找到原因
-    runtimeOnly 'mysql:mysql-connector-java:8.0.33'
+    runtimeOnly 'com.mysql:mysql-connector-java:8.0.33'
 
 }

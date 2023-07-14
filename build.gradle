@@ -6,7 +6,7 @@
 */
 buildscript {
     ext {
-        springBootVersion = '3.1.1'
+        springBootVersion = '3.1.1' // https://spring.io/projects/spring-boot#learn
     }
     repositories {
         mavenLocal()
@@ -33,7 +33,7 @@ buildscript {
 
 
 plugins {
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'io.spring.dependency-management' version '1.1.1' // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id 'java-library'
     id 'idea'
     id "com.google.cloud.tools.jib" version "2.0.0"
