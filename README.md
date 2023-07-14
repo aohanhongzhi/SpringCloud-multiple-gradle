@@ -25,6 +25,10 @@ Eric-Dream
 
 具体框架如下表：
 
+## jdk下载
+
+https://www.azul.com/
+
 ### 热加载技术
 
 https://github.com/HotswapProjects/HotswapAgent
