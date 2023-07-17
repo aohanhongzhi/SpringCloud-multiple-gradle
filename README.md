@@ -145,6 +145,10 @@ https://spring.io/projects/spring-boot#support
 ```
 
 ```shell
+./gradlew  bootRun -x test
+```
+
+```shell
 ./gradlew dependencyInsight --dependency mybatis
 ```
 
