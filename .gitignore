@@ -13,3 +13,4 @@ build/
 **/out/
 /app/src/main/resources/application-dev.yml
 class/
+bin/
