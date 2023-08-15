@@ -26,7 +26,9 @@ Accept: application/json
   "age": 23
 }
 
-###
+### 删除
+DELETE http://localhost:8080/user/delete?id=2
+
 ### 添加
 POST http://localhost:8080/user/add2?gender=0&name=张三&age=22
 Content-Type: application/x-www-form-urlencoded

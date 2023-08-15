@@ -55,6 +55,16 @@ public class UserServiceImpl implements UserService {
         return userMapper.selectList(null);
     }
 
+    @Override
+    public BaseResponseVO delete(Integer id) {
+        int i = userMapper.deleteById(id);
+        if (i > 0) {
+            return BaseResponseVO.success();
+        } else {
+            return BaseResponseVO.error("删除失败");
+        }
+    }
+
     /**
      * 判断用户id存在否
      *

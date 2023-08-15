@@ -16,4 +16,6 @@ public interface UserService {
     BaseResponseVO exist(String id);
 
     List<UserModel> list();
+
+    BaseResponseVO delete(Integer id);
 }
