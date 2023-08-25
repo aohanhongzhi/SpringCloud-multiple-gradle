@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Cacheable(value = "UserService#36000", key = "'getUser'+#id")
+    @Cacheable(value = "UserService#36000", key = "'getUser'+#id",unless="#result == null")
     public UserModel get(String id) {
         UserModel userModel = userMapper.selectById(id);
         return userModel;
