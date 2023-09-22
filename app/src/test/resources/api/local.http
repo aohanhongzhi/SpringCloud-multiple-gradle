@@ -73,3 +73,6 @@ GET localhost:8080/threadlocal/wrong?userId=122
 
 ### ConcurentHashMap
 GET localhost:8080/concurrentHashMap/wrong
+
+### Long精度测试
+GET http://localhost:8080/long
