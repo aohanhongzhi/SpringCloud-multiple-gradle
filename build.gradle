@@ -39,6 +39,13 @@ plugins {
     id "com.google.cloud.tools.jib" version "2.0.0"
 }
 
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    /* 指定jdk版本 */
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 description = "Spring Boot multi gradle project"
 
 defaultTasks 'build'
@@ -97,9 +104,7 @@ subprojects {
 
     group = 'hxy.dream'
     version = '1.0-SNAPSHOT'
-    /* 指定jdk版本 */
-    sourceCompatibility = 17
-    targetCompatibility = 17
+
 
     /* java编译的时候缺省状态下会因为中文字符而失败 */
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
