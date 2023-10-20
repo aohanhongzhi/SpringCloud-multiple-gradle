@@ -65,3 +65,8 @@ info:
   app:
     java:
 #      version: @java.version@
+
+# https://gitee.com/huoyo/ko-time
+ko-time:
+  pointcut: execution(public * hxy.dream..*.*(..))
+  context-path: http://localhost:8080/koTime

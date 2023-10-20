@@ -133,7 +133,7 @@ https\://services.gradle.org/distributions/gradle-7.4-bin.zip
  LogStash             | 日志收集               | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder) 
  Lombok               | 简化对象封装工具           | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)                             
  loc                  | 代码行数统计             | https://github.com/cgag/loc                                                                                  
-
+ ko-time |          轻量级的springboot项目性能分析工具，通过追踪方法调用链路以及对应的运行时长快速定位性能瓶颈          | https://gitee.com/huoyo/ko-time
 #### SpringBoot支持
 
 https://spring.io/projects/spring-boot#support

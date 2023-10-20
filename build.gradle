@@ -111,6 +111,7 @@ subprojects {
 
     repositories {
         mavenLocal()
+//         <!--阿里云maven仓库更新会慢一两天左右，拉取失败的切换到maven中央仓库-->
         maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
         maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
         maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
@@ -129,6 +130,13 @@ subprojects {
 
     /* 添加通用依赖 */
     dependencies {
+
+//   暂不支持SpringBoot3     https://gitee.com/huoyo/ko-time/issues/I880X2
+        implementation 'cn.langpy:ko-time:2.4.2'
+        implementation 'javax.servlet:javax.servlet-api:4.0.1'
+        implementation 'org.springframework.boot:spring-boot-starter-aop'
+        implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
         implementation 'org.springframework.boot:spring-boot-starter-web'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         implementation 'org.springframework.data:spring-data-redis'
