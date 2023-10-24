@@ -42,9 +42,9 @@ plugins {
 
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = JavaVersion.VERSION_21
     /* 指定jdk版本 */
-    targetCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 description = "Spring Boot multi gradle project"
@@ -52,34 +52,35 @@ description = "Spring Boot multi gradle project"
 defaultTasks 'build'
 
 allprojects {
-    group "org.springframework.boot"
+    group = 'hxy.dream'
+    version = '1.0-SNAPSHOT'
 
-    repositories {
-        mavenLocal()
-        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
-        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
-        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
-        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
-        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
-        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
-        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
-        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
-        maven {
-            url "https://mirrors.huaweicloud.com/repository/maven/"
-            name = "华为开源镜像库"
-        }
-        maven { url "https://repo.spring.io/libs-release" }
-        mavenCentral()
-        if (version.contains('-')) {
-            maven { url "https://repo.spring.io/milestone" }
-        }
-        if (version.endsWith('-SNAPSHOT')) {
-            maven { url "https://repo.spring.io/snapshot" }
-        }
-
-        // 临时解决mybatis没有适配 SpringBoot3.0问题
-        maven { name "OSS Snapshot repository"; url "https://oss.sonatype.org/content/repositories/snapshots/" }
-    }
+//    repositories {
+//        mavenLocal()
+//        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
+//        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
+//        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
+//        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
+//        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
+//        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
+//        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
+//        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+//        maven {
+//            url "https://mirrors.huaweicloud.com/repository/maven/"
+//            name = "华为开源镜像库"
+//        }
+//        maven { url "https://repo.spring.io/libs-release" }
+//        mavenCentral()
+//        if (version.contains('-')) {
+//            maven { url "https://repo.spring.io/milestone" }
+//        }
+//        if (version.endsWith('-SNAPSHOT')) {
+//            maven { url "https://repo.spring.io/snapshot" }
+//        }
+//
+//        // 临时解决mybatis没有适配 SpringBoot3.0问题
+//        maven { name "OSS Snapshot repository"; url "https://oss.sonatype.org/content/repositories/snapshots/" }
+//    }
 
     configurations.all {
         resolutionStrategy.cacheChangingModulesFor 0, "minutes"
@@ -102,9 +103,6 @@ subprojects {
     /* 依赖管理插件仍然是一个spring-boot-gradle-plugin传递依赖，所以无需在build.gradle配置中明确列出此依赖。 */
     apply plugin: 'io.spring.dependency-management' /* 依赖管理，用来传递spring的依赖 */
 //    apply plugin: 'id "com.google.cloud.tools.jib" version "2.0.0"'
-
-    group = 'hxy.dream'
-    version = '1.0-SNAPSHOT'
 
 
     /* java编译的时候缺省状态下会因为中文字符而失败 */
@@ -163,10 +161,6 @@ subprojects {
     }
 
 }
-
-group 'hxy.dream'
-version '1.0-SNAPSHOT'
-
 
 //下面是google构建docker镜像插件的配置
 jib {
