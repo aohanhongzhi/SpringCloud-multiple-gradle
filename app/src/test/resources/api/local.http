@@ -76,3 +76,11 @@ GET localhost:8080/concurrentHashMap/wrong
 
 ### Long精度测试
 GET http://localhost:8080/long
+
+
+### 异步测试
+
+GET http://localhost:8080/async/test
+
+###
+GET http://localhost:8080/async/concurrency

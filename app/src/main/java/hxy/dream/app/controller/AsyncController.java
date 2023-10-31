@@ -57,7 +57,7 @@ public class AsyncController {
 
     @RequestMapping("concurrency")
     public Object concurrency() {
-        log.info("请求开始执行，是否为守护线程={}", Thread.currentThread().isDaemon());
+        log.info("请求开始执行，是否为守护线程={}当前类 {}", Thread.currentThread().isDaemon(), this);
 
         long start = System.currentTimeMillis();
 
