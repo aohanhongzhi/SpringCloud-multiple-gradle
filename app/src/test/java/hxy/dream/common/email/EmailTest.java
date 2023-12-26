@@ -1,6 +1,5 @@
 package hxy.dream.common.email;
 
-import com.sun.mail.pop3.POP3Folder;
 import hxy.dream.BaseTest;
 import jakarta.mail.Flags;
 import jakarta.mail.Folder;
@@ -9,6 +8,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.NoSuchProviderException;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
+import org.eclipse.angus.mail.pop3.POP3Folder;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

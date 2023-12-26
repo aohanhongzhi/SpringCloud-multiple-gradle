@@ -47,7 +47,7 @@ mybatis-plus:
 
 server:
   port: 8080
-  max-http-header-size: 102400 # 解决 https://gitee.com/eric-tutorial/SpringCloud-multiple-gradle/issues/I7KZ1I
+  max-http-request-header-size: 102400
 #  tomcat:
 #    threads:
 #      max: 2
