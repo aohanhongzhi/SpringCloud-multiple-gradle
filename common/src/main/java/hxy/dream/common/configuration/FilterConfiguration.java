@@ -1,7 +1,7 @@
 package hxy.dream.common.configuration;
 
 import hxy.dream.common.filter.RequestTrimFilter;
-import hxy.dream.common.filter.StreamFilter;
+import hxy.dream.common.filter.RepeatableFilter;
 import hxy.dream.common.filter.TokenFilter;
 import jakarta.servlet.DispatcherType;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -10,13 +10,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FilterConfiguration {
+
     @Bean
     public FilterRegistrationBean someFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new TokenFilter());
         registration.addUrlPatterns("/*");
         registration.setAsyncSupported(true);
-        registration.setName("repeatableFilter");
+        registration.setName("tokenFilter");
         registration.setOrder(FilterRegistrationBean.LOWEST_PRECEDENCE);
         return registration;
     }
@@ -32,7 +33,7 @@ public class FilterConfiguration {
         registration.setDispatcherTypes(DispatcherType.REQUEST);
         registration.setFilter(new RequestTrimFilter());
         registration.addUrlPatterns("/*");
-        registration.setName("RequestTrimFilter");
+        registration.setName("requestTrimFilter");
         registration.setOrder(Integer.MAX_VALUE - 1);
         return registration;
     }
@@ -46,9 +47,9 @@ public class FilterConfiguration {
     public FilterRegistrationBean streamFilter() {
         FilterRegistrationBean streamBean = new FilterRegistrationBean();
         streamBean.setDispatcherTypes(DispatcherType.REQUEST);
-        streamBean.setFilter(new StreamFilter());
-        streamBean.setName("StreamFilter");
-        streamBean.setOrder(Integer.MAX_VALUE);
+        streamBean.setFilter(new RepeatableFilter());
+        streamBean.setName("repeatableFilter");
+        streamBean.setOrder(FilterRegistrationBean.LOWEST_PRECEDENCE);
         return streamBean;
     }
 }

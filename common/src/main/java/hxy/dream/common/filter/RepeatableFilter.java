@@ -18,7 +18,7 @@ import java.util.Set;
 /**
  * 过滤器封装下request再传到后续处理
  */
-public class StreamFilter implements Filter {
+public class RepeatableFilter implements Filter {
 
     /**
      * 不需要重复读取的路由
