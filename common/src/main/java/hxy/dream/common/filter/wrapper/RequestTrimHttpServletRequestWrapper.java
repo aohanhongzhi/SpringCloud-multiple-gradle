@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * URL query param。但是测试 表单提交参数没有获取到
  * 请求参数trim处理，非json参数
  */
 public class RequestTrimHttpServletRequestWrapper extends HttpServletRequestWrapper {

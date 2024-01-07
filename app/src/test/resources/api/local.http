@@ -1,7 +1,7 @@
 GET http://localhost:8080/user/get/1
 
 ### 添加
-POST http://localhost:8080/user/add/body
+POST {{host}}/user/add/body
 Content-Type: application/json
 Accept: application/json
 
@@ -13,7 +13,7 @@ Accept: application/json
 }
 
 ### 添加
-POST http://localhost:8080/user/add/body
+POST {{host}}/user/add/body
 Content-Type: application/json
 Accept: application/json
 
@@ -30,13 +30,13 @@ Accept: application/json
 DELETE http://localhost:8080/user/delete?id=2
 
 ### 添加
-POST http://localhost:8080/user/add2?gender=0&name=张三&age=22
+POST {{host}}/user/add2?gender=0&name=张三&age=22
 Content-Type: application/x-www-form-urlencoded
 Accept: application/json
 
 
 ### 列表
-GET http://localhost:8080/user/list
+GET http://localhost:8082/user/list
 
 
 ### 事务测试传播机制
@@ -69,7 +69,7 @@ GET localhost:8080/AsyncServlet
 
 
 ### ThreadLocal 线程安全测试
-GET localhost:8080/threadlocal/wrong?userId=122
+GET {{host}}/threadlocal/wrong?userId=122
 
 ### ConcurentHashMap
 GET localhost:8080/concurrentHashMap/wrong
