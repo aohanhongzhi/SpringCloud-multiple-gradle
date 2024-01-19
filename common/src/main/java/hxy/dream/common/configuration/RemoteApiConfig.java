@@ -14,7 +14,7 @@ public class RemoteApiConfig {
     @Bean
     RemoteApi remoteApiService() {
         WebClient client = WebClient.builder().baseUrl("https://httpbin.org/").build();
-        HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(client)).build();
+        HttpServiceProxyFactory httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(WebClientAdapter.create(client)).build();
         // 后期会自动扫描注入，不需要手动指定注入了。但是上面host配置肯定还是需要的。
         return httpServiceProxyFactory.createClient(RemoteApi.class);
     }

@@ -111,29 +111,30 @@ https\://services.gradle.org/distributions/gradle-7.4-bin.zip
 
 ![img_1.png](asset/img/gradle.png)
 
- 技术                   | 说明                 | 官网                                                                                                           
-----------------------|--------------------|--------------------------------------------------------------------------------------------------------------
- Spring Boot          | 容器+MVC框架           | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)                             
- Gradle               | 项目构建工具             | [https://gradle.com/](https://gradle.com/)                                                                   
- Spring Security      | 认证和授权框架            | [https://spring.io/projects/spring-security](https://spring.io/projects/spring-security)                     
- MyBatis              | ORM框架              | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)             
- MyBatisPlus          | ORM框架补充            | [https://mybatis.plus/](https://mybatis.plus/)                                                               
- MyBatisGenerator     | 数据层代码生成            | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)                   
- Swagger-UI           | 文档生产工具             | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)                       
- Hibernator-Validator | 验证框架               | [http://hibernate.org/validator/](http://hibernate.org/validator/)                                           
- Elasticsearch        | 搜索引擎               | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)                         
- RabbitMq             | 消息队列               | [https://www.rabbitmq.com/](https://www.rabbitmq.com/)                                                       
- Redis                | 分布式缓存              | [https://redis.io/](https://redis.io/)                                                                       
- redisson             | 分布式锁，布隆过滤器         | https://github.com/redisson/redisson                                                                         
- MongoDb              | NoSql数据库           | [https://www.mongodb.com/](https://www.mongodb.com/)                                                         
- Docker               | 应用容器引擎             | [https://www.docker.com/](https://www.docker.com/)                                                           
- Hikari               | SpringBoot默认数据库连接池 | [https://github.com/brettwooldridge/HikariCP](https://github.com/brettwooldridge/HikariCP)                   
- Druid                | 数据库连接池             | [https://github.com/alibaba/druid](https://github.com/alibaba/druid)                                         
- JWT                  | JWT登录支持            | [https://github.com/jwtk/jjwt](https://github.com/jwtk/jjwt)                                                 
- LogStash             | 日志收集               | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder) 
- Lombok               | 简化对象封装工具           | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)                             
- loc                  | 代码行数统计             | https://github.com/cgag/loc                                                                                  
- ko-time |          轻量级的springboot项目性能分析工具，通过追踪方法调用链路以及对应的运行时长快速定位性能瓶颈          | https://gitee.com/huoyo/ko-time
+ 技术                   | 说明                                                 | 官网                                                                                                           
+----------------------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------
+ Spring Boot          | 容器+MVC框架                                           | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)                             
+ Gradle               | 项目构建工具                                             | [https://gradle.com/](https://gradle.com/)                                                                   
+ Spring Security      | 认证和授权框架                                            | [https://spring.io/projects/spring-security](https://spring.io/projects/spring-security)                     
+ MyBatis              | ORM框架                                              | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)             
+ MyBatisPlus          | ORM框架补充                                            | [https://mybatis.plus/](https://mybatis.plus/)                                                               
+ MyBatisGenerator     | 数据层代码生成                                            | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)                   
+ Swagger-UI           | 文档生产工具                                             | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)                       
+ Hibernator-Validator | 验证框架                                               | [http://hibernate.org/validator/](http://hibernate.org/validator/)                                           
+ Elasticsearch        | 搜索引擎                                               | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)                         
+ RabbitMq             | 消息队列                                               | [https://www.rabbitmq.com/](https://www.rabbitmq.com/)                                                       
+ Redis                | 分布式缓存                                              | [https://redis.io/](https://redis.io/)                                                                       
+ redisson             | 分布式锁，布隆过滤器                                         | https://github.com/redisson/redisson                                                                         
+ MongoDb              | NoSql数据库                                           | [https://www.mongodb.com/](https://www.mongodb.com/)                                                         
+ Docker               | 应用容器引擎                                             | [https://www.docker.com/](https://www.docker.com/)                                                           
+ Hikari               | SpringBoot默认数据库连接池                                 | [https://github.com/brettwooldridge/HikariCP](https://github.com/brettwooldridge/HikariCP)                   
+ Druid                | 数据库连接池                                             | [https://github.com/alibaba/druid](https://github.com/alibaba/druid)                                         
+ JWT                  | JWT登录支持                                            | [https://github.com/jwtk/jjwt](https://github.com/jwtk/jjwt)                                                 
+ LogStash             | 日志收集                                               | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder) 
+ Lombok               | 简化对象封装工具                                           | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)                             
+ loc                  | 代码行数统计                                             | https://github.com/cgag/loc                                                                                  
+ ko-time              | 轻量级的springboot项目性能分析工具，通过追踪方法调用链路以及对应的运行时长快速定位性能瓶颈 | https://gitee.com/huoyo/ko-time                                                                              
+
 #### SpringBoot支持
 
 https://spring.io/projects/spring-boot#support
@@ -182,13 +183,40 @@ google出品的一个插件，可以直接将SpringBoot构建推送到Docker仓�
 
 ## 统一Long类型序列化
 
+### 方案1
+
+[BaseLongSerializer.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fserializer%2FBaseLongSerializer.java)
+
+### 方案2
+
+https://mp.weixin.qq.com/s/qhG9T0VdW4VkVy2VJJmftg
+
+```java
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
+@Configuration
+public class JacksonConfiguration {
+
+    @Bean
+    public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+        return builder -> {
+            // 把 Long 类型序列化为 String
+            builder.serializerByType(Long.class, ToStringSerializer.instance);
+        };
+    }
+}
+```
+
 前端JS内置的number类型是基于32位整数，Number类型的最大安全整数为9007199254740991，当Java Long型的值大小超过JS
 Number的最大安全整数时，超出此范围的整数值可能会被破坏，丢失精度。
 
 解决办法就是后端将超过精度的Long和long类型转成String给前端展示即可。
 
-> [JSON类库Jackson优雅序列化Java类
-](https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6)
+> [JSON类库Jackson优雅序列化Java类](https://docs.qq.com/doc/DSFpuQkRrdk9xUlF6)
 
 ## 统一序列化枚举
 
@@ -251,7 +279,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###    
+###      
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
