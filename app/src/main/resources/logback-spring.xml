@@ -49,7 +49,7 @@
             <totalSizeCap>200MB</totalSizeCap>
         </rollingPolicy>
         <encoder><!-- 格式化输出 -->
-            <pattern>%date %level [%thread] %logger{36} [%file : %line] %msg%n</pattern>
+            <pattern>%date %highlight(%-5level) [%thread]  %yellow(at %class.%method) \(%file:%line\) - %msg%n</pattern>
         </encoder>
     </appender>
 
