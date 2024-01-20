@@ -22,6 +22,7 @@ Eric-Dream
  参数全局trim()                                                                        | [StringTrimDeserializer](common/src/main/java/hxy/dream/common/serializer/StringTrimDeserializer.java)  | 避免异常数据                                          
  Long类型超长转String                                                                   |                                                                                                         | 解决前端无法正确显示超长String                              
  前端null传到后端成"null"字符串                                                              | [StringToStringConverter](common/src/main/java/hxy/dream/common/converter/StringToStringConverter.java) | 解决"null"等问题                                     
+ 敏感信息从程序外配置文件读取                                                                    |                [RemoteEnvironmentPostProcessor.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FRemoteEnvironmentPostProcessor.java)                                                                                         | 从程序外的配置文件读取数据库的账号密码信息                           
 
 具体框架如下表：
 
@@ -279,7 +280,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###      
+###       
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
