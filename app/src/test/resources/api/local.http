@@ -1,4 +1,4 @@
-GET http://localhost:8080/user/get/1
+GET  {{host}}/user/get/1
 
 ### 添加
 POST {{host}}/user/add/body
@@ -27,7 +27,7 @@ Accept: application/json
 }
 
 ### 删除
-DELETE http://localhost:8080/user/delete?id=2
+DELETE {{host}}/user/delete?id=2
 
 ### 添加
 POST {{host}}/user/add2?gender=0&name=张三&age=22
@@ -36,23 +36,23 @@ Accept: application/json
 
 
 ### 列表
-GET http://localhost:8082/user/list
+GET  {{host}}/user/list
 
 
 ### 事务测试传播机制
-GET http://localhost:8080/transaction/propagation
+GET  {{host}}/transaction/propagation
 
 ### 事务隔离级别测试
-GET http://localhost:8080/transaction/isolation
+GET  {{host}}/transaction/isolation
 
 ### 事务测试
-GET http://localhost:8080/
+GET  {{host}}/
 
 ### 返回json测试
-GET http://localhost:8080/exception
+GET  {{host}}/exception
 
 ###
-GET http://localhost:8080/exception-output
+GET  {{host}}/exception-output
 
 
 ### servlet
@@ -75,12 +75,12 @@ GET {{host}}/threadlocal/wrong?userId=122
 GET localhost:8080/concurrentHashMap/wrong
 
 ### Long精度测试
-GET http://localhost:8080/long
+GET  {{host}}/long
 
 
 ### 异步测试
 
-GET http://localhost:8080/async/test
+GET  {{host}}/async/test
 
 ###
-GET http://localhost:8080/async/concurrency
+GET  {{host}}/async/concurrency

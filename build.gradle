@@ -6,7 +6,7 @@
 */
 buildscript {
     ext {
-        springBootVersion = '3.2.1' // https://spring.io/projects/spring-boot#learn
+        springBootVersion = '3.2.2' // https://spring.io/projects/spring-boot#learn
     }
     repositories {
         mavenLocal()
@@ -33,9 +33,9 @@ buildscript {
 
 
 plugins {
-    id 'io.spring.dependency-management' version '1.1.4'
-    // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id 'java-library'
+    // https://github.com/spring-gradle-plugins/dependency-management-plugin
+    id 'io.spring.dependency-management' version '1.1.4'
     id 'idea'
     id "com.google.cloud.tools.jib" version "2.0.0"
 }
@@ -145,7 +145,7 @@ subprojects {
 
         implementation 'com.zaxxer:HikariCP:5.1.0'
         implementation 'p6spy:p6spy:3.9.1'
-        implementation 'commons-io:commons-io:2.11.0'
+        implementation 'commons-io:commons-io:2.15.0'
 
         implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
         implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2' // 	Java 8 Datatypes
