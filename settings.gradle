@@ -2,6 +2,7 @@ pluginManagement {
     repositories {
         maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
         maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
+        mavenCentral()
         gradlePluginPortal()
     }
 }
