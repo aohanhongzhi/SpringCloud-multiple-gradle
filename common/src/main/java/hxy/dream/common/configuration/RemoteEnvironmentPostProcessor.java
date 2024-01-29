@@ -42,7 +42,7 @@ public class RemoteEnvironmentPostProcessor implements EnvironmentPostProcessor 
             } else {
                 final Properties properties = new Properties();
 
-                // 读取配置文件，从配置文件中加载这个变量。
+                // 读取配置文件，从配置文件中加载这个变量。 【腾讯文档】系统配置信息 https://docs.qq.com/doc/DSFdLamxuUXNWRVZJ
                 String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
