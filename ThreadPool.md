@@ -25,6 +25,8 @@
         }
 ```
 
+直接调用 [ThreadPoolExecutorTool.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Futil%2FThreadPoolExecutorTool.java)
+
 ## SpringBoot的自带线程池
 
 ![](asset/img/SpringBoot上下文调试.png)
