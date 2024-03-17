@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public interface UserService {
+
     UserModel add(UserParam userParam);
 
     UserModel get(String id);
@@ -18,4 +19,5 @@ public interface UserService {
     List<UserModel> list();
 
     BaseResponseVO delete(Integer id);
+
 }

@@ -23,6 +23,7 @@ import java.io.PrintWriter;
  */
 @WebServlet(urlPatterns = "/AsyncServlet", asyncSupported = true)
 public class AsyncServlet extends HttpServlet {
+
     private static final Logger log = LoggerFactory.getLogger(AsyncServlet.class);
 
     /**

@@ -14,6 +14,7 @@ import java.util.HashMap;
  */
 @RestController
 public class LongController {
+
     @GetMapping(value = "/long")
     public BaseResponseVO testLong() {
         HashMap map = new HashMap();
@@ -28,4 +29,5 @@ public class LongController {
         map.put("比较小，Browser不会失去精度的", l4);
         return BaseResponseVO.success(map);
     }
+
 }

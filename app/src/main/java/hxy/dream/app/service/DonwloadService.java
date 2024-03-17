@@ -9,5 +9,7 @@ import hxy.dream.entity.vo.BaseResponseVO;
  * @date 2020/12/24
  */
 public interface DonwloadService {
+
     BaseResponseVO multipleDonwload();
+
 }

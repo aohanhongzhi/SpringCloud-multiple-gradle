@@ -29,6 +29,14 @@
 
 ## SpringBoot的自带线程池
 
+```java
+    /**
+     * 注意这个线程池的最大线程数队列长度
+     */
+    @Autowired
+    private ThreadPoolTaskExecutor applicationTaskExecutor;
+ ```
+
 ![](asset/img/SpringBoot上下文调试.png)
 ![](asset/img/定位到自带线程池.png)
 ![](./asset/img/SpringBoot的默认线程池.png)

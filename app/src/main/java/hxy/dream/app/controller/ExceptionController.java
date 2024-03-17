@@ -17,6 +17,7 @@ import java.io.IOException;
  */
 @RestController
 public class ExceptionController {
+
     private static final Logger log = LoggerFactory.getLogger(ExceptionController.class);
 
     @RequestMapping("/exception")

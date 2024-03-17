@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/deadlock")
 public class DeadLockController {
+
     Object lock = new Object();
     Object lock2 = new Object();
 

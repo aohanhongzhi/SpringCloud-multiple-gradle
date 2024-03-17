@@ -22,10 +22,10 @@ import jakarta.annotation.Resource;
 public class TransactionService {
 
     @Resource
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Resource
-    TransactionSubService transactionSubService;
+    private TransactionSubService transactionSubService;
 
     /**
      * 测试事务

@@ -18,7 +18,7 @@ import jakarta.annotation.Resource;
 public class TransactionSubService {
 
     @Resource
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Transactional(propagation = Propagation.REQUIRED)
     public void saveChildren() {

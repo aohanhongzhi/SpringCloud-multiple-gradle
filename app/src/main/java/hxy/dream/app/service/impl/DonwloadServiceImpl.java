@@ -15,7 +15,8 @@ import java.io.File;
  */
 @Service
 public class DonwloadServiceImpl implements DonwloadService {
-    String url = "https://typora.io/windows/typora-setup-x64.exe";
+
+    private String url = "https://typora.io/windows/typora-setup-x64.exe";
 
     @Override
     public BaseResponseVO multipleDonwload() {
@@ -33,9 +34,9 @@ public class DonwloadServiceImpl implements DonwloadService {
         return null;
     }
 
-     void download(long totalSize, int index) {
+    void download(long totalSize, int index) {
         System.out.println("===>" + index);
-       String filePath =  System.getProperty("user.dir") + File.separator+"typora-setup-x64-7.exe";
+        String filePath = System.getProperty("user.dir") + File.separator + "typora-setup-x64-7.exe";
 
         long size = 3 * 1024 * 1024;                 // 每块下载 3M
         long start = index * size;
@@ -49,7 +50,7 @@ public class DonwloadServiceImpl implements DonwloadService {
                     if (end < totalSize) {           // 若未下载完，则继续下载下一块
                         download(totalSize, index + 1);
                     } else {
-                        System.out.println("下载完成"+filePath);
+                        System.out.println("下载完成" + filePath);
                     }
                 })
                 .start();

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DownloadController {
 
     @Autowired
-    DonwloadService donwloadService;
+    private DonwloadService donwloadService;
 
     @GetMapping("multi")
     public BaseResponseVO download() {

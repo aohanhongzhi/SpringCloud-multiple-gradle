@@ -30,7 +30,7 @@ public class AsyncController {
      * 注意这个线程池的最大线程数队列长度
      */
     @Autowired
-    ThreadPoolTaskExecutor applicationTaskExecutor;
+    private ThreadPoolTaskExecutor applicationTaskExecutor;
 
     /**
      * 从这个接口可以更好的理解异步模型的一种实现手段就是多线程！
