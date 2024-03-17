@@ -11,6 +11,7 @@ import java.net.UnknownHostException;
  * 经过实际验证确实可以取到nginx代理后的真实客户端地址
  */
 public class IPAddress {
+
     private static final Logger log = LoggerFactory.getLogger(IPAddress.class);
 
     /**

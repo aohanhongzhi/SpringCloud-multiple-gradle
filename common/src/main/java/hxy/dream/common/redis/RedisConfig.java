@@ -37,7 +37,7 @@ import java.util.Set;
 public class RedisConfig extends CachingConfigurerSupport {
 
     @Autowired
-    RedisConnectionFactory redisConnectionFactory;
+    private RedisConnectionFactory redisConnectionFactory;
 
     /**
      * 这个仅仅针对Redis 序列化问题解决！ 不能纳入到全局，否则会造成返回前端带上了类名。

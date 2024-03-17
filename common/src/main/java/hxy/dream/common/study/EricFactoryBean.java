@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class EricFactoryBean implements FactoryBean<EricService> {
+
     @Override
     public EricService getObject() throws Exception {
         return new EricService();

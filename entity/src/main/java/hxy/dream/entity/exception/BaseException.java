@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BaseException extends RuntimeException {
+
     private String message;
     private int code = 0;
 

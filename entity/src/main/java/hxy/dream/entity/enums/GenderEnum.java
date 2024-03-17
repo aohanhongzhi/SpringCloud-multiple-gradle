@@ -8,8 +8,8 @@ import java.util.Optional;
 
 
 public enum GenderEnum implements BaseEnum {
-    BOY(100, "男"), GIRL(200, "女"), UNKNOWN(0, "未知");
 
+    BOY(100, "男"), GIRL(200, "女"), UNKNOWN(0, "未知");
 
     @EnumValue//标记数据库存的值是code
     private final Integer code;
@@ -20,7 +20,6 @@ public enum GenderEnum implements BaseEnum {
         this.code = code;
         this.description = description;
     }
-
 
     public static GenderEnum getEnumByCode(Integer code) {
 //        for (GenderEnum genderEnum:values()){

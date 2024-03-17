@@ -24,6 +24,7 @@ import java.lang.reflect.Field;
  */
 @Slf4j
 public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
+
     @Override
     public BaseEnum deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
 
@@ -33,7 +34,6 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
             if (inputParameter == null || inputParameter.length() == 0) {
                 return null;
             }
-
 
             JsonStreamContext parsingContext = jp.getParsingContext();
 
@@ -97,7 +97,6 @@ public class BaseEnumDeserializer extends JsonDeserializer<BaseEnum> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
 
     }
 }
