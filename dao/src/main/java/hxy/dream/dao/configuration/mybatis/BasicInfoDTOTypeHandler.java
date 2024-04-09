@@ -24,7 +24,7 @@ public class BasicInfoDTOTypeHandler extends JacksonTypeHandler {
     }
 
     @Override
-    protected Object parse(String json) {
+    public Object parse(String json) {
         try {
             return getObjectMapper().readValue(json, new TypeReference<List<BasicInfoDTO>>() {
             });

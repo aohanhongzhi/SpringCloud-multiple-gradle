@@ -3,7 +3,7 @@ package hxy.dream.common.configuration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
+import com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -37,17 +37,23 @@ public class DataSourceConfigLoader implements BeanPostProcessor, EnvironmentAwa
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
-        if (bean instanceof MybatisAutoConfiguration) { //在mybatis初始化前搞定配置信息
+        if (bean instanceof MybatisPlusAutoConfiguration) { //在mybatis初始化前搞定配置信息
             Map<String, Object> systemProperties = environment.getSystemProperties();
             // 读取配置文件，从配置文件中加载这个变量。
             String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 JsonNode jsonObject = objectMapper.readTree(new File(database));
-                String databaseUrl = jsonObject.get("spring.r2dbc.url").textValue();
+
+                String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
                 String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
                 String password = jsonObject.get("spring.datasource.password").textValue();
-                systemProperties.put("spring.r2dbc.url", databaseUrl);
+                systemProperties.put("spring.datasource.url", databaseUrl);
+                systemProperties.put("spring.datasource.username", databaseUsername);
+                systemProperties.put("spring.datasource.password", password);
+
+                String r2dbcDatabaseUrl = jsonObject.get("spring.r2dbc.url").textValue();
+                systemProperties.put("spring.r2dbc.url", r2dbcDatabaseUrl);
                 systemProperties.put("spring.r2dbc.username", databaseUsername);
                 systemProperties.put("spring.r2dbc.password", password);
             } catch (JsonProcessingException e) {
