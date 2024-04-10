@@ -33,6 +33,8 @@ https://www.azul.com/
 
 ### 热加载技术
 
+这个针对的是Jetbrain Runtime ，所以其他JDK慎重。实际测试jdk17 21都可以正常运行。
+
 https://github.com/HotswapProjects/HotswapAgent
 
 ```shell
@@ -45,7 +47,7 @@ https://github.com/HotswapProjects/HotswapAgent
 
 注意需要在**debug**模式下启动才能生效。
 
-Build -> Rebuild Project (Ctrl + Shift + F9) 重新编译和加载修改的类文件即可。
+修改代码后，Build -> Rebuild Project (Ctrl + Shift + F9) 重新编译和加载修改的类文件即可生效。
 
 > http://blog.houxiaoyi.cn/#/src/Java/%E7%83%AD%E5%8A%A0%E8%BD%BD
 
@@ -293,7 +295,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###          
+###           
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
