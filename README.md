@@ -33,7 +33,7 @@ https://www.azul.com/
 
 ### 热加载技术
 
-这个针对的是Jetbrain Runtime ，所以其他JDK慎重。实际测试jdk17 21都可以正常运行。
+这个针对的是[Jetbrains Runtime](https://github.com/JetBrains/JetBrainsRuntime/releases) ，所以其他JDK慎重。实际测试jdk17 21都可以正常运行。
 
 https://github.com/HotswapProjects/HotswapAgent
 
