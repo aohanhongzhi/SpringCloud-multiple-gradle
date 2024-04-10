@@ -1,8 +1,7 @@
 package hxy.dream.dao.configuration.mybatis;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-
-import hxy.dream.dao.util.KeyCenterUtils;
+import hxy.dream.dao.util.AesCbcEncryption;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.stereotype.Service;
@@ -27,26 +26,26 @@ public class CustomTypeHandler<T> extends BaseTypeHandler<T> {
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException {
-        ps.setString(i, KeyCenterUtils.encrypt((String) parameter));
+        ps.setString(i, AesCbcEncryption.encrypt((String) parameter));
     }
 
     @Override
     public T getNullableResult(ResultSet rs, String columnName) throws SQLException {
         String columnValue = rs.getString(columnName);
         //有一些可能是空字符
-        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) KeyCenterUtils.decrypt(columnValue);
+        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
     }
 
     @Override
     public T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         String columnValue = rs.getString(columnIndex);
-        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) KeyCenterUtils.decrypt(columnValue);
+        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
     }
 
     @Override
     public T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         String columnValue = cs.getString(columnIndex);
-        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) KeyCenterUtils.decrypt(columnValue);
+        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
     }
 }
 
