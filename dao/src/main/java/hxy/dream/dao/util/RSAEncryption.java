@@ -188,16 +188,16 @@ public class RSAEncryption {
      *
      * @param args
      */
-    public static void main(String[] args) {
-
-        String input = "Hello World!";
-//        second(input);
-
-        String s = infoEncrypt(input);
-        System.out.println("加密后密码" + s);
-        String s1 = infoDecrypt(s);
-        System.out.println("解密后的密码" + s1);
-    }
+//    public static void main(String[] args) {
+//
+//        String input = "Hello World!";
+////        second(input);
+//
+//        String s = infoEncrypt(input);
+//        System.out.println("加密后密码" + s);
+//        String s1 = infoDecrypt(s);
+//        System.out.println("解密后的密码" + s1);
+//    }
 
     static String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCLUKF8+tqeLt+MESnrFxrUDkt56MocLoh/On2I\n" +
             "+jm/0W+BcnAlPC3Q6xH5lQjNklqcN+XldKmGqkDQS/qT9/ZcNWNv1oI7skAP7TqPupRdMIzvd0rg\n" +

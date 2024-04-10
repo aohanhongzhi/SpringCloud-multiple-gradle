@@ -20,42 +20,42 @@ public class AesCbcEncryption {
     static String key = "qwertyuiopasdfgr";
     static String iv = "qwertyuiopasdfgh";
 
-    public static void main(String[] args) {
-        try {
-            // 原始明文
-            String plaintext = "oooooo灰灰";
-
-
-            System.out.println("明文：" + plaintext);
-            System.out.println("key：" + key);
-            System.out.println("iv：" + iv);
-
-            // 加密
-            byte[] encrypted = cbcEncrypt(plaintext.getBytes(StandardCharsets.UTF_8), key.getBytes(StandardCharsets.UTF_8), iv.getBytes(StandardCharsets.UTF_8));
-            String encryptedString = bytesToHex(encrypted);
-            System.out.println("加密后的密文：" + encryptedString);
-
-            // Base64编码
-            String encryptedBase64 = base64Encode(encrypted);
-            System.out.println("Base64编码后的密文：" + encryptedBase64);
-
-            // 解密
-            byte[] encrypted1 = hexToBytes(encryptedString);
-            byte[] decrypted = cbcDecrypt(encrypted1, key.getBytes(StandardCharsets.UTF_8), iv.getBytes(StandardCharsets.UTF_8));
-            String decryptedText = new String(decrypted, StandardCharsets.UTF_8);
-            System.out.println("解密后的明文：" + decryptedText);
-
-            // 封装后的测试
-            String encrypt = encrypt(plaintext);
-            System.out.println("加密后的base64文本：" + encrypt);
-            String decrypt = decrypt(encrypt);
-            System.out.println("解密后的文本：" + decrypt);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//        try {
+//            // 原始明文
+//            String plaintext = "oooooo灰灰";
+//
+//
+//            System.out.println("明文：" + plaintext);
+//            System.out.println("key：" + key);
+//            System.out.println("iv：" + iv);
+//
+//            // 加密
+//            byte[] encrypted = cbcEncrypt(plaintext.getBytes(StandardCharsets.UTF_8), key.getBytes(StandardCharsets.UTF_8), iv.getBytes(StandardCharsets.UTF_8));
+//            String encryptedString = bytesToHex(encrypted);
+//            System.out.println("加密后的密文：" + encryptedString);
+//
+//            // Base64编码
+//            String encryptedBase64 = base64Encode(encrypted);
+//            System.out.println("Base64编码后的密文：" + encryptedBase64);
+//
+//            // 解密
+//            byte[] encrypted1 = hexToBytes(encryptedString);
+//            byte[] decrypted = cbcDecrypt(encrypted1, key.getBytes(StandardCharsets.UTF_8), iv.getBytes(StandardCharsets.UTF_8));
+//            String decryptedText = new String(decrypted, StandardCharsets.UTF_8);
+//            System.out.println("解密后的明文：" + decryptedText);
+//
+//            // 封装后的测试
+//            String encrypt = encrypt(plaintext);
+//            System.out.println("加密后的base64文本：" + encrypt);
+//            String decrypt = decrypt(encrypt);
+//            System.out.println("解密后的文本：" + decrypt);
+//
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static String encrypt(String rawString) {
         byte[] encrypted = null;
