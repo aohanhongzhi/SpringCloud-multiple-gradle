@@ -43,7 +43,7 @@ https://github.com/HotswapProjects/HotswapAgent
 
 ![img_1.png](asset/img/update-vm-param.png)
 
-![img.png](img.png)
+![img.png](asset/img/HotswapAgentLocation.png)
 
 注意需要在**debug**模式下启动才能生效。
 
