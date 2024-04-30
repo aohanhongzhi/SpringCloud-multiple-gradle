@@ -1,9 +1,9 @@
 package hxy.dream.app.service.impl;
 
-import com.ejlchina.okhttps.OkHttps;
 import hxy.dream.app.service.DonwloadService;
 import hxy.dream.entity.vo.BaseResponseVO;
 import org.springframework.stereotype.Service;
+import cn.zhxu.okhttps.OkHttps;
 
 import java.io.File;
 

@@ -142,6 +142,7 @@ https\://services.gradle.org/distributions/gradle-7.4-bin.zip
  Lombok               | 简化对象封装工具                                           | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)                             
  loc                  | 代码行数统计                                             | https://github.com/cgag/loc                                                                                  
  ko-time              | 轻量级的springboot项目性能分析工具，通过追踪方法调用链路以及对应的运行时长快速定位性能瓶颈 | https://gitee.com/huoyo/ko-time                                                                              
+ okhttps              | 强大轻量 且 前后端通用的 HTTP 客户端，同时支持 WebSocket 以及 Stomp 协议  | https://ok.zhxu.cn/                                                                                          
 
 #### SpringBoot支持
 
@@ -295,7 +296,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###           
+###            
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.

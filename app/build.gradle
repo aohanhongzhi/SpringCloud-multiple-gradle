@@ -7,11 +7,12 @@ bootJar.enabled = true
 dependencies {
     api project(':common')
 
+    implementation 'cn.zhxu:okhttps:4.0.2'
     implementation 'org.springframework.data:spring-data-redis'
 //    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.7' // 已经不支持了
-    implementation('com.yomahub:tlog-all-spring-boot-starter:1.5.1') {
+//    implementation('com.yomahub:tlog-all-spring-boot-starter:1.5.1') {
 //        exclude group: 'pull-parser', module: 'pull-parser'
-    }
+//    }
     implementation 'org.dom4j:dom4j:2.1.4'
 //    implementation 'pull-parser:pull-parser:2.1.10'
 }

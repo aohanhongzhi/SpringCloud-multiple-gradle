@@ -15,17 +15,18 @@ repositories {
 dependencies {
     api project(':dao') /* 子模块之间的依赖 */
 
-    api 'com.ejlchina:okhttps-jackson:3.5.3'
+    implementation 'cn.zhxu:okhttps:4.0.2'
+    implementation 'cn.zhxu:okhttps-jackson:4.0.2'
     api 'org.springframework.boot:spring-boot-starter-mail'
 
     implementation 'org.springframework.data:spring-data-redis'
     implementation 'redis.clients:jedis'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2' // 	Java 8 Datatypes
-    implementation 'com.fasterxml.jackson:jackson-bom:2.15.2' // 	Java 8 Datatypes
-    implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
-    implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.19'
-    implementation 'org.redisson:redisson:3.15.0'
+    implementation 'com.fasterxml.jackson:jackson-bom:2.17.0' // 	Java 8 Datatypes
+    implementation group: 'org.javassist', name: 'javassist', version: '3.30.2-GA'
+    implementation group: 'org.aspectj', name: 'aspectjrt', version: '1.9.22'
+    implementation 'org.redisson:redisson:3.28.0'
 
 //    https://cnblogs.com/keeya/p/13846807.html
 //    https://github.com/redisson/redisson/tree/master/redisson-spring-boot-starter
