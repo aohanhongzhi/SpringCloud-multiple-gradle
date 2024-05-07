@@ -1,5 +1,5 @@
 <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">Eric-Dream</h1>
-===
+
 本工程承担日常实验的作用，任何先行的尝试都在这里实践与落地。成熟的方案设计会在 [base-server](https://gitee.com/aohanhongzhi/springboot-base)
 里面落地到生产。
 
@@ -156,6 +156,12 @@ https://spring.io/projects/spring-boot#support
 
 ```shell
 ./gradlew  bootRun -x test
+```
+
+带上参数
+
+```
+./gradlew bootRun -x test --args='--spring.profiles.active=test'
 ```
 
 ```shell
