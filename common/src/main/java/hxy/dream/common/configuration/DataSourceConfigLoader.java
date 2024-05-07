@@ -48,6 +48,11 @@ public class DataSourceConfigLoader implements BeanPostProcessor, EnvironmentAwa
                 String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
                 String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
                 String password = jsonObject.get("spring.datasource.password").textValue();
+                if (databaseUrl.contains("jdbc:p6spy:mysql")) {
+                    systemProperties.put("spring.datasource.driver-class-name","com.p6spy.engine.spy.P6SpyDriver");
+				}else {
+                    systemProperties.put("spring.datasource.driver-class-name","com.mysql.cj.jdbc.Driver");
+				}
                 systemProperties.put("spring.datasource.url", databaseUrl);
                 systemProperties.put("spring.datasource.username", databaseUsername);
                 systemProperties.put("spring.datasource.password", password);

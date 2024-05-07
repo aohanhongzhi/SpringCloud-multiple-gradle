@@ -14,3 +14,6 @@ build/
 /app/src/main/resources/application-dev.yml
 class/
 bin/
+.classpath
+.project
+.settings/
