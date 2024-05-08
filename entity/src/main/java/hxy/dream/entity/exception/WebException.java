@@ -10,7 +10,8 @@ import org.springframework.http.HttpStatus;
  */
 public class WebException extends BaseException {
 
-    private HttpStatus httpStatus;
+    private static final long serialVersionUID = -2175679614507721010L;
+	private HttpStatus httpStatus;
     private String message;
 
     public WebException(String message, HttpStatus httpStatus) {
