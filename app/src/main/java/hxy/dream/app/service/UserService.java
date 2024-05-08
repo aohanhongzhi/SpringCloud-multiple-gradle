@@ -10,14 +10,14 @@ import java.util.List;
 @Service
 public interface UserService {
 
-    UserModel add(UserParam userParam);
+	UserModel add(UserParam userParam);
 
-    UserModel get(String id);
+	UserModel get(String id);
 
-    BaseResponseVO exist(String id);
+	BaseResponseVO<?> exist(String id);
 
-    List<UserModel> list();
+	List<UserModel> list();
 
-    BaseResponseVO delete(Integer id);
+	BaseResponseVO<?> delete(Integer id);
 
 }

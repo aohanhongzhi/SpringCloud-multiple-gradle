@@ -19,7 +19,7 @@ public class DonwloadServiceImpl implements DonwloadService {
     private String url = "https://typora.io/windows/typora-setup-x64.exe";
 
     @Override
-    public BaseResponseVO multipleDonwload() {
+    public BaseResponseVO<?> multipleDonwload() {
 
         System.out.println("程序开始了");
 

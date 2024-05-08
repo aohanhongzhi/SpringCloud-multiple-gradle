@@ -60,6 +60,7 @@ public class ConcurrentHashMapController {
 
         });
 
+        forkJoinPool.close();
         //等待所有任务完成
         forkJoinPool.shutdown();
         forkJoinPool.awaitTermination(1, TimeUnit.HOURS);

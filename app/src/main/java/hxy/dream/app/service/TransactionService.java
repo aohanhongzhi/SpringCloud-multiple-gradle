@@ -1,6 +1,5 @@
 package hxy.dream.app.service;
 
-
 import hxy.dream.dao.mapper.UserMapper;
 import hxy.dream.dao.model.UserModel;
 import hxy.dream.entity.vo.BaseResponseVO;
@@ -21,75 +20,73 @@ import jakarta.annotation.Resource;
 @Service
 public class TransactionService {
 
-    @Resource
-    private UserMapper userMapper;
+	@Resource
+	private UserMapper userMapper;
 
-    @Resource
-    private TransactionSubService transactionSubService;
+	@Resource
+	private TransactionSubService transactionSubService;
 
-    /**
-     * 测试事务
-     */
-    @Transactional(propagation = Propagation.REQUIRED)
-    public BaseResponseVO propagation() {
-        saveParent();
-        try {
-            transactionSubService.saveChildren();
-        } catch (Exception e) {
-            log.error("====>\n异常直接捕获，但是还会抛出事务异常", e);
-        }
+	/**
+	 * 测试事务
+	 */
+	@Transactional(propagation = Propagation.REQUIRED)
+	public BaseResponseVO<?> propagation() {
+		saveParent();
+		try {
+			transactionSubService.saveChildren();
+		} catch (Exception e) {
+			log.error("====>\n异常直接捕获，但是还会抛出事务异常", e);
+		}
 //        int a = 1 / 0;
-        log.info("====>\n事务测试运行完成了");
-        return BaseResponseVO.success();
-    }
+		log.info("====>\n事务测试运行完成了");
+		return BaseResponseVO.success();
+	}
 
-    // ===========service实现类
-    public void saveParent() {
-        UserModel stu = new UserModel();
-        stu.setName("parent");
-        stu.setAge(19);
-        userMapper.insert(stu); // 数据库插入一条parent记录
-    }
+	// ===========service实现类
+	public void saveParent() {
+		UserModel stu = new UserModel();
+		stu.setName("parent");
+		stu.setAge(19);
+		userMapper.insert(stu); // 数据库插入一条parent记录
+	}
 
+	@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+	public BaseResponseVO<?> isolation() {
+		int id = 1;
+		UserModel userModel = userMapper.selectById(id);
+		log.info("\n=====>第一次查询信息{}", userModel);
 
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public BaseResponseVO isolation() {
-        int id = 1;
-        UserModel userModel = userMapper.selectById(id);
-        log.info("\n=====>第一次查询信息{}", userModel);
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			log.error("{}", e.getMessage(), e);
+		}
+		// 这里读到别人未提交的数据，也就是脏数据
+		userModel = userMapper.selectById(id);
+		log.info("\n=====>第二次查询信息{}，是脏数据", userModel);
+		return BaseResponseVO.success();
+	}
 
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // 这里读到别人未提交的数据，也就是脏数据
-        userModel = userMapper.selectById(id);
-        log.info("\n=====>第二次查询信息{}，是脏数据", userModel);
-        return BaseResponseVO.success();
-    }
+	@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+	public BaseResponseVO<?> isolation1() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			log.error("{}", e.getMessage(), e);
+		}
+		UserModel userModel = new UserModel();
+		userModel.setId(1);
+		userModel.setAge(9);
+		userMapper.updateById(userModel);
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e) {
+			log.error("{}", e.getMessage(), e);
+		}
+		// 发生异常回滚了
+		int a = 1 / 0;
 
-    @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public BaseResponseVO isolation1() {
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        UserModel userModel = new UserModel();
-        userModel.setId(1);
-        userModel.setAge(9);
-        userMapper.updateById(userModel);
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // 发生异常回滚了
-        int a = 1 / 0;
-
-        return BaseResponseVO.success();
-    }
-
+		return BaseResponseVO.success();
+	}
 
 }

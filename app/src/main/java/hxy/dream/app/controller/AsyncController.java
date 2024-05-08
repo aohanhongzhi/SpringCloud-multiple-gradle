@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/async")
 public class AsyncController {
+	
     private static final Logger log = LoggerFactory.getLogger(AsyncController.class);
 
     /**
