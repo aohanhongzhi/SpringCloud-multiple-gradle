@@ -149,9 +149,9 @@ subprojects {
         implementation 'p6spy:p6spy:3.9.1'
         implementation 'commons-io:commons-io:2.15.0'
 
-        implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
-        implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2' // 	Java 8 Datatypes
-        implementation 'com.fasterxml.jackson:jackson-bom:2.15.2' // 	Java 8 Datatypes
+        implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+        implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8' // 	Java 8 Datatypes
+        implementation 'com.fasterxml.jackson:jackson-bom' // 	Java 8 Datatypes
 
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
