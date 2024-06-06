@@ -1,0 +1,37 @@
+def urlMappings = [
+    "https://repo.maven.apache.org/maven2"  : "https://mirrors.tencent.com/nexus/repository/maven-public/",
+    "https://dl.google.com/dl/android/maven2": "https://mirrors.tencent.com/nexus/repository/maven-public/",
+    "https://plugins.gradle.org/m2"          : "https://mirrors.tencent.com/nexus/repository/gradle-plugins/"
+]
+
+def enableMirror = {
+    all { repo ->
+        if (repo instanceof MavenArtifactRepository) {
+            def originalUrl = repo.url.toString().replaceAll("/\$", "")
+            def mirrorUrl = urlMappings[originalUrl]
+            if (mirrorUrl) {
+                logger.lifecycle("Repository[${repo.url}] is mirrored to $mirrorUrl")
+                repo.setUrl(mirrorUrl)
+            }
+        }
+    }
+}
+
+gradle.allprojects {
+    buildscript {
+        repositories.configure(enableMirror)
+    }
+    repositories.configure(enableMirror)
+}
+
+gradle.beforeSettings { settings ->
+    settings.pluginManagement.repositories.configure(enableMirror)
+    // 6.8 及更高版本执行 DependencyResolutionManagement 配置
+    if (gradle.gradleVersion >= "6.8") {
+        def drm = settings.dependencyResolutionManagement
+        drm.repositories.configure(enableMirror)
+        println("Gradle ${gradle.gradleVersion} DependencyResolutionManagement Configured $settings")
+    } else {
+        println("Gradle ${gradle.gradleVersion} DependencyResolutionManagement Ignored $settings")
+    }
+}
