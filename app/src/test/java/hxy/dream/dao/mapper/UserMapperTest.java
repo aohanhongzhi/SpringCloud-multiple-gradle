@@ -21,6 +21,17 @@ public class UserMapperTest extends BaseTest {
     @Resource
     UserMapper userMapper;
 
+
+    @Test
+    public void testInsertOrUpdateSetNull() {
+        UserModel userModel = new UserModel();
+        userModel.setId(1);
+        userModel.setAge(231);
+        boolean update = userMapper.insertOrUpdate(userModel);
+        log.info("Updated user{}", update);
+    }
+
+
     @Test
     public void testUpdateNull() {
 
