@@ -9,8 +9,6 @@ public class StringToDateConverterFactory  implements ConverterFactory<String, D
     @Override
     public <T extends Date> Converter<String, T> getConverter(Class<T> targetType) {
 
-
-
         return new StringToDateConverter();
     }
 }
