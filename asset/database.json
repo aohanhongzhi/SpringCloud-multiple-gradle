@@ -1,0 +1,7 @@
+{
+    "spring.datasource.password":"Newp0ss,2024!",
+    "spring.datasource.url":"jdbc:mysql://139.217.230.42:3306/test?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8",
+    "spring.datasource.p6spyurl":"jdbc:p6spy:mysql://139.217.230.42:3306/test?useUnicode=true&serverTimezone=GMT%2b8&characterEncoding=UTF-8",
+    "spring.datasource.username":"test",
+    "spring.r2dbc.url":"r2dbc:mysql://139.217.230.42:3306/test?serverTimezone=GMT&characterEncoding=UTF-8"
+}
