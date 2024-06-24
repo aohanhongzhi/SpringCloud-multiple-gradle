@@ -48,6 +48,7 @@ logging:
     hxy.dream: debug
     com.fasterxml.jackson: debug
     com.baomidou.mybatisplus: debug
+    org.apache.ibatis: debug
 
 mybatis-plus:
   configuration:

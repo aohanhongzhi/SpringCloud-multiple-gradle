@@ -125,7 +125,7 @@ https\://services.gradle.org/distributions/gradle-7.4-bin.zip
  Gradle               | 项目构建工具                                             | [https://gradle.com/](https://gradle.com/)                                                                   
  Spring Security      | 认证和授权框架                                            | [https://spring.io/projects/spring-security](https://spring.io/projects/spring-security)                     
  MyBatis              | ORM框架                                              | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)             
- MyBatisPlus          | ORM框架补充                                            | [https://mybatis.plus/](https://mybatis.plus/)                                                               
+ MyBatisPlus          | ORM框架补充                                            | [https://baomidou.com/](https://baomidou.com/)                                                               
  MyBatisGenerator     | 数据层代码生成                                            | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)                   
  Swagger-UI           | 文档生产工具                                             | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)                       
  Hibernator-Validator | 验证框架                                               | [http://hibernate.org/validator/](http://hibernate.org/validator/)                                           
