@@ -60,5 +60,13 @@ public class UserMapperTest extends BaseTest {
 
     }
 
+    @Test
+    public void deleteWithoutLogicDelete() {
+        UserModel userModel = new UserModel();
+        userModel.setId(1);
+        userModel.setAge(2);
+        userModel.setName("222");
+        userMapper.updateWithoutLogicDelete(userModel);
+    }
 
 }
