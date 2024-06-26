@@ -47,12 +47,16 @@ public class RemoteEnvironmentPostProcessor implements EnvironmentPostProcessor 
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
                     JsonNode jsonObject = objectMapper.readTree(new File(database));
-                    String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
-                    String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
-                    String password = jsonObject.get("spring.datasource.password").textValue();
-                    properties.put("spring.datasource.url", databaseUrl);
-                    properties.put("spring.datasource.username", databaseUsername);
-                    properties.put("spring.datasource.password", password);
+                    if (!jsonObject.isEmpty()) {
+                        String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
+                        String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
+                        String password = jsonObject.get("spring.datasource.password").textValue();
+                        properties.put("spring.datasource.url", databaseUrl);
+                        properties.put("spring.datasource.username", databaseUsername);
+                        properties.put("spring.datasource.password", password);
+                    } else {
+                        log.error("没有数据库配置文件{}", database);
+                    }
                 } catch (JsonProcessingException e) {
                     log.error("{}", e.getMessage(), e);
                 } catch (IOException e) {

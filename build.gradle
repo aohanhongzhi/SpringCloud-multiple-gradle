@@ -143,6 +143,8 @@ subprojects {
         implementation 'org.springframework.boot:spring-boot-starter-web'
         implementation 'org.springframework.boot:spring-boot-starter-webflux'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        implementation 'com.squareup.okio:okio:3.2.0' // 解决mock启动错误
+
         implementation 'org.springframework.data:spring-data-redis'
 
         implementation 'com.zaxxer:HikariCP:5.1.0'
