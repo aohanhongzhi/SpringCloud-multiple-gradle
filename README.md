@@ -25,7 +25,12 @@
  敏感信息从程序外配置文件读取                                                                    | [RemoteEnvironmentPostProcessor.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FRemoteEnvironmentPostProcessor.java)    极海的方案      [DataSourceConfigLoader.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FDataSourceConfigLoader.java) | 从程序外的配置文件读取数据库的账号密码信息                           
  单元测试默认配置环境                                                                        | [ @ActiveProfiles("test") ](app%2Fsrc%2Ftest%2Fjava%2Fhxy%2Fdream%2FBaseTest.java)                                                                                                                                                                                                          | 解决每次修改yaml文件的烦恼                                 | 
 
-具体框架如下表：
+# 基础理论项目研究
+
+ 基础理论 | 项目地址                                     
+------|------------------------------------------
+ IoC  | https://gitee.com/eric-tutorial/easy-ioc 
+ RPC  | https://gitee.com/aohanhongzhi/my-rpc    
 
 ## jdk下载
 
@@ -33,7 +38,11 @@ https://www.azul.com/
 
 ### 热加载技术
 
-**最新版本的IDEA2024.2 已经默认支持了热加载。**
+#### IDEA2024.2
+
+**最新版本的IDEA2024.2 已经默认支持了热加载。也是需要在debug模式下。**
+
+#### 【废弃】第三方插件
 
 这个针对的是[Jetbrains Runtime](https://github.com/JetBrains/JetBrainsRuntime/releases) ，所以其他JDK慎重。实际测试jdk17 21都可以正常运行。
 
@@ -51,44 +60,6 @@ https://github.com/HotswapProjects/HotswapAgent
 
 修改代码后，Build -> Rebuild Project (Ctrl + Shift + F9) 重新编译和加载修改的类文件即可生效。
 
-### 执行初始化的sql语句
-
-有两种方案。一种借助与mybatis-plus 另一种就是mybatis的
-
-#### 基于mybatis的sql执行方案
-
-[hxy.dream.common.init.ApplicationStartupRunner](common/src/main/java/hxy/dream/common/init/ApplicationStartupRunner.java)
-
-#### 基于mybatis-plus的sql执行方案
-
-##### 基于mybatis-plus配置直接执行
-
-https://www.baomidou.com/pages/226c21/#%E9%85%8D%E7%BD%AE
-
-```yaml
-# DataSource Config
-spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    username: root
-    password: test
-  sql:
-    init:
-      schema-locations: classpath:db/schema-h2.sql
-      data-locations: classpath:db/data-h2.sql
-```
-
-##### 基于mybatis-plus的sql执行方案
-
-[hxy.dream.common.init.MysqlDdl](common/src/main/java/hxy/dream/common/init/MysqlDdl.java)
-
-### OpenFeign要退出历史舞台了
-
-推荐 RestTemplate或者WebClient
-
-WebClient 声明式的API调用：
-[RemoteApiConfig](common/src/main/java/hxy/dream/common/configuration/RemoteApiConfig.java)
-
 ## structure
 
 ```
@@ -103,21 +74,7 @@ eric-dream
 
 上面后缀server是服务治理模块。platform是业务应用模块。 **微服务=分布式开发+服务治理**
 
-## gradle安装与配置
-
-https://github.com/GradleCN/GradleSide
-
-如果IDEA自动下载gradle很慢。那么可以先提前安装好gradle，然后指定下安装目录即可。
-![](./asset/img/gradle-special-location.png)
-![img.png](asset/img/gradle-wrapper.png)
-
-腾讯的代理镜像
-
-https://mirrors.cloud.tencent.com/gradle/gradle-7.5.1-bin.zip
-
-https\://services.gradle.org/distributions/gradle-7.4-bin.zip
-
-![img_1.png](asset/img/gradle.png)
+具体框架如下表：
 
  技术                   | 说明                                                 | 官网                                                                                                           
 ----------------------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------
@@ -147,6 +104,22 @@ https\://services.gradle.org/distributions/gradle-7.4-bin.zip
 #### SpringBoot支持
 
 https://spring.io/projects/spring-boot#support
+
+## gradle安装与配置
+
+https://github.com/GradleCN/GradleSide
+
+如果IDEA自动下载gradle很慢。那么可以先提前安装好gradle，然后指定下安装目录即可。
+![](./asset/img/gradle-special-location.png)
+![img.png](asset/img/gradle-wrapper.png)
+
+腾讯的代理镜像
+
+https://mirrors.cloud.tencent.com/gradle/gradle-7.5.1-bin.zip
+
+https\://services.gradle.org/distributions/gradle-7.4-bin.zip
+
+![img_1.png](asset/img/gradle.png)
 
 ### 命令打包，跳过TEST
 
@@ -302,7 +275,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###             
+###              
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
