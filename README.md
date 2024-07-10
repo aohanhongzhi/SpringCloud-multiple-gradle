@@ -52,6 +52,8 @@ https://github.com/HotswapProjects/HotswapAgent
 -XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=fatjar
 ```
 
+> JDK22 识别不了这个参数了，也不需要这个插件，就可以热加载类了
+
 ![img_1.png](asset/img/update-vm-param.png)
 
 ![img.png](asset/img/HotswapAgentLocation.png)
