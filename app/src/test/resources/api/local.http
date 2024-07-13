@@ -1,3 +1,6 @@
+GET  {{host}}/
+
+###
 GET  {{host}}/user/get/1
 
 ### 添加
