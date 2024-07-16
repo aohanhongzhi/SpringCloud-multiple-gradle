@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import hxy.dream.dao.util.AesCbcEncryption;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Service;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -17,15 +16,17 @@ import java.sql.SQLException;
  *
  * @param <T>
  */
-@Service
 public class CustomTypeHandler<T> extends BaseTypeHandler<T> {
 
     private final String AES_PREFIX = "{aes}";
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException {
-        String encrypt = AesCbcEncryption.encrypt((String) parameter);
-        encrypt = AES_PREFIX + encrypt;
+        String encrypt = (String) parameter;
+        if (parameter != null) {
+            encrypt = AesCbcEncryption.encrypt((String) parameter);
+            encrypt = AES_PREFIX + encrypt;
+        }
         ps.setString(i, encrypt);
     }
 
