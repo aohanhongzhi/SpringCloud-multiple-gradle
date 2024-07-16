@@ -20,32 +20,44 @@ import java.sql.SQLException;
 @Service
 public class CustomTypeHandler<T> extends BaseTypeHandler<T> {
 
-
-    public CustomTypeHandler() {
-    }
+    private final String AES_PREFIX = "{aes}";
 
     @Override
     public void setNonNullParameter(PreparedStatement ps, int i, Object parameter, JdbcType jdbcType) throws SQLException {
-        ps.setString(i, AesCbcEncryption.encrypt((String) parameter));
+        String encrypt = AesCbcEncryption.encrypt((String) parameter);
+        encrypt = AES_PREFIX + encrypt;
+        ps.setString(i, encrypt);
     }
 
     @Override
     public T getNullableResult(ResultSet rs, String columnName) throws SQLException {
         String columnValue = rs.getString(columnName);
-        //有一些可能是空字符
-        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
+        if (columnValue != null && columnValue.startsWith(AES_PREFIX)) {
+            columnValue = columnValue.replace(AES_PREFIX, "");
+            //有一些可能是空字符
+            return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
+        }
+        return (T) columnValue;
     }
 
     @Override
     public T getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
         String columnValue = rs.getString(columnIndex);
-        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
+        if (columnValue != null && columnValue.startsWith(AES_PREFIX)) {
+            columnValue = columnValue.replace(AES_PREFIX, "");
+            return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
+        }
+        return (T) columnValue;
     }
 
     @Override
     public T getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
         String columnValue = cs.getString(columnIndex);
-        return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
+        if (columnValue != null && columnValue.startsWith(AES_PREFIX)) {
+            columnValue = columnValue.replace(AES_PREFIX, "");
+            return StringUtils.isBlank(columnValue) ? (T) columnValue : (T) AesCbcEncryption.decrypt(columnValue);
+        }
+        return (T) columnValue;
     }
 }
 
