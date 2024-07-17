@@ -78,10 +78,16 @@ public class AesCbcEncryption {
         try {
             decrypted = cbcDecrypt(encrypted1, key.getBytes(StandardCharsets.UTF_8), iv.getBytes(StandardCharsets.UTF_8));
         } catch (Exception e) {
-            log.error("{}", e.getMessage(), e);
+            log.error("解密错误 {}", e.getMessage(), e);
         }
-        String decryptedText = new String(decrypted, StandardCharsets.UTF_8);
-        return decryptedText;
+        if (decrypted != null) {
+            // 不能为空
+            String decryptedText = new String(decrypted, StandardCharsets.UTF_8);
+            return decryptedText;
+        } else {
+            log.error("解密错误 {}", encryptedBase64);
+        }
+        return encryptedBase64;
     }
 
     private static byte[] cbcEncrypt(byte[] text, byte[] key, byte[] iv) throws Exception {
