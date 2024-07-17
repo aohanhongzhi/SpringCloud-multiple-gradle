@@ -16,4 +16,6 @@ public interface UserMapper extends BaseMapper<UserModel> {
      */
     int updateWithoutLogicDelete(UserModel userModel);
 
+    UserModel selectUserModel(UserModel userModel);
+
 }

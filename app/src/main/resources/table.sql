@@ -3,7 +3,7 @@ create table if not exists user_model
     id          int unsigned auto_increment
         primary key,
     name        varchar(20)       not null,
-    phone       char(11)          null,
+    phone_number       char(11)          null,
     address     varchar(256)       null,
     age         int               null comment '年龄',
     gender      int           null comment '性别',

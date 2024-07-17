@@ -3,6 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hxy.dream.dao.mapper.UserMapper">
+
+
+    <resultMap type="UserModel" id="UserModelResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="gender" column="gender"/>
+        <result property="address" column="address"
+                typeHandler="hxy.dream.dao.configuration.mybatis.CustomTypeHandler"/>
+        <result property="phoneNumber" column="phone_number"
+                typeHandler="hxy.dream.dao.configuration.mybatis.CustomTypeHandler"/>
+    </resultMap>
+
+    <sql id="selectUserModel">
+        select id, name, password, address, phone_number
+        from user_model
+    </sql>
+
     <update id="updateWithoutLogicDelete">
         update user_model
         set name    = #{name},
@@ -10,4 +28,19 @@
             deleted = 0
         where id = #{id}
     </update>
+
+    <select id="selectUserModel"
+            parameterType="hxy.dream.dao.model.UserModel"
+            resultMap="UserModelResult">
+        <include refid="selectUserModel"/>
+        <where>
+            deleted = 0
+            <if test="id != null  and id != ''">and id = #{id}</if>
+            <if test="phoneNumber != null  and phoneNumber != ''">and phone_number =
+                #{phoneNumber,typeHandler=hxy.dream.dao.configuration.mybatis.CustomTypeHandler}
+                or phone_number = #{phoneNumber}
+            </if>
+        </where>
+    </select>
+
 </mapper>

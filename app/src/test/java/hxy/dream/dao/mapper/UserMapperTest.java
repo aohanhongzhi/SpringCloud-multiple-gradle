@@ -25,8 +25,11 @@ public class UserMapperTest extends BaseTest {
     @Test
     public void testInsertOrUpdateSetNull() {
         UserModel userModel = new UserModel();
-        userModel.setId(1);
+        userModel.setId(2);
+        userModel.setName("rblc");
         userModel.setAge(231);
+        userModel.setAddress("上海");
+        userModel.setPhoneNumber("18010472947");
         boolean update = userMapper.insertOrUpdate(userModel);
         log.info("Updated user{}", update);
     }
@@ -67,6 +70,15 @@ public class UserMapperTest extends BaseTest {
         userModel.setAge(2);
         userModel.setName("222");
         userMapper.updateWithoutLogicDelete(userModel);
+    }
+
+    @Test
+    public void testSelectUserModel(){
+        UserModel userModel = new UserModel();
+//        userModel.setId(1);
+        userModel.setPhoneNumber("18010472947");
+        UserModel userModel1 = userMapper.selectUserModel(userModel);
+        log.info("userModel1 {}", userModel1);
     }
 
 }

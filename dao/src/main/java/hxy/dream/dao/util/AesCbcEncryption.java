@@ -17,8 +17,8 @@ public class AesCbcEncryption {
     private static final String CIPHER_ALGORITHM = "AES/CBC/PKCS5Padding";
     private static final int KEY_SIZE = 128;
     // 使用与Golang相同的key和iv
-    static String key = "qwertyuiopasdfgr";
-    static String iv = "qwertyuiopasdfgh";
+    static String key = "rblctyuiopasdfgr";
+    static String iv = "rblctyuiopasdfgh";
 
 //    public static void main(String[] args) {
 //        try {
