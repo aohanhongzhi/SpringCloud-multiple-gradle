@@ -32,10 +32,16 @@ public class UserModel extends BaseModel<UserModel> {
     private GenderEnum gender;
     private String password;
 
+    /**
+     * ！！ mp的条件里是不会用这个自定义类型处理器的，原来是啥就是啥！！！
+     */
     //有了这个数据库BaseMapper插入的时候才能加密
     @TableField(typeHandler = CustomTypeHandler.class)
     private String address;
 
+    /**
+     * ！！！ mp的条件里是不会用这个自定义类型处理器的，原来是啥就是啥！！！
+     */
     @TableField(typeHandler = CustomTypeHandler.class)
     private String phoneNumber;
 

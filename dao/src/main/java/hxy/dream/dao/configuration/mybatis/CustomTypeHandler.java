@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * ！！！ mp的条件里是不会用这个自定义类型处理器的，原来是啥就是啥！！！
+ * <p>
  * 数据库字段加解密处理。
  * 加密后就有一个问题，没办法对数据进行检索了。比如like查询。但是mybatis-plus提供了自己企业版的加密方式可以做到。https://baomidou.com/pages/1864e1/#%E5%AD%97%E6%AE%B5%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86
  *

@@ -85,7 +85,7 @@ public class UserMapperTest extends BaseTest {
 
 
     /**
-     * 不使用加密
+     * 不使用加密，条件查询的时候是没有使用自定义的类型处理器
      */
     @Test
     public void testSelectUserModelNoEncrypt() {
