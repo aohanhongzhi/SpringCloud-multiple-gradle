@@ -24,6 +24,12 @@ public interface UserMapper extends BaseMapper<UserModel> {
     UserModel selectUserModel(UserModel userModel);
 
 
+    /**
+     * 没办法去做模糊查询了
+     *
+     * @param userModel
+     * @return
+     */
     @Results(id = "resultMap", value = {
             @Result(column = "address", property = "address", typeHandler = hxy.dream.dao.configuration.mybatis.CustomTypeHandler.class),
             @Result(column = "phone_number", property = "phoneNumber", typeHandler = hxy.dream.dao.configuration.mybatis.CustomTypeHandler.class)
