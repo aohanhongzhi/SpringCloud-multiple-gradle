@@ -44,7 +44,8 @@ https://www.azul.com/
 
 #### 【废弃】第三方插件
 
-这个针对的是[Jetbrains Runtime](https://github.com/JetBrains/JetBrainsRuntime/releases) ，所以其他JDK慎重。实际测试jdk17 21都可以正常运行。
+这个针对的是[Jetbrains Runtime](https://github.com/JetBrains/JetBrainsRuntime/releases) ，所以其他JDK慎重。实际测试jdk17
+21都可以正常运行。
 
 https://github.com/HotswapProjects/HotswapAgent
 
@@ -86,6 +87,7 @@ eric-dream
  MyBatis              | ORM框架                                              | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)             
  MyBatisPlus          | ORM框架补充                                            | [https://baomidou.com/](https://baomidou.com/)                                                               
  MyBatisGenerator     | 数据层代码生成                                            | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)                   
+ doc-apis             | 零侵入接口文档生成工具                                        | https://github.com/xpc1024/doc-apis                                                                          
  Swagger-UI           | 文档生产工具                                             | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)                       
  Hibernator-Validator | 验证框架                                               | [http://hibernate.org/validator/](http://hibernate.org/validator/)                                           
  Elasticsearch        | 搜索引擎                                               | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)                         
