@@ -24,7 +24,7 @@
  前端null传到后端成"null"字符串                                                              | [StringToStringConverter](common/src/main/java/hxy/dream/common/converter/StringToStringConverter.java)                                                                                                                                                                                     | 解决字符串"null"等问题                                  
  敏感信息从程序外配置文件读取                                                                    | [RemoteEnvironmentPostProcessor.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FRemoteEnvironmentPostProcessor.java)    极海的方案      [DataSourceConfigLoader.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FDataSourceConfigLoader.java) | 从程序外的配置文件读取数据库的账号密码信息                           
  单元测试默认配置环境                                                                        | [ @ActiveProfiles("test") ](app%2Fsrc%2Ftest%2Fjava%2Fhxy%2Fdream%2FBaseTest.java)                                                                                                                                                                                                          | 解决每次修改yaml文件的烦恼                                 | 
-
+数据库字段加密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)                                                                                                                                                                                         | 不支持模糊查询
 # 基础理论项目研究
 
  基础理论 | 项目地址                                     
@@ -44,7 +44,8 @@ https://www.azul.com/
 
 #### 【废弃】第三方插件
 
-这个针对的是[Jetbrains Runtime](https://github.com/JetBrains/JetBrainsRuntime/releases) ，所以其他JDK慎重。实际测试jdk17 21都可以正常运行。
+这个针对的是[Jetbrains Runtime](https://github.com/JetBrains/JetBrainsRuntime/releases) ，所以其他JDK慎重。实际测试jdk17
+21都可以正常运行。
 
 https://github.com/HotswapProjects/HotswapAgent
 
@@ -86,6 +87,7 @@ eric-dream
  MyBatis              | ORM框架                                              | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)             
  MyBatisPlus          | ORM框架补充                                            | [https://baomidou.com/](https://baomidou.com/)                                                               
  MyBatisGenerator     | 数据层代码生成                                            | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)                   
+ doc-apis             | 零侵入接口文档生成工具                                        | https://github.com/xpc1024/doc-apis                                                                          
  Swagger-UI           | 文档生产工具                                             | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)                       
  Hibernator-Validator | 验证框架                                               | [http://hibernate.org/validator/](http://hibernate.org/validator/)                                           
  Elasticsearch        | 搜索引擎                                               | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch)                         
@@ -293,6 +295,8 @@ https://blog.csdn.net/qq_27127145/article/details/85775240
 
 [MybatisPlus数据库加解密](https://gitee.com/aohanhongzhi/study/blob/dev/src/SpringBoot/Mybatis-plus%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%97%E6%AE%B5%E5%8A%A0%E8%A7%A3%E5%AF%86.md)
 [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)
+
+https://blog.csdn.net/YW_Danny/article/details/120031966
 
 > https://blog.csdn.net/u012954706/article/details/105437768
 

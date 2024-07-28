@@ -5,6 +5,8 @@ fun RepositoryHandler.enableMirror() {
             urlMappings[originalUrl]?.let {
                 logger.lifecycle("Repository[$url] is mirrored to $it")
                 this.setUrl(it)
+            } ?: run {
+                logger.lifecycle("[Kotlin]Repository[$originalUrl] has no mirror configured")
             }
         }
     }
@@ -23,7 +25,7 @@ gradle.allprojects {
     repositories.enableMirror()
 }
 
-gradle.beforeSettings { 
+gradle.beforeSettings {
     pluginManagement.repositories.enableMirror()
     // 6.8 及更高版本执行 DependencyResolutionManagement 配置
     if (gradle.gradleVersion >= "6.8") {

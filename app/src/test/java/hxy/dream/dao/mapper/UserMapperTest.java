@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 /**
  * @author eric
  * @description
@@ -73,12 +75,35 @@ public class UserMapperTest extends BaseTest {
     }
 
     @Test
-    public void testSelectUserModel(){
+    public void testSelectUserModel() {
         UserModel userModel = new UserModel();
 //        userModel.setId(1);
         userModel.setPhoneNumber("18010472947");
         UserModel userModel1 = userMapper.selectUserModel(userModel);
         log.info("userModel1 {}", userModel1);
     }
+
+
+    /**
+     * 不使用加密，条件查询的时候是没有使用自定义的类型处理器
+     */
+    @Test
+    public void testSelectUserModelNoEncrypt() {
+        LambdaUpdateWrapper<UserModel> userModelLambdaUpdateWrapper = new LambdaUpdateWrapper<>();
+        userModelLambdaUpdateWrapper.eq(UserModel::getPhoneNumber, "18010472947");
+        List<UserModel> userModels = userMapper.selectList(userModelLambdaUpdateWrapper);
+        log.info("userModels {}", userModels);
+    }
+
+
+    @Test
+    public void testSelectUserModelEncrypt() {
+        UserModel userModel = new UserModel();
+//        userModel.setId(1);
+        userModel.setPhoneNumber("18010472947");
+        List<UserModel> userModels = userMapper.listByNumber(userModel);
+        log.info("userModels {}", userModels);
+    }
+
 
 }
