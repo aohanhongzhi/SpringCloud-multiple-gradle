@@ -11,6 +11,9 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.URL;
+import java.security.CodeSource;
+import java.security.ProtectionDomain;
 
 /**
  * @version 1.0
@@ -49,24 +52,59 @@ public class CustomLogContextListener extends ContextAwareBase implements Logger
 
     }
 
+    /**
+     * //        classpath:file:/home/eric/Project/RBLC/spf_rblc_backend/target/rblc-spf.jar!/BOOT-INF/classes!/
+     * //        classpath:nested:/home/eric/Project/Java/air-share/build/libs/air-share-0.0.1-SNAPSHOT.jar/!BOOT-INF/classes/!/
+     */
     @Override
     public void start() {
         String classpath = null;
-        try {
-            classpath = ResourceUtils.getURL(ResourceUtils.CLASSPATH_URL_PREFIX).getPath();
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found" + e.getMessage());
+
+        if (true) {
+            // SpringBoot 推荐
+            try {
+                classpath = ResourceUtils.getURL(ResourceUtils.CLASSPATH_URL_PREFIX).getPath();
+                System.out.println("springboot get classpath:" + classpath);
+            } catch (FileNotFoundException e) {
+                System.err.println("File not found" + e.getMessage());
+            }
+        } else {
+            // 非Spring推荐
+            ProtectionDomain protectionDomain = CustomLogContextListener.class.getProtectionDomain();
+            CodeSource codeSource = protectionDomain.getCodeSource();
+            URL location = codeSource.getLocation();
+            System.out.println("java :" + location);
+            System.out.println("java classpath:" + location.getPath());
         }
 
         String logPath = "./logs";
 
         // 判断是否jar 包启动
-        if (classpath != null && classpath.contains("jar!")) {
-            System.out.println("classpath:" + classpath);
-            String currentPath = new File(classpath).getParentFile().getParentFile().getParent();
+        if (classpath != null && (classpath.contains("file:") || classpath.contains("nested:")) && classpath.contains(".jar") && classpath.contains("BOOT-INF")) {
+            String jarFilePath = classpath.substring(0, classpath.indexOf(".jar"));
+            System.out.println("jarFilePath:" + jarFilePath);
+            File file = new File(jarFilePath);
+            String currentPath = file.getParent();
+//            String currentPath = new File(jarFilePath).getParentFile().getParentFile().getParent();
             // 如果是jar包启动的，那么获取当前jar包程序的路径，作为日志存放的位置
-            currentPath = currentPath.replace("file:", "");
+            if (classpath.startsWith("file:")) {
+                currentPath = currentPath.replace("file:", "");
+            } else if (classpath.startsWith("nested:")) {
+                currentPath = currentPath.replace("nested:", "");
+            } else {
+                int i = currentPath.indexOf(File.separator);
+                currentPath = currentPath.substring(i);
+            }
             logPath = currentPath + File.separator + "logs";
+        }
+
+        // 判断文件夹是否存在，不存在需要新建
+        File file = new File(logPath);
+        if (!file.exists()) {
+            boolean mkdirs = file.mkdirs();
+            if (mkdirs) {
+                System.out.println("日志存储路径创建成功 " + logPath);
+            }
         }
 
         System.out.println("日志存储路径 " + logPath);
