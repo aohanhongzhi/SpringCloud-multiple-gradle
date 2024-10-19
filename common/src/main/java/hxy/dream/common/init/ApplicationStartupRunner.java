@@ -75,7 +75,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
             scriptRunner.runScript(Resources.getResourceAsReader("table.sql"));
             connection.commit();
         } catch (Exception e) {
-            log.error("执行sql脚本失败", e);
+            log.error("执行sql脚本失败。数据库: {} 用户 {}", url, userName, e);
         } finally {
             if (jdbc) {
                 if (connection != null) {

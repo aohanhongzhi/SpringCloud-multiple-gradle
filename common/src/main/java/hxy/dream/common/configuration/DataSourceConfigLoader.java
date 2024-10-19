@@ -38,40 +38,45 @@ public class DataSourceConfigLoader implements BeanPostProcessor, EnvironmentAwa
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
         if (bean instanceof MybatisPlusAutoConfiguration) { //在mybatis初始化前搞定配置信息
-            Map<String, Object> systemProperties = environment.getSystemProperties();
-            // 读取配置文件，从配置文件中加载这个变量。
-            String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                JsonNode jsonObject = objectMapper.readTree(new File(database));
-                if (!jsonObject.isEmpty()) {
-                    String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
-                    String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
-                    String password = jsonObject.get("spring.datasource.password").textValue();
-                    if (databaseUrl.contains("jdbc:p6spy:mysql")) {
-                        systemProperties.put("spring.datasource.driver-class-name", "com.p6spy.engine.spy.P6SpyDriver");
+            String currentProfile = environment.getProperty("spring.profiles.active");
+            if (currentProfile.equalsIgnoreCase("dev")) {
+                log.warn("本地调试，直接忽略读取本地配置文件信息");
+            } else {
+
+                Map<String, Object> systemProperties = environment.getSystemProperties();
+                // 读取配置文件，从配置文件中加载这个变量。
+                String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    JsonNode jsonObject = objectMapper.readTree(new File(database));
+                    if (!jsonObject.isEmpty()) {
+                        String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
+                        String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
+                        String password = jsonObject.get("spring.datasource.password").textValue();
+                        if (databaseUrl.contains("jdbc:p6spy:mysql")) {
+                            systemProperties.put("spring.datasource.driver-class-name", "com.p6spy.engine.spy.P6SpyDriver");
+                        } else {
+                            systemProperties.put("spring.datasource.driver-class-name", "com.mysql.cj.jdbc.Driver");
+                        }
+                        systemProperties.put("spring.datasource.url", databaseUrl);
+                        systemProperties.put("spring.datasource.username", databaseUsername);
+                        systemProperties.put("spring.datasource.password", password);
+
+                        String r2dbcDatabaseUrl = jsonObject.get("spring.r2dbc.url").textValue();
+                        systemProperties.put("spring.r2dbc.url", r2dbcDatabaseUrl);
+                        systemProperties.put("spring.r2dbc.username", databaseUsername);
+                        systemProperties.put("spring.r2dbc.password", password);
                     } else {
-                        systemProperties.put("spring.datasource.driver-class-name", "com.mysql.cj.jdbc.Driver");
+                        log.error("没有数据库配置文件 {}", database);
                     }
-                    systemProperties.put("spring.datasource.url", databaseUrl);
-                    systemProperties.put("spring.datasource.username", databaseUsername);
-                    systemProperties.put("spring.datasource.password", password);
 
-                    String r2dbcDatabaseUrl = jsonObject.get("spring.r2dbc.url").textValue();
-                    systemProperties.put("spring.r2dbc.url", r2dbcDatabaseUrl);
-                    systemProperties.put("spring.r2dbc.username", databaseUsername);
-                    systemProperties.put("spring.r2dbc.password", password);
-                } else {
-                    log.error("没有数据库配置文件 {}", database);
+                } catch (JsonProcessingException e) {
+                    log.error("{}", e.getMessage(), e);
+                } catch (IOException e) {
+                    log.error("{}", e.getMessage(), e);
                 }
-
-            } catch (JsonProcessingException e) {
-                log.error("{}", e.getMessage(), e);
-            } catch (IOException e) {
-                log.error("{}", e.getMessage(), e);
             }
         }
-
         return BeanPostProcessor.super.postProcessBeforeInitialization(bean, beanName);
     }
 }

@@ -149,7 +149,10 @@
         <!--smtp 服务器-->
         <smtpHost>${smtpHost}</smtpHost>
         <!--port-->
-        <smtpPort>25</smtpPort>
+        <smtpPort>465</smtpPort>
+        <!-- 是否使用 SSL/TLS -->
+        <STARTTLS>false</STARTTLS>
+        <SSL>true</SSL>
         <!-- 发给谁的邮件列表，多个人用逗号分隔 -->
         <to>${to}</to>
         <!--发件人，添加邮箱和上面的username保持一致-->
@@ -207,12 +210,14 @@
         <!-- 开发环境时激活 -->
         <root level="info">
             <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="EMAIL"/>
         </root>
         <logger name="hxy.base.*" level="DEBUG" additivity="false">
             <appender-ref ref="CONSOLE"/>
             <appender-ref ref="INFO_FILE"/>
             <appender-ref ref="WARN_FILE"/>
             <appender-ref ref="ERROR_FILE"/>
+            <appender-ref ref="EMAIL"/>
         </logger>
     </springProfile>
 
