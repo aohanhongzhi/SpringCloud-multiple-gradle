@@ -313,3 +313,12 @@ https://blog.csdn.net/YW_Danny/article/details/120031966
   有的前端输入带有空格或者换行，到数据库存储可能会发生意想不到的bug,所以需要在反序列化的时候，需要将其中的非法字符去掉。需要设计一个方案做下全局的参数trim()
 
 https://zhuanlan.zhihu.com/p/372585663
+
+
+## 日志开启ssl
+
+macbook下测试端口
+
+```shell
+nc -vz -w 2  smtp.qq.com  465
+```

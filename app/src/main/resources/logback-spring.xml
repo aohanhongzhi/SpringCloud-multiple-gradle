@@ -150,9 +150,9 @@
         <smtpHost>${smtpHost}</smtpHost>
         <!--port-->
         <smtpPort>465</smtpPort>
+        <SSL>true</SSL>
         <!-- 是否使用 SSL/TLS -->
         <STARTTLS>false</STARTTLS>
-        <SSL>true</SSL>
         <!-- 发给谁的邮件列表，多个人用逗号分隔 -->
         <to>${to}</to>
         <!--发件人，添加邮箱和上面的username保持一致-->
@@ -162,14 +162,13 @@
         <username>${username}</username>
         <!--发件人的邮箱密码-->
         <password>${password}</password>
-        <SSL>false</SSL>
         <!--是否异步-->
         <asynchronousSending>true</asynchronousSending>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
         </layout>
         <cyclicBufferTracker class="ch.qos.logback.core.spi.CyclicBufferTracker">
-            <bufferSize>1</bufferSize>
+            <bufferSize>10</bufferSize>
         </cyclicBufferTracker>
         <!--过滤器-->
         <!-- 这里采用等级过滤器 指定等级相符才发送 -->
