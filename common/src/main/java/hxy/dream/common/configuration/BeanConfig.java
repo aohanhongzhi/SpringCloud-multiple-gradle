@@ -10,6 +10,7 @@ package hxy.dream.common.configuration;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.DataChangeRecorderInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.IllegalSQLInnerInterceptor;
@@ -105,6 +106,14 @@ public class BeanConfig {
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+
+//        数据变动记录插件
+        DataChangeRecorderInnerInterceptor dataChangeRecorderInnerInterceptor = new DataChangeRecorderInnerInterceptor();
+        // 配置安全阈值，例如限制批量更新或插入的记录数不超过 1000 条
+        dataChangeRecorderInnerInterceptor.setBatchUpdateLimit(1000);
+        interceptor.addInnerInterceptor(dataChangeRecorderInnerInterceptor);
+
+
 //        mybatisplus与pagehelper的功能冲突了,所以后面会带上两个limit
         PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
         paginationInnerInterceptor.setMaxLimit(100L);
