@@ -7,7 +7,7 @@ bootJar.enabled = true
 dependencies {
     api project(':common')
 
-    implementation 'cn.zhxu:okhttps:4.0.2'
+    implementation 'cn.zhxu:okhttps:4.0.3'
     implementation 'org.springframework.data:spring-data-redis'
 //    implementation 'org.springframework.cloud:spring-cloud-starter-sleuth:3.1.7' // 已经不支持了
 //    implementation('com.yomahub:tlog-all-spring-boot-starter:1.5.1') {
