@@ -22,7 +22,7 @@ public class Application {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
-		log.info("\n<============ \uD83D\uDE80  JAVA版本:{}  CPU核心数:{}  \uD83D\uDE80 ============>",
+		log.info("\n<============ ⚠️ 🚀  JAVA版本:{}  CPU核心数:{}  \uD83D\uDE80 ============>",
 				System.getProperty("java.version"), Runtime.getRuntime().availableProcessors());
 		System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "class");
 		log.info("当前CPU核心={}，{}是否为守护线程={}", Runtime.getRuntime().availableProcessors(),
