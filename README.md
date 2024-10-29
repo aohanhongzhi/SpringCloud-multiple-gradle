@@ -336,3 +336,7 @@ https://github.com/hatoo/oha
 ```shell
 ./oha-linux-amd64 --no-tui https://open.iciba.com/dsapi/?date=2023-05-03
 ```
+
+```shell
+./oha-linux-amd64 -n 3000  https://open.iciba.com/dsapi/?date=2023-05-03
+```
