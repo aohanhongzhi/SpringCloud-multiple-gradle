@@ -24,7 +24,8 @@
  前端null传到后端成"null"字符串                                                              | [StringToStringConverter](common/src/main/java/hxy/dream/common/converter/StringToStringConverter.java)                                                                                                                                                                                     | 解决字符串"null"等问题                                  
  敏感信息从程序外配置文件读取                                                                    | [RemoteEnvironmentPostProcessor.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FRemoteEnvironmentPostProcessor.java)    极海的方案      [DataSourceConfigLoader.java](common%2Fsrc%2Fmain%2Fjava%2Fhxy%2Fdream%2Fcommon%2Fconfiguration%2FDataSourceConfigLoader.java) | 从程序外的配置文件读取数据库的账号密码信息                           
  单元测试默认配置环境                                                                        | [ @ActiveProfiles("test") ](app%2Fsrc%2Ftest%2Fjava%2Fhxy%2Fdream%2FBaseTest.java)                                                                                                                                                                                                          | 解决每次修改yaml文件的烦恼                                 | 
-数据库字段加密 | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)                                                                                                                                                                                         | 不支持模糊查询
+ 数据库字段加密                                                                           | [参考CustomTypeHandler](dao/src/main/java/hxy/dream/dao/configuration/mybatis/CustomTypeHandler.java)                                                                                                                                                                                         | 不支持模糊查询                                         
+
 # 基础理论项目研究
 
  基础理论 | 项目地址                                     
@@ -281,7 +282,7 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###              
+###               
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
@@ -316,7 +317,6 @@ https://blog.csdn.net/YW_Danny/article/details/120031966
 
 https://zhuanlan.zhihu.com/p/372585663
 
-
 ## 日志开启ssl
 
 macbook下测试端口
@@ -326,6 +326,10 @@ nc -vz -w 2  smtp.qq.com  465
 ```
 
 # 开发技术栈
+
+## 压测工具
+
+并发数，吞吐量，延时，最快最慢请求等。
 
 https://github.com/hatoo/oha
 
