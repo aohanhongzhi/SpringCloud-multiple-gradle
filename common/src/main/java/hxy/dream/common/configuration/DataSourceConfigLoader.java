@@ -48,26 +48,31 @@ public class DataSourceConfigLoader implements BeanPostProcessor, EnvironmentAwa
                 String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
-                    JsonNode jsonObject = objectMapper.readTree(new File(database));
-                    if (!jsonObject.isEmpty()) {
-                        String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
-                        String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
-                        String password = jsonObject.get("spring.datasource.password").textValue();
-                        if (databaseUrl.contains("jdbc:p6spy:mysql")) {
-                            systemProperties.put("spring.datasource.driver-class-name", "com.p6spy.engine.spy.P6SpyDriver");
-                        } else {
-                            systemProperties.put("spring.datasource.driver-class-name", "com.mysql.cj.jdbc.Driver");
-                        }
-                        systemProperties.put("spring.datasource.url", databaseUrl);
-                        systemProperties.put("spring.datasource.username", databaseUsername);
-                        systemProperties.put("spring.datasource.password", password);
+                    File file = new File(database);
+                    if (file.exists()) {
+                        JsonNode jsonObject = objectMapper.readTree(file);
+                        if (!jsonObject.isEmpty()) {
+                            String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
+                            String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
+                            String password = jsonObject.get("spring.datasource.password").textValue();
+                            if (databaseUrl.contains("jdbc:p6spy:mysql")) {
+                                systemProperties.put("spring.datasource.driver-class-name", "com.p6spy.engine.spy.P6SpyDriver");
+                            } else {
+                                systemProperties.put("spring.datasource.driver-class-name", "com.mysql.cj.jdbc.Driver");
+                            }
+                            systemProperties.put("spring.datasource.url", databaseUrl);
+                            systemProperties.put("spring.datasource.username", databaseUsername);
+                            systemProperties.put("spring.datasource.password", password);
 
-                        String r2dbcDatabaseUrl = jsonObject.get("spring.r2dbc.url").textValue();
-                        systemProperties.put("spring.r2dbc.url", r2dbcDatabaseUrl);
-                        systemProperties.put("spring.r2dbc.username", databaseUsername);
-                        systemProperties.put("spring.r2dbc.password", password);
+                            String r2dbcDatabaseUrl = jsonObject.get("spring.r2dbc.url").textValue();
+                            systemProperties.put("spring.r2dbc.url", r2dbcDatabaseUrl);
+                            systemProperties.put("spring.r2dbc.username", databaseUsername);
+                            systemProperties.put("spring.r2dbc.password", password);
+                        } else {
+                            log.warn("数据库配置文件没有信息 {}", database);
+                        }
                     } else {
-                        log.error("没有数据库配置文件 {}", database);
+                        log.error("没有数据库配置文件，那就配置yaml文件吧 {}", database);
                     }
 
                 } catch (JsonProcessingException e) {

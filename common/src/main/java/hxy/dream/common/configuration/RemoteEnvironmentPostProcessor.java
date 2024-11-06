@@ -46,16 +46,21 @@ public class RemoteEnvironmentPostProcessor implements EnvironmentPostProcessor 
                 String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
-                    JsonNode jsonObject = objectMapper.readTree(new File(database));
-                    if (!jsonObject.isEmpty()) {
-                        String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
-                        String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
-                        String password = jsonObject.get("spring.datasource.password").textValue();
-                        properties.put("spring.datasource.url", databaseUrl);
-                        properties.put("spring.datasource.username", databaseUsername);
-                        properties.put("spring.datasource.password", password);
+                    File file = new File(database);
+                    if (file.exists()) {
+                        JsonNode jsonObject = objectMapper.readTree(file);
+                        if (!jsonObject.isEmpty()) {
+                            String databaseUsername = jsonObject.get("spring.datasource.username").textValue();
+                            String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
+                            String password = jsonObject.get("spring.datasource.password").textValue();
+                            properties.put("spring.datasource.url", databaseUrl);
+                            properties.put("spring.datasource.username", databaseUsername);
+                            properties.put("spring.datasource.password", password);
+                        } else {
+                            log.error("数据库配置文件没有信息 {}", database);
+                        }
                     } else {
-                        log.error("没有数据库配置文件{}", database);
+                        log.error("没有数据库配置文件，那就配置yaml文件吧 {}", database);
                     }
                 } catch (JsonProcessingException e) {
                     log.error("{}", e.getMessage(), e);
