@@ -46,10 +46,10 @@ public class DataSourceConfigLoader implements BeanPostProcessor, EnvironmentAwa
                 Map<String, Object> systemProperties = environment.getSystemProperties();
                 // 读取配置文件，从配置文件中加载这个变量。
                 String database = System.getProperty("user.home") + "/.config/eric-config/database.json";
-                ObjectMapper objectMapper = new ObjectMapper();
                 try {
                     File file = new File(database);
                     if (file.exists()) {
+                        ObjectMapper objectMapper = new ObjectMapper();
                         JsonNode jsonObject = objectMapper.readTree(file);
                         if (!jsonObject.isEmpty()) {
                             String databaseUrl = jsonObject.get("spring.datasource.url").textValue();
