@@ -34,6 +34,8 @@ mybatis-plus:
     #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
     local-cache-scope: statement # 每次执行sql。多个statement可能会在一个session里面。 这个是mybatis的一级缓存控制。
+    return-instance-for-empty-row: true # https://mp.weixin.qq.com/s/ITwlZZfxw9D9k1iJYqZakQ
+    call-setters-on-nulls: true
   #    default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
   type-aliases-package: hxy.dream.dao.model
   # 支持通配符 * 或者 ; 分割
