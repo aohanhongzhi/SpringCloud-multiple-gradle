@@ -5,8 +5,10 @@ spring:
     username: eric
     password:  # 密码参考 hxy.dream.common.configuration.RemoteEnvironmentPostProcessor 获取逻辑
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari:
+    hikari: # https://mp.weixin.qq.com/s/gG1ghXMkS1AYYR5olJPMiQ?scene=1
       max-lifetime: 120000 # 池中连接关闭后的最长生命周期 20分钟
+      leak-detection-threshold: 60000 # 关键新增项是 leak-detection-threshold，帮助我们识别和记录潜在的连接泄漏。降低 minimum-idle 也避免了在低峰期保留过多空闲连接。
+      connection-timeout: 30000
   #    type:  com.alibaba.druid.pool.DruidDataSource
   servlet:
     multipart:

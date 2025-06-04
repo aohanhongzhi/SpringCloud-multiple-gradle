@@ -6,7 +6,7 @@
 */
 buildscript {
     ext {
-        springBootVersion = '3.3.5' // https://spring.io/projects/spring-boot#learn
+        springBootVersion = '3.5.0' // https://spring.io/projects/spring-boot#learn
     }
     repositories {
         mavenLocal()
@@ -35,7 +35,7 @@ buildscript {
 plugins {
     id 'java-library'
     // https://github.com/spring-gradle-plugins/dependency-management-plugin
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'io.spring.dependency-management' version '1.1.7'
     id 'idea'
     id "com.google.cloud.tools.jib" version "2.0.0"
 //    https://github.com/graalvm/native-build-tools
@@ -146,7 +146,7 @@ subprojects {
         implementation 'org.springframework.data:spring-data-redis'
 
 //        https://github.com/brettwooldridge/HikariCP
-        implementation 'com.zaxxer:HikariCP:6.0.0'
+        implementation 'com.zaxxer:HikariCP:6.3.0'
 //        https://github.com/p6spy/p6spy
         implementation 'p6spy:p6spy:3.9.1'
         implementation 'commons-io:commons-io:2.17.0'

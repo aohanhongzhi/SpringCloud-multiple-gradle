@@ -282,11 +282,14 @@ https://blog.csdn.net/bandancer/article/details/84926383
 
 [关于springboot中添加Filter的方法](https://www.jianshu.com/p/3d421fbce734)
 
-###               
+### hikari  
 
 ```
 WARN  at com.zaxxer.hikari.pool.PoolBase.isConnectionAlive (PoolBase.java:184) - HikariPool-1 - Failed to validate connection com.mysql.cj.jdbc.ConnectionImpl@63ec6a5a (No operations allowed after connection closed.). Possibly consider using a shorter maxLifetime value.
 ```
+
+https://mp.weixin.qq.com/s/gG1ghXMkS1AYYR5olJPMiQ?scene=1
+
 
 ### 全局异常捕获
 
