@@ -171,6 +171,10 @@ subprojects {
     }
 
 }
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+}
 //
 //graalvmNative {
 //    binaries.all {
