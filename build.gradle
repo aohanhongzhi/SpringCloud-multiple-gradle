@@ -170,6 +170,15 @@ subprojects {
 
     }
 
+//  增加过期检查
+    tasks.withType(JavaCompile) {
+        options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
+    }
+
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs += ["-Xlint:deprecation", "-Xlint:unchecked"]
 }
 //
 //graalvmNative {
