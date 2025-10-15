@@ -7,6 +7,10 @@ base {
 jar.enabled = true
 bootJar.enabled = false
 
+/* 确保插件被正确应用 */
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 dependencies {
 
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上

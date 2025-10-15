@@ -8,6 +8,10 @@ jar.enabled = true
 /* 需要org.springframework.boot插件 不需要打包成可执行的jar*/
 bootJar.enabled = false
 
+/* 确保插件被正确应用 */
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 group 'hxy.dream'
 version '1.0-SNAPSHOT'
 

@@ -8,11 +8,17 @@ jar.enabled = true
 /* 需要org.springframework.boot插件 不需要打包成可执行的jar*/
 bootJar.enabled = false
 
+/* 确保插件被正确应用 */
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 dependencies {
 
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上api
-    api 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.12'
-    api("com.baomidou:mybatis-plus-jsqlparser:3.5.12")
+
+//    https://github.com/baomidou/mybatis-plus
+    api 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.14'
+    api("com.baomidou:mybatis-plus-jsqlparser:3.5.14")
     api 'org.springframework.boot:spring-boot-starter-validation'
     api 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 
