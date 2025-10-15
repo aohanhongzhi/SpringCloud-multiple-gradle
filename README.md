@@ -106,7 +106,7 @@ eric-dream
  Lombok               | 简化对象封装工具                                           | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)                             
  loc                  | 代码行数统计                                             | https://github.com/cgag/loc                                                                                  
  ko-time              | 轻量级的springboot项目性能分析工具，通过追踪方法调用链路以及对应的运行时长快速定位性能瓶颈 | https://gitee.com/huoyo/ko-time                                                                              
- okhttps              | 强大轻量 且 前后端通用的 HTTP 客户端，同时支持 WebSocket 以及 Stomp 协议  | https://ok.zhxu.cn/                                                                                          
+ okhttps              | 强大轻量 且 前后端通用的 HTTP 客户端，同时支持 WebSocket 以及 Stomp 协议  | https://ok.zhxu.cn/ https://github.com/troyzhxu/okhttps                                                                                          
 
 #### SpringBoot支持
 
