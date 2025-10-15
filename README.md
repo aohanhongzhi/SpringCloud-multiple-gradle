@@ -158,6 +158,13 @@ gradle build -x test --parallel --build-cache
 
 > 需要解决多工程的依赖分析
 
+
+### gradle升级版本
+
+```shell
+./gradlew wrapper  --gradle-version 9.1.0
+```
+
 ### gradle多模块构建，依赖关系解决
 
 ```groovy

@@ -1,4 +1,7 @@
-archivesBaseName = 'app'
+// archivesBaseName is deprecated, using base.archivesName instead
+base {
+    archivesName = 'app'
+}
 
 jar.enabled = true
 bootJar.enabled = true

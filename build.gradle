@@ -6,23 +6,23 @@
 */
 buildscript {
     ext {
-        springBootVersion = '3.5.0' // https://spring.io/projects/spring-boot#learn
+        springBootVersion = '3.5.6' // https://spring.io/projects/spring-boot#learn
     }
     repositories {
         mavenLocal()
-        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
-        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
-        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
-        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
-        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
-        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
-        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
-        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven { name = "Alibaba central"; url = "https://maven.aliyun.com/repository/central" }
+        maven { name = "Alibaba"; url = "https://maven.aliyun.com/repository/public" }
+        maven { name = "Alibaba google"; url = "https://maven.aliyun.com/repository/google" }
+        maven { name = "Alibaba gradle-plugin"; url = "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { name = "Alibaba spring"; url = "https://maven.aliyun.com/repository/spring" }
+        maven { name = "Alibaba spring-plugin"; url = "https://maven.aliyun.com/repository/spring-plugin" }
+        maven { name = "Alibaba grails-core"; url = "https://maven.aliyun.com/repository/grails-core" }
+        maven { name = "Alibaba apache-snapshots"; url = "https://maven.aliyun.com/repository/apache-snapshots" }
         maven {
-            url "https://mirrors.huaweicloud.com/repository/maven/"
+            url = "https://mirrors.huaweicloud.com/repository/maven/"
             name = "华为开源镜像库"
         }
-        maven { url "https://repo.spring.io/libs-release" }
+        maven { url = "https://repo.spring.io/libs-release" }
         mavenCentral()
     }
     dependencies {
@@ -37,7 +37,7 @@ plugins {
     // https://github.com/spring-gradle-plugins/dependency-management-plugin
     id 'io.spring.dependency-management' version '1.1.7'
     id 'idea'
-    id "com.google.cloud.tools.jib" version "2.0.0"
+    id "com.google.cloud.tools.jib" version "3.4.4"
 //    https://github.com/graalvm/native-build-tools
 //    id 'org.graalvm.buildtools.native' version '0.9.28'
 }
@@ -59,29 +59,29 @@ allprojects {
 
 //    repositories {
 //        mavenLocal()
-//        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
-//        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
-//        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
-//        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
-//        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
-//        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
-//        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
-//        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+//        maven { name = "Alibaba central"; url = "https://maven.aliyun.com/repository/central" }
+//        maven { name = "Alibaba"; url = "https://maven.aliyun.com/repository/public" }
+//        maven { name = "Alibaba google"; url = "https://maven.aliyun.com/repository/google" }
+//        maven { name = "Alibaba gradle-plugin"; url = "https://maven.aliyun.com/repository/gradle-plugin" }
+//        maven { name = "Alibaba spring"; url = "https://maven.aliyun.com/repository/spring" }
+//        maven { name = "Alibaba spring-plugin"; url = "https://maven.aliyun.com/repository/spring-plugin" }
+//        maven { name = "Alibaba grails-core"; url = "https://maven.aliyun.com/repository/grails-core" }
+//        maven { name = "Alibaba apache-snapshots"; url = "https://maven.aliyun.com/repository/apache-snapshots" }
 //        maven {
-//            url "https://mirrors.huaweicloud.com/repository/maven/"
+//            url = "https://mirrors.huaweicloud.com/repository/maven/"
 //            name = "华为开源镜像库"
 //        }
-//        maven { url "https://repo.spring.io/libs-release" }
+//        maven { url = "https://repo.spring.io/libs-release" }
 //        mavenCentral()
 //        if (version.contains('-')) {
-//            maven { url "https://repo.spring.io/milestone" }
+//            maven { url = "https://repo.spring.io/milestone" }
 //        }
 //        if (version.endsWith('-SNAPSHOT')) {
-//            maven { url "https://repo.spring.io/snapshot" }
+//            maven { url = "https://repo.spring.io/snapshot" }
 //        }
 //
 //        // 临时解决mybatis没有适配 SpringBoot3.0问题
-//        maven { name "OSS Snapshot repository"; url "https://oss.sonatype.org/content/repositories/snapshots/" }
+//        maven { name = "OSS Snapshot repository"; url = "https://oss.sonatype.org/content/repositories/snapshots/" }
 //    }
 
     configurations.all {
@@ -113,19 +113,19 @@ subprojects {
     repositories {
         mavenLocal()
 //         <!--阿里云maven仓库更新会慢一两天左右，拉取失败的切换到maven中央仓库-->
-        maven { name "Alibaba central"; url "https://maven.aliyun.com/repository/central" }
-        maven { name "Alibaba"; url "https://maven.aliyun.com/repository/public" }
-        maven { name "Alibaba google"; url "https://maven.aliyun.com/repository/google" }
-        maven { name "Alibaba gradle-plugin"; url "https://maven.aliyun.com/repository/gradle-plugin" }
-        maven { name "Alibaba spring"; url "https://maven.aliyun.com/repository/spring" }
-        maven { name "Alibaba spring-plugin"; url "https://maven.aliyun.com/repository/spring-plugin" }
-        maven { name "Alibaba grails-core"; url "https://maven.aliyun.com/repository/grails-core" }
-        maven { name "Alibaba apache-snapshots"; url "https://maven.aliyun.com/repository/apache-snapshots" }
+        maven { name = "Alibaba central"; url = "https://maven.aliyun.com/repository/central" }
+        maven { name = "Alibaba"; url = "https://maven.aliyun.com/repository/public" }
+        maven { name = "Alibaba google"; url = "https://maven.aliyun.com/repository/google" }
+        maven { name = "Alibaba gradle-plugin"; url = "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { name = "Alibaba spring"; url = "https://maven.aliyun.com/repository/spring" }
+        maven { name = "Alibaba spring-plugin"; url = "https://maven.aliyun.com/repository/spring-plugin" }
+        maven { name = "Alibaba grails-core"; url = "https://maven.aliyun.com/repository/grails-core" }
+        maven { name = "Alibaba apache-snapshots"; url = "https://maven.aliyun.com/repository/apache-snapshots" }
         maven {
-            url "https://mirrors.huaweicloud.com/repository/maven/"
+            url = "https://mirrors.huaweicloud.com/repository/maven/"
             name = "华为开源镜像库"
         }
-        maven { url "https://repo.spring.io/libs-release" }
+        maven { url = "https://repo.spring.io/libs-release" }
         mavenCentral()
     }
 

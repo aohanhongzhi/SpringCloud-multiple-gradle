@@ -1,5 +1,8 @@
 /* 子模块项目名，jar名 */
-archivesBaseName = 'common'
+// archivesBaseName is deprecated, using base.archivesName instead
+base {
+    archivesName = 'common'
+}
 
 jar.enabled = true
 /* 需要org.springframework.boot插件 不需要打包成可执行的jar*/
