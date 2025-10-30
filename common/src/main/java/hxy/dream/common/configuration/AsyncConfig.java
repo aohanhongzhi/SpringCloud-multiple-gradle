@@ -1,50 +1,31 @@
 package hxy.dream.common.configuration;
 
-import hxy.dream.common.filter.TokenFilter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.scheduling.annotation.AsyncConfigurer;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import jakarta.servlet.MultipartConfigElement;
+import java.util.concurrent.Executor;
 
-/**
- * @author eric
- * @program multi-gradle
- * @description
- * @date 2022/1/23
- */
 @Configuration
-public class AsyncConfig {
-//    @Bean
-//    public ServletRegistrationBean dispatcherServlet() {
-//        ServletRegistrationBean registration = new ServletRegistrationBean(new DispatcherServlet(), "/");
-//        registration.setAsyncSupported(true);
-//        return registration;
-//    }
-//
-//    @Autowired
-//    private WebMvcProperties webMvcProperties;
-//
-//    @Autowired(required = false)
-//    private MultipartConfigElement multipartConfig;
+@EnableAsync
+public class AsyncConfig implements AsyncConfigurer {
 
-    //    @Bean
-//    @Primary
-//    public DispatcherServletRegistrationBean dispatcherServlet1( ) {
-//        DispatcherServletRegistrationBean registration = new DispatcherServletRegistrationBean(
-//                new DispatcherServlet(), "/*");
-////        registration.setName("dispatcherServlet1");
-//        registration.setAsyncSupported(true);
-//        registration.setLoadOnStartup(
-//                this.webMvcProperties.getServlet().getLoadOnStartup());
-//        if (this.multipartConfig != null) {
-//            registration.setMultipartConfig(this.multipartConfig);
-//        }
-//        return registration;
-//    }
+    @Override
+    public Executor getAsyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(100);
+        executor.setThreadNamePrefix("async-");
+        executor.initialize();
+        return executor;
+    }
 
+    @Override
+    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+        return new SimpleAsyncUncaughtExceptionHandler();
+    }
 }
