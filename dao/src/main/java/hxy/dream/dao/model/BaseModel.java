@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * @description 基础的类模型，增加一些通用字段
  * @date 2020/9/21
  */
-public class BaseModel<T extends Model<?>> extends Model<T> {
+public abstract class BaseModel<T extends Model<?>> extends Model<T> {
 
     //    @TableField(fill = FieldFill.INSERT)
 //    private String creator;

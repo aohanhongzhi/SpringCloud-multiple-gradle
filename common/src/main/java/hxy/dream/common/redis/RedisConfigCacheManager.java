@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.cache.CacheKeyPrefix;
 import org.springframework.data.redis.cache.RedisCache;
@@ -68,12 +68,16 @@ public class RedisConfigCacheManager extends RedisCacheManager {
         // 解决查询缓存转换异常的问题
         om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        // om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL); // 已废弃，使用新的方法
+        om.activateDefaultTypingAsProperty(
+                om.getPolymorphicTypeValidator(),
+                ObjectMapper.DefaultTyping.NON_FINAL,
+                "@class");
         // 支持 jdk 1.8 日期   ---- start ---
         om.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
         om.registerModule(new Jdk8Module())
-                .registerModule(new JavaTimeModule())
-                .registerModule(new ParameterNamesModule());
+                .registerModule(new JavaTimeModule());
+//                .registerModule(new ParameterNamesModule()); // 可能在新版本中不需要或已移除
         // --end --
         GenericJackson2JsonRedisSerializer genericJackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer(om);
         return genericJackson2JsonRedisSerializer;

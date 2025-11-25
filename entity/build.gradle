@@ -1,4 +1,6 @@
-/* 子模块项目名，jar名 */
+/*
+ * 子模块项目名，jar名
+ */
 // archivesBaseName is deprecated, using base.archivesName instead
 base {
     archivesName = 'entity'
@@ -17,8 +19,8 @@ dependencies {
 //    implementation的依赖是不可以传递的而，entity需要被app依赖，所以需要加上api
 
 //    https://github.com/baomidou/mybatis-plus
-    api 'com.baomidou:mybatis-plus-spring-boot3-starter:3.5.14'
-    api("com.baomidou:mybatis-plus-jsqlparser:3.5.14")
+    api 'com.baomidou:mybatis-plus-spring-boot4-starter:3.5.14'
+//    api("com.baomidou:mybatis-plus-jsqlparser:3.5.14")
     api 'org.springframework.boot:spring-boot-starter-validation'
     api 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 

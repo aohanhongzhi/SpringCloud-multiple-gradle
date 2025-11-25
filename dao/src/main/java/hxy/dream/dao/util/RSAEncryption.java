@@ -1,6 +1,5 @@
 package hxy.dream.dao.util;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +16,7 @@ import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,9 +72,7 @@ public class RSAEncryption {
      */
 
     public static PublicKey getPublicKey(String key) throws Exception {
-
-        Base64 base64 = new Base64();
-        byte[] keyBytes = base64.decode(key);
+        byte[] keyBytes = Base64.getDecoder().decode(key);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         PublicKey publicKey = keyFactory.generatePublic(keySpec);
@@ -90,8 +88,7 @@ public class RSAEncryption {
      */
 
     public static PrivateKey getPrivateKey(String key) throws Exception {
-        Base64 base64 = new Base64();
-        byte[] keyBytes = base64.decode(key);
+        byte[] keyBytes = Base64.getDecoder().decode(key);
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         PrivateKey privateKey = keyFactory.generatePrivate(keySpec);
@@ -224,10 +221,10 @@ public class RSAEncryption {
             cipherText = encrypt(input.getBytes(), publicKey);
             //加密后的东西
             System.out.println("密文：" + new String(cipherText));
-            String base64String = Base64.encodeBase64String(cipherText);
+            String base64String = Base64.getEncoder().encodeToString(cipherText);
             System.out.println("Base64处理后" + base64String);
             System.out.println("Base64处理后长度" + base64String.length());
-            byte[] bytes = Base64.decodeBase64(base64String);
+            byte[] bytes = Base64.getDecoder().decode(base64String);
             System.out.println("base64解码" + new String(bytes));
 
             //开始解密
@@ -250,7 +247,7 @@ public class RSAEncryption {
     public static String infoEncrypt(String rowInfo) {
         try {
             byte[] cipherText = encrypt(rowInfo.getBytes(), publicKey);
-            String base64String = Base64.encodeBase64String(cipherText);
+            String base64String = Base64.getEncoder().encodeToString(cipherText);
             return base64String;
         } catch (Exception e) {
             log.error("\n====>{}", e.getMessage(), e);
@@ -265,7 +262,7 @@ public class RSAEncryption {
      * @return
      */
     public static String infoDecrypt(String base64EncryptInfo) {
-        byte[] cipherText = Base64.decodeBase64(base64EncryptInfo);
+        byte[] cipherText = Base64.getDecoder().decode(base64EncryptInfo);
         try {
             byte[] plainText = decrypt(cipherText, privateKey);
             return new String(plainText);

@@ -6,7 +6,7 @@
 */
 buildscript {
     ext {
-        springBootVersion = '3.5.8' // https://spring.io/projects/spring-boot#learn
+        springBootVersion = '4.0.0' // https://spring.io/projects/spring-boot#learn
     }
     repositories {
         mavenLocal()
@@ -22,7 +22,8 @@ buildscript {
             url = "https://mirrors.huaweicloud.com/repository/maven/"
             name = "华为开源镜像库"
         }
-        maven { url = "https://repo.spring.io/libs-release" }
+        maven { url = "https://repo.spring.io/release" }
+        maven { url = "https://repo.spring.io/milestone" }
         mavenCentral()
     }
     dependencies {
@@ -125,7 +126,8 @@ subprojects {
             url = "https://mirrors.huaweicloud.com/repository/maven/"
             name = "华为开源镜像库"
         }
-        maven { url = "https://repo.spring.io/libs-release" }
+        maven { url = "https://repo.spring.io/release" }
+        maven { url = "https://repo.spring.io/milestone" }
         mavenCentral()
     }
 
@@ -134,7 +136,8 @@ subprojects {
 
 //   暂不支持SpringBoot3     https://gitee.com/huoyo/ko-time/issues/I880X2
 //        implementation 'cn.langpy:ko-time:3.0.1'
-        implementation 'org.springframework.boot:spring-boot-starter-aop'
+        // 将AOP依赖移到需要的模块中，而不是所有子项目
+        // implementation 'org.springframework.boot:spring-boot-starter-aop'
         implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
         implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
 

@@ -8,25 +8,19 @@ package hxy.dream.common.configuration;
  */
 
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.DataChangeRecorderInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.IllegalSQLInnerInterceptor;
-import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+//import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.DataChangeRecorderInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.IllegalSQLInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.BlockAttackInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.DataChangeRecorderInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.IllegalSQLInnerInterceptor;
+//import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import hxy.dream.common.serializer.BaseEnumDeserializer;
 import hxy.dream.common.serializer.BaseEnumSerializer;
 import hxy.dream.common.serializer.BaseLongSerializer;
@@ -40,7 +34,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -103,30 +96,30 @@ public class BeanConfig {
     /**
      * 新的分页插件,一缓和二缓遵循mybatis的规则,需要设置 MybatisConfiguration#useDeprecatedExecutor = false 避免缓存出现问题(该属性会在旧插件移除后一同移除)
      */
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-
-//        数据变动记录插件
-        DataChangeRecorderInnerInterceptor dataChangeRecorderInnerInterceptor = new DataChangeRecorderInnerInterceptor();
-        // 配置安全阈值，例如限制批量更新或插入的记录数不超过 1000 条
-        dataChangeRecorderInnerInterceptor.setBatchUpdateLimit(1000);
-        interceptor.addInnerInterceptor(dataChangeRecorderInnerInterceptor);
-
-
-//        mybatisplus与pagehelper的功能冲突了,所以后面会带上两个limit
-        PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
-        paginationInnerInterceptor.setMaxLimit(100L);
-
-//        防止全表更新与删除
-        BlockAttackInnerInterceptor blockAttackInnerInterceptor = new BlockAttackInnerInterceptor();
-
-        interceptor.addInnerInterceptor(paginationInnerInterceptor);
-        interceptor.addInnerInterceptor(blockAttackInnerInterceptor);
-//        非法SQL拦截
-        interceptor.addInnerInterceptor(new IllegalSQLInnerInterceptor());
-        return interceptor;
-    }
+//    @Bean
+//    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+//        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+//
+////        数据变动记录插件
+//        DataChangeRecorderInnerInterceptor dataChangeRecorderInnerInterceptor = new DataChangeRecorderInnerInterceptor();
+//        // 配置安全阈值，例如限制批量更新或插入的记录数不超过 1000 条
+//        dataChangeRecorderInnerInterceptor.setBatchUpdateLimit(1000);
+//        interceptor.addInnerInterceptor(dataChangeRecorderInnerInterceptor);
+//
+//
+////        mybatisplus与pagehelper的功能冲突了,所以后面会带上两个limit
+//        PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor(DbType.MYSQL);
+//        paginationInnerInterceptor.setMaxLimit(100L);
+//
+////        防止全表更新与删除
+//        BlockAttackInnerInterceptor blockAttackInnerInterceptor = new BlockAttackInnerInterceptor();
+//
+//        interceptor.addInnerInterceptor(paginationInnerInterceptor);
+//        interceptor.addInnerInterceptor(blockAttackInnerInterceptor);
+////        非法SQL拦截
+//        interceptor.addInnerInterceptor(new IllegalSQLInnerInterceptor());
+//        return interceptor;
+//    }
 
     /**
      *  解决两个斜杠问题。后期搞个方案，直接从一开始就直接去掉多余的斜杠，保证后期处理都是正常的。
